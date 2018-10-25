@@ -15,7 +15,7 @@
 <meta property="og:site_name" content="Hexo">
 <meta property="og:description" content="hexo 搭建 blog 完整演示前言由于我自己的电脑其实搭建之前就有了各种环境，我也不记得啥时候安的了，稀里糊涂搭建好了，中间遇到了许多问题，这里我从头完整的整理一遍。 本篇博客包含的内容如下：  安装git 安装NodeJs 配置环境变量 安装hexo 部署项目并连接 使用hexo 我遇到的一些问题  1.安装 Git Bash我用的是windows环境  下载地址：Git for Windo">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2018-10-25T02:56:33.573Z">
+<meta property="og:updated_time" content="2018-10-25T08:14:05.285Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="hexo 从零搭建全过程">
 <meta name="twitter:description" content="hexo 搭建 blog 完整演示前言由于我自己的电脑其实搭建之前就有了各种环境，我也不记得啥时候安的了，稀里糊涂搭建好了，中间遇到了许多问题，这里我从头完整的整理一遍。 本篇博客包含的内容如下：  安装git 安装NodeJs 配置环境变量 安装hexo 部署项目并连接 使用hexo 我遇到的一些问题  1.安装 Git Bash我用的是windows环境  下载地址：Git for Windo">
@@ -102,7 +102,7 @@
 <ul>
 <li>下载地址：<a href="https://gitforwindows.org/" target="_blank" rel="noopener">Git for Windows</a></li>
 <li>安装步骤：打开下载好的安装包，一路next，我不记得安装的时候是不是有添加到环境变量选项了，如果有记得选上，大概是 “add to path” 这样的选项，如果没选我后面会说到环境变量的意义和添加方法。后文每个软件安装都会涉及环境变量的问题，就不提了。</li>
-<li>检测安装是否成功：在命令行输入 <code>git bash</code>  返回git版本则安装成功</li>
+<li>检测安装是否成功：在命令行输入 <code>git version</code>  返回git版本则安装成功</li>
 </ul>
 <h4 id="2-安装-NodeJs"><a href="#2-安装-NodeJs" class="headerlink" title="2.安装 NodeJs"></a>2.安装 NodeJs</h4><p>Hexo 是基于NodeJs 的静态博客，而且安装 NodeJs 后自带的 npm 工具在后面下载 hexo 时会用到。</p>
 <ul>
@@ -110,7 +110,7 @@
 <li>安装步骤：一路next的过程中一样注意环境变量的问题，这样就不用后期自己配了</li>
 <li>查看版本命令：<code>node -v</code></li>
 </ul>
-<h4 id="3-配置环境变量"><a href="#3-配置环境变量" class="headerlink" title="3.配置环境变量"></a>3.配置环境变量</h4><p>什么是环境变量？百度百科给的解释是 环境变量（environment variables）一般是指在<a href="https://baike.baidu.com/item/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/192" target="_blank" rel="noopener">操作系统</a>中用来指定操作系统运行环境的一些参数，如：临时文件夹位置和系统文件夹位置等。 </p>
+<h4 id="3-配置环境变量"><a href="#3-配置环境变量" class="headerlink" title="3.配置环境变量"></a>3.配置环境变量</h4><p>什么是环境变量？百度百科给的解释是 环境变量（environment variables）一般是指在操作系统中用来指定操作系统运行环境的一些参数，如：临时文件夹位置和系统文件夹位置等。 </p>
 <p>我们要配置的是Windows中的PATH环境变量 (PATH 中罗列出 shell 输入的执行命令所在的目录) </p>
 <p>我对PATH环境变量的理解是，当你在命令行输入一个命令时，系统会自动从C盘的system文件夹下寻找这个命令，如果没有找到，就会从你设置的PATH环境变量中的文件夹下寻找，所以设置环境变量可以让你更方便地在任何目录下使用你安装的软件命令。</p>
 <p>那么如果安装时忘记添加PATH了，怎么手动配置呢？</p>
@@ -133,7 +133,7 @@
 <p><code>git config --global user.email &quot;youremail&quot;</code></p>
 </li>
 <li><p>创建SSH命令</p>
-<p><code></code>ssh-keygen -t rsa -C “<a href="mailto:youremail@example.com" target="_blank" rel="noopener">youremail@example.com</a>“` </p>
+<p><code>ssh-keygen -t rsa -C &quot;youremail@example.com&quot;</code> </p>
 <p>该命令生成 ssh 密钥，会生成两个文件，一个是私钥，一个是公钥，我们要用到结尾是 .pub 的公钥</p>
 <p>将得到的公钥文件用记事本打开，把内容复制下来，在git hub上settings中的SSH and GPG keys中新建一个SSH key，title栏随便取名，key栏把刚才复制的内容粘贴进去即可。</p>
 </li>
@@ -172,7 +172,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/10/25/hexo从零搭建全过程/" data-id="cjnnzy1xy0001p4u614qplv1u" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/10/25/hexo从零搭建全过程/" data-id="cjnobdyc600004ou6s7qwpgtv" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/hexo-搭建/">hexo 搭建</a></li></ul>
