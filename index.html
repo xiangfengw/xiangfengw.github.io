@@ -322,8 +322,7 @@
 
       
         
-          
-            <h2 id="hexo-搭建-blog-完整演示"><a href="#hexo-搭建-blog-完整演示" class="headerlink" title="hexo 搭建 blog 完整演示"></a>hexo 搭建 blog 完整演示</h2><h4 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h4><p>由于我自己的电脑其实搭建之前就有了各种环境，我也不记得啥时候安的了，稀里糊涂搭建好了，中间遇到了许多问题，这里我从头完整的整理一遍。</p>
+          <h2 id="hexo-搭建-blog-完整演示"><a href="#hexo-搭建-blog-完整演示" class="headerlink" title="hexo 搭建 blog 完整演示"></a>hexo 搭建 blog 完整演示</h2><h4 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h4><p>由于我自己的电脑其实搭建之前就有了各种环境，我也不记得啥时候安的了，稀里糊涂搭建好了，中间遇到了许多问题，这里我从头完整的整理一遍。</p>
 <p>本篇博客包含的内容如下：</p>
 <ol>
 <li>安装git</li>
@@ -334,78 +333,13 @@
 <li>使用hexo</li>
 <li>我遇到的一些问题</li>
 </ol>
-<h4 id="1-安装-Git-Bash"><a href="#1-安装-Git-Bash" class="headerlink" title="1.安装 Git Bash"></a>1.安装 Git Bash</h4><p>我用的是windows环境</p>
-<ul>
-<li>下载地址：<a href="https://gitforwindows.org/" target="_blank" rel="noopener">Git for Windows</a></li>
-<li>安装步骤：打开下载好的安装包，一路next，我不记得安装的时候是不是有添加到环境变量选项了，如果有记得选上，大概是 “add to path” 这样的选项，如果没选我后面会说到环境变量的意义和添加方法。后文每个软件安装都会涉及环境变量的问题，就不提了。</li>
-<li>检测安装是否成功：在命令行输入 <code>git version</code>  返回git版本则安装成功</li>
-</ul>
-<h4 id="2-安装-NodeJs"><a href="#2-安装-NodeJs" class="headerlink" title="2.安装 NodeJs"></a>2.安装 NodeJs</h4><p>Hexo 是基于NodeJs 的静态博客，而且安装 NodeJs 后自带的 npm 工具在后面下载 hexo 时会用到。</p>
-<ul>
-<li>下载地址：<a href="https://nodejs.org/en/" target="_blank" rel="noopener">Node.JS</a></li>
-<li>安装步骤：一路next的过程中一样注意环境变量的问题，这样就不用后期自己配了</li>
-<li>查看版本命令：<code>node -v</code></li>
-</ul>
-<h4 id="3-配置环境变量"><a href="#3-配置环境变量" class="headerlink" title="3.配置环境变量"></a>3.配置环境变量</h4><p>什么是环境变量？百度百科给的解释是 环境变量（environment variables）一般是指在操作系统中用来指定操作系统运行环境的一些参数，如：临时文件夹位置和系统文件夹位置等。 </p>
-<p>我们要配置的是Windows中的PATH环境变量 (PATH 中罗列出 shell 输入的执行命令所在的目录) </p>
-<p>我对PATH环境变量的理解是，当你在命令行输入一个命令时，系统会自动从C盘的system文件夹下寻找这个命令，如果没有找到，就会从你设置的PATH环境变量中的文件夹下寻找，所以设置环境变量可以让你更方便地在任何目录下使用你安装的软件命令。</p>
-<p>那么如果安装时忘记添加PATH了，怎么手动配置呢？</p>
-<p>右击我的电脑 –&gt; 属性 –&gt; 高级系统设置 –&gt; 环境变量，然后对Path变量进行编辑，点击右侧的新建选项，这时左侧的变量列表会出现新的空栏，在空栏中输入你要配置的文件目录，应用后重启命令行即可生效。</p>
-<h4 id="4-安装-hexo"><a href="#4-安装-hexo" class="headerlink" title="4.安装 hexo"></a>4.安装 hexo</h4><p> 好了！该下的都下完了，该配的也配完了，这时可以直接使用npm工具安装hexo了。</p>
-<ul>
-<li>安装命令：<code>npm install -g hexo-cli</code></li>
-</ul>
-<p>等待安装完成，如果安装完成后你找不到安装的位置，可以输入 <code>npm config get prefix</code> 命令得到默认安装路径，然后把这个路径添加到环境变量中</p>
-<ul>
-<li>查看版本命令：<code>hexo -v</code></li>
-<li>初始化：新建一个空文件夹作为本地blog目录，命令行切换到该目录下执行 <code>hexo init</code> 进行初始化，初始化后文件夹内会生成一些初始化的文件，稍后会讲解其中要使用到的文件作用。</li>
-</ul>
-<h4 id="5-部署项目并连接"><a href="#5-部署项目并连接" class="headerlink" title="5.部署项目并连接"></a>5.部署项目并连接</h4><p>接下来，在 Git hub 上创建项目并使本机能连接到 Git hub 上</p>
-<ul>
-<li><p>创建一个repo，项目名称为 yourname.github.io (yourname 就是你的git hub用户名)，其他配置使用默认即可</p>
-</li>
-<li><p>回到本机git bash中配置git hub账户信息，依次输入如下几条命令：</p>
-<p><code>git config --global user.name &quot;yourname&quot;</code></p>
-<p><code>git config --global user.email &quot;youremail&quot;</code></p>
-</li>
-<li><p>创建SSH命令</p>
-<p><code>ssh-keygen -t rsa -C &quot;youremail@example.com&quot;</code> </p>
-<p>该命令生成 ssh 密钥，会生成两个文件，一个是私钥，一个是公钥，我们要用到结尾是 .pub 的公钥</p>
-<p>将得到的公钥文件用记事本打开，把内容复制下来，在git hub上settings中的SSH and GPG keys中新建一个SSH key，title栏随便取名，key栏把刚才复制的内容粘贴进去即可。</p>
-</li>
-<li><p>在 git bash 中验证是否成功</p>
-<p>输入  <code>ssh -T git@github.com</code> 命令验证是否添加成功</p>
-<p>成功连接你就可以进行下一步了</p>
-</li>
-</ul>
-<h4 id="6-使用-hexo"><a href="#6-使用-hexo" class="headerlink" title="6.使用 hexo"></a>6.使用 hexo</h4><ul>
-<li>在使用之前先用编辑器打开你blog项目文件夹下的_config.yml文件修改一些配置，添加下面这些配置，其中YourgithubName换成你自己的：</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">deploy:</span><br><span class="line">  type: git</span><br><span class="line">  repo: https://github.com/YourgithubName/YourgithubName.github.io.git</span><br><span class="line">  branch: master</span><br></pre></td></tr></table></figure>
-<ul>
-<li><p>回到git bash中，进入你的blog目录，分别执行以下命令：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">hexo clean</span><br><span class="line">hexo g</span><br><span class="line">hexo server</span><br></pre></td></tr></table></figure>
-<p>打开浏览器输入 localhost:4000 你就可以在本地看到你blog的样子了</p>
-</li>
-<li><p>接下来可以新建一篇博客并推到git hub上去</p>
-<p><code>hexo new &quot;name&quot;</code>  命令新建博客，输入该命令后会在你的blog文件下source/_posts目录下生成一个markdown文档，你可以在这个文档中添加博客内容</p>
-<p><code>hexo g</code>命令生成博客内容</p>
-<p><code>hexo d</code>命令将博客推上去</p>
-</li>
-</ul>
-<p>如果成功了，就可以在浏览器中输入 <a href="http://yourgithubname.github.io" target="_blank" rel="noopener">http://yourgithubname.github.io</a> 看到你的个人博客了</p>
-<h4 id="7-我遇到的一些问题"><a href="#7-我遇到的一些问题" class="headerlink" title="7.我遇到的一些问题"></a>7.我遇到的一些问题</h4><p>在搭建过程中我遇到了两个问题</p>
-<p>我遇到的第一个问题是执行<code>hexo g</code>命令后生成的是空的，然后推也推不上去</p>
-<p>我的解决方法是修改根目录下的 _config.yml 配置文件 修改deploy 节点</p>
-<p>原来我们添加的配置为</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">deploy:</span><br><span class="line">  type: git</span><br><span class="line">  repo: https://github.com/YourgithubName/YourgithubName.github.io.git</span><br><span class="line">  branch: master</span><br></pre></td></tr></table></figure>
-<p>修改为如下</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">deploy:</span><br><span class="line">  type: git</span><br><span class="line">  repo: https://yourname:yourpassword@github.com/YourgithubName/YourgithubName.github.io.git</span><br><span class="line">  branch: master</span><br></pre></td></tr></table></figure>
-<p>且要注意每个配置选项的冒号后面要有一个空格，要严格参照规定格式</p>
-<p>我遇到的第二个问题是SSH连接不上，原来在生成SSH密钥的时候，提示输入生成的文件名，我为了方便把它生成到D盘下新建的一个文件夹中，并且改了名字。但在进行SSH连接的时候，好像会默认到你的C盘 C:\Users\user\.ssh 目录下寻找 xx_rsa 密钥文件，所以我把两个密钥复制到了这个目录下并更改了文件名分别为：id_rsq 和 id_rsa.pub 就可以成功连接了。</p>
-<p>如果你没遇到相同的问题就不用做以上修改，在配置的过程中可能会出现千奇百怪的问题，希望你第一次遇到问题时先去google搜索一下，可能相同的问题已经被解答过许多次了。</p>
-
-          
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/10/25/hexo从零搭建全过程/#more" rel="contents">
+              Read more &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -522,18 +456,14 @@
 
       
         
-          
-            <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="noopener">Deployment</a></p>
-
-          
+          <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/10/25/hello-world/#more" rel="contents">
+              Read more &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -627,10 +557,10 @@
               
               
               <div class="site-state-item site-state-tags">
-                
-                  <span class="site-state-item-count">2</span>
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">1</span>
                   <span class="site-state-item-name">tags</span>
-                
+                </a>
               </div>
             
 
