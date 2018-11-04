@@ -97,7 +97,7 @@
 <meta property="og:image" content="http://yoursite.com/2018/11/03/WebLogic-XMLDecoder反序列化漏洞/8.jpg">
 <meta property="og:image" content="http://yoursite.com/2018/11/03/WebLogic-XMLDecoder反序列化漏洞/9.jpg">
 <meta property="og:image" content="http://yoursite.com/2018/11/03/WebLogic-XMLDecoder反序列化漏洞/10.jpg">
-<meta property="og:updated_time" content="2018-11-04T04:56:21.552Z">
+<meta property="og:updated_time" content="2018-11-04T05:08:09.870Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="WebLogic XMLDecoder反序列化漏洞">
 <meta name="twitter:description" content="前言这是我第一次接触java反序列化漏洞，之前也不会java，调试的过程比较艰辛，其中一些原理其实也没有太清楚，先整理一篇博客回顾一下再继续往下学习吧。CVE-2017-3506 &amp;amp; CVE-2017-10271漏洞产生的原因大致是Weblogic的WLS Security组件对外提供webservice服务，其中使用了XMLDecoder来解析用户传入的XML数据，在解析的过程中出现反序">
@@ -345,11 +345,11 @@
 <img src="/2018/11/03/WebLogic-XMLDecoder反序列化漏洞/1.jpg" title="开启远程调试">
 <p>添加图中的上面两行代码 原来并没有这两行代码</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">debugFlag=&quot;true&quot;</span><br><span class="line">export debugFlag</span><br></pre></td></tr></table></figure>
-<p>添加后运行一下这个脚本，退出并重启容器，这样就开启了debug模式，可以<code>docke ps</code>一下查看容器是否开启了8453端口。</p>
+<p>添加后运行一下这个脚本，退出并重启容器，这样就开启了debug模式，可以<code>docker ps</code>一下查看容器是否开启了8453端口。</p>
 <p>tips：退出容器快捷键 <code>Ctrl+D</code></p>
 <p>因为要远程调试weblogic，而没有源码，所以要把容器中依赖的包拷出来</p>
 <p>使用命令<code>docker cp weblogic:/root/Oracle/Middleware/wlserver_10.3 ./WebLogic_jars</code> </p>
-<p>这是如果你使用的是windows系统会报错，因为windows队命令行下的路径长度有限制，所以要先进到docker里包要拷的文件夹打个包，再拉下来。</p>
+<p>这是如果你使用的是windows系统会报错，因为windows对命令行下的路径长度有限制，所以要先进到docker里把要拷的文件夹打个包，再拉下来。</p>
 <p>Linux 的打包命令为 <code>zip -r zipname.zip targetdir</code></p>
 <p>docker中好像没有zip命令，需要先<code>apt-get install zip</code>一下，</p>
 <p>然后再执行<code>zip -r wlserver_10.3.zip wlserver_10.3</code></p>
