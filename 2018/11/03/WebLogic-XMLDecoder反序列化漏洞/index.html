@@ -1,0 +1,786 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="weblogic反序列化,">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="前言这是我第一次接触java反序列化漏洞，也不会java，调试的过程比较艰辛，其中一些原理其实也没有太清楚，先整理一篇博客回顾一下再继续往下学习吧。CVE-2017-3506 &amp;amp; CVE-2017-10271漏洞产生的原因大致是Weblogic的WLS Security组件对外提供webservice服务，其中使用了XMLDecoder来解析用户传入的XML数据，在解析的过程中出现反序列化">
+<meta name="keywords" content="weblogic反序列化">
+<meta property="og:type" content="article">
+<meta property="og:title" content="WebLogic XMLDecoder反序列化漏洞">
+<meta property="og:url" content="http://yoursite.com/2018/11/03/WebLogic-XMLDecoder反序列化漏洞/index.html">
+<meta property="og:site_name" content="像风">
+<meta property="og:description" content="前言这是我第一次接触java反序列化漏洞，也不会java，调试的过程比较艰辛，其中一些原理其实也没有太清楚，先整理一篇博客回顾一下再继续往下学习吧。CVE-2017-3506 &amp;amp; CVE-2017-10271漏洞产生的原因大致是Weblogic的WLS Security组件对外提供webservice服务，其中使用了XMLDecoder来解析用户传入的XML数据，在解析的过程中出现反序列化">
+<meta property="og:locale" content="default">
+<meta property="og:image" content="http://yoursite.com/2018/11/03/WebLogic-XMLDecoder反序列化漏洞/1.jpg">
+<meta property="og:image" content="http://yoursite.com/2018/11/03/WebLogic-XMLDecoder反序列化漏洞/2.jpg">
+<meta property="og:image" content="http://yoursite.com/2018/11/03/WebLogic-XMLDecoder反序列化漏洞/3.jpg">
+<meta property="og:image" content="http://yoursite.com/2018/11/03/WebLogic-XMLDecoder反序列化漏洞/4.jpg">
+<meta property="og:image" content="http://yoursite.com/2018/11/03/WebLogic-XMLDecoder反序列化漏洞/5.jpg">
+<meta property="og:image" content="http://yoursite.com/2018/11/03/WebLogic-XMLDecoder反序列化漏洞/6.jpg">
+<meta property="og:image" content="http://yoursite.com/2018/11/03/WebLogic-XMLDecoder反序列化漏洞/7.jpg">
+<meta property="og:image" content="http://yoursite.com/2018/11/03/WebLogic-XMLDecoder反序列化漏洞/8.jpg">
+<meta property="og:image" content="http://yoursite.com/2018/11/03/WebLogic-XMLDecoder反序列化漏洞/9.jpg">
+<meta property="og:image" content="http://yoursite.com/2018/11/03/WebLogic-XMLDecoder反序列化漏洞/10.jpg">
+<meta property="og:updated_time" content="2018-11-04T04:16:51.719Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="WebLogic XMLDecoder反序列化漏洞">
+<meta name="twitter:description" content="前言这是我第一次接触java反序列化漏洞，也不会java，调试的过程比较艰辛，其中一些原理其实也没有太清楚，先整理一篇博客回顾一下再继续往下学习吧。CVE-2017-3506 &amp;amp; CVE-2017-10271漏洞产生的原因大致是Weblogic的WLS Security组件对外提供webservice服务，其中使用了XMLDecoder来解析用户传入的XML数据，在解析的过程中出现反序列化">
+<meta name="twitter:image" content="http://yoursite.com/2018/11/03/WebLogic-XMLDecoder反序列化漏洞/1.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2018/11/03/WebLogic-XMLDecoder反序列化漏洞/">
+
+
+
+
+
+  <title>WebLogic XMLDecoder反序列化漏洞 | 像风</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="default">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">像风</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            Tags
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            Archives
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            About
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/11/03/WebLogic-XMLDecoder反序列化漏洞/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="xiangfengw">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/head.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="像风">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">WebLogic XMLDecoder反序列化漏洞</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-11-03T13:19:16+08:00">
+                2018-11-03
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>这是我第一次接触java反序列化漏洞，也不会java，调试的过程比较艰辛，其中一些原理其实也没有太清楚，先整理一篇博客回顾一下再继续往下学习吧。CVE-2017-3506 &amp; CVE-2017-10271漏洞产生的原因大致是Weblogic的WLS Security组件对外提供webservice服务，其中使用了XMLDecoder来解析用户传入的XML数据，在解析的过程中出现反序列化漏洞，导致可执行任意命令，攻击者发送精心构造的xml数据甚至能通过反弹shell拿到权限。</p>
+<a id="more"></a>
+<h2 id="环境搭建"><a href="#环境搭建" class="headerlink" title="环境搭建"></a>环境搭建</h2><p>直接使用github上vulhub中的docker</p>
+<p><code>https://github.com/vulhub/vulhub/blob/master/weblogic/CVE-2017-10271</code> </p>
+<p>之前我连docker都没用过，参考了这本书入门 <a href="https://yeasy.gitbooks.io/docker_practice/" target="_blank" rel="noopener">Docker—从入门到实践</a></p>
+<p>因为要动态调试，需要开启一个远程调试的端口8053，所以将docker-compose.yml文件改动如下</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">version: &apos;2&apos;</span><br><span class="line"></span><br><span class="line">services:</span><br><span class="line"></span><br><span class="line">  weblogic:</span><br><span class="line"></span><br><span class="line">    image: vulhub/weblogic</span><br><span class="line"></span><br><span class="line">    ports:</span><br><span class="line"></span><br><span class="line">      - &quot;7001:7001&quot;</span><br><span class="line">      - &quot;8453:8453&quot;</span><br></pre></td></tr></table></figure>
+<p>执行命令 <code>docker-compose up -d</code> 完成搭建，若成功启动，打开浏览器访问<code>http://127.0.0.1:7001</code>应该会出现一个404页面</p>
+<p>docker容器搭建完成后，使用命令<code>docker exec -it weblogic /bin/bash</code> 进入容器</p>
+<p>修改<code>/root/Oracle/Middleware/user_projects/domains/base_domain/bin/setDomainEnv.sh</code> 文件</p>
+<p>找到如下代码段</p>
+<img src="/2018/11/03/WebLogic-XMLDecoder反序列化漏洞/1.jpg" title="开启远程调试">
+<p>添加图中的上面两行代码 原来并没有这两行代码</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">debugFlag=&quot;true&quot;</span><br><span class="line">export debugFlag</span><br></pre></td></tr></table></figure>
+<p>添加后运行一下这个脚本，退出并重启容器，这样就开启了debug模式，可以<code>docke ps</code>一下查看容器是否开启了8453端口。</p>
+<p>tips：退出容器快捷键 <code>Ctrl+D</code></p>
+<p>因为要远程调试weblogic，而没有源码，所以要把容器中依赖的包拷出来</p>
+<p>使用命令<code>docker cp weblogic:/root/Oracle/Middleware/wlserver_10.3 ./WebLogic_jars</code> </p>
+<p>这是如果你使用的是windows系统会报错，因为windows队命令行下的路径长度有限制，所以要先进到docker里包要拷的文件夹打个包，再拉下来。</p>
+<p>Linux 的打包命令为 <code>zip -r zipname.zip targetdir</code></p>
+<p>docker中好像没有zip命令，需要先<code>apt-get install zip</code>一下，</p>
+<p>然后再执行<code>zip -r wlserver_10.3.zip wlserver_10.3</code></p>
+<p>这部分jar不全，还要将<code>/root/Oracle/Middleware/modules</code> 拷出来</p>
+<h2 id="IDEA远程调试"><a href="#IDEA远程调试" class="headerlink" title="IDEA远程调试"></a>IDEA远程调试</h2><p>使用idea打开wlserver_10.3，将wlserver_10.3/server/lib和modules这两个文件夹添加到library </p>
+<img src="/2018/11/03/WebLogic-XMLDecoder反序列化漏洞/2.jpg" title="添加library">
+<p>添加后，就会发现里面的.jar和.war的包都可以点开了，并且可以搜索里面的一些类和字符串了。</p>
+<p>然后开始设置debug，点击<code>Add Configuration...</code></p>
+<img src="/2018/11/03/WebLogic-XMLDecoder反序列化漏洞/3.jpg" title="添加debug">
+<p>添加一个Remote设置</p>
+<img src="/2018/11/03/WebLogic-XMLDecoder反序列化漏洞/4.jpg" title="选择Remote模式">
+<p>端口设置为8453，并且设置Use module classpath </p>
+<img src="/2018/11/03/WebLogic-XMLDecoder反序列化漏洞/5.jpg" title="配置debug">
+<p>点击debug，出现如下字样，说明已经配置ok。</p>
+<p><code>Connected to the target VM, address: &#39;localhost:8453&#39;, transport: &#39;socket&#39;</code></p>
+<p>在wlserver_10.3/server/lib/weblogic.jar!/weblogic/wsee/jaxws/WLSServletAdapter.class中的handle方法下断点，看看能否击中断点。</p>
+ <img src="/2018/11/03/WebLogic-XMLDecoder反序列化漏洞/6.jpg" title="断点尝试">
+<p>以上，就搭建好了docker环境和调试环境，接下来就可以复现和动态调试了。</p>
+<h2 id="漏洞复现"><a href="#漏洞复现" class="headerlink" title="漏洞复现"></a>漏洞复现</h2><p>因为对原理其实也是一知半解，所以先用师傅们的poc复现了一下</p>
+<p>现在本地开一个监听端口</p>
+<p><code>nc -l -p 8888</code></p>
+<p>发送如下数据包</p>
+<img src="/2018/11/03/WebLogic-XMLDecoder反序列化漏洞/7.jpg" title="poc">
+<p>tips：/dev/tcp/ 后的ip换成自己的即可</p>
+<p>反弹shell成功</p>
+<img src="/2018/11/03/WebLogic-XMLDecoder反序列化漏洞/8.jpg" title="shell">
+<p>查看burp中返回的xml数据，可以清晰的看到调用栈，调用栈在&lt;ns2:frame /&gt;标签中 </p>
+<img src="/2018/11/03/WebLogic-XMLDecoder反序列化漏洞/9.jpg">
+<p>仔细分析weblogic返回的响应，我们可以大概定位到问题点，我们重点关注&lt;ns2:frame  /&gt;标签中class以weblogic开头的部分，这部分就是weblogic处理我们请求的调用栈逻辑，weblogic处理完后就到了XMLDecoder </p>
+<p>这样，通过漏洞复现，我们得到了weblogic的处理流程如下（为了方便查看，调用栈顺序为从上到下）</p>
+<ul>
+<li>weblogic.wsee.jaxws.workcontext.WorkContextServerTube-&gt;processRequest</li>
+<li>weblogic.wsee.jaxws.workcontext.WorkContextTube-&gt;readHeaderOld</li>
+<li>weblogic.wsee.jaxws.workcontext.WorkContextServerTube-&gt;receive</li>
+<li>weblogic.workarea.WorkContextMapImpl-&gt;receiveRequest</li>
+<li>weblogic.workarea.WorkContextLocalMap-&gt;receiveRequest</li>
+<li>weblogic.workarea.spi.WorkContextEntryImpl-&gt;readEntry</li>
+<li>weblogic.wsee.workarea.WorkContextXmlInputAdapter-&gt;readUTF</li>
+</ul>
+<p>至此，漏洞复现已经完成，并根据漏洞复现中得到的信息，为动态调试打下了基础。</p>
+<h2 id="动态调试"><a href="#动态调试" class="headerlink" title="动态调试"></a>动态调试</h2><p>从poc中可以看出，这个漏洞是wls-wsat这个接口出了问题，搜索一下文件，发现了<code>wls-wsat.war</code>这个包，打开后点击<code>web.xml</code>查看有哪些接口</p>
+<img src="/2018/11/03/WebLogic-XMLDecoder反序列化漏洞/10.jpg">
+<p>进来后发现第一个接口就是我们想要的接口，调用栈和WebLogic servlet的分发机制比较复杂，我也不是很懂emm，只是跟着复现过程发现的函数调用栈跟了一遍流程。</p>
+<p>具体流程如下</p>
+<h3 id="weblogic-wsee-jaxws-workcontext-WorkContextServerTube"><a href="#weblogic-wsee-jaxws-workcontext-WorkContextServerTube" class="headerlink" title="weblogic.wsee.jaxws.workcontext.WorkContextServerTube"></a>weblogic.wsee.jaxws.workcontext.WorkContextServerTube</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">public NextAction processRequest(Packet var1) &#123;</span><br><span class="line">        this.isUseOldFormat = false;</span><br><span class="line">        if (var1.getMessage() != null) &#123;</span><br><span class="line">            HeaderList var2 = var1.getMessage().getHeaders();</span><br><span class="line">            Header var3 = var2.get(WorkAreaConstants.WORK_AREA_HEADER, true);</span><br><span class="line">            if (var3 != null) &#123;</span><br><span class="line">                this.readHeaderOld(var3);</span><br><span class="line">                this.isUseOldFormat = true;</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            Header var4 = var2.get(this.JAX_WS_WORK_AREA_HEADER, true);</span><br><span class="line">            if (var4 != null) &#123;</span><br><span class="line">                this.readHeader(var4);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        return super.processRequest(var1);</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<p>var1为POST传进来的XML数据，var3是xml的头部解析，如果存在（头不为空），就进入readHeaderOld()方法，跟进readHeaderOld()</p>
+<h3 id="weblogic-wsee-jaxws-workcontext-WorkContextTube"><a href="#weblogic-wsee-jaxws-workcontext-WorkContextTube" class="headerlink" title="weblogic.wsee.jaxws.workcontext.WorkContextTube"></a>weblogic.wsee.jaxws.workcontext.WorkContextTube</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">protected void readHeaderOld(Header var1) &#123;</span><br><span class="line">    try &#123;</span><br><span class="line">        XMLStreamReader var2 = var1.readHeader();</span><br><span class="line">        var2.nextTag();</span><br><span class="line">        var2.nextTag();</span><br><span class="line">        XMLStreamReaderToXMLStreamWriter var3 = new XMLStreamReaderToXMLStreamWriter();</span><br><span class="line">        ByteArrayOutputStream var4 = new ByteArrayOutputStream();</span><br><span class="line">        XMLStreamWriter var5 = XMLStreamWriterFactory.create(var4);</span><br><span class="line">        var3.bridge(var2, var5);</span><br><span class="line">        var5.close();</span><br><span class="line">        WorkContextXmlInputAdapter var6 = new WorkContextXmlInputAdapter(new ByteArrayInputStream(var4.toByteArray()));</span><br><span class="line">        this.receive(var6);</span><br><span class="line">    &#125; catch (XMLStreamException var7) &#123;</span><br><span class="line">        throw new WebServiceException(var7);</span><br><span class="line">    &#125; catch (IOException var8) &#123;</span><br><span class="line">        throw new WebServiceException(var8);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>第一步processRequest中我们只把头读了进来，其他的数据还在缓冲区中，使用ByteArrayOutputStream函数读取剩余数据到var4。经过一系列的处理后，如果没有问题就创建WorkContextXmlInputAdapter对象 var6，之后跟进receive()</p>
+<h3 id="weblogic-wsee-jaxws-workcontext-WorkContextServerTube-1"><a href="#weblogic-wsee-jaxws-workcontext-WorkContextServerTube-1" class="headerlink" title="weblogic.wsee.jaxws.workcontext.WorkContextServerTube"></a>weblogic.wsee.jaxws.workcontext.WorkContextServerTube</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">protected void receive(WorkContextInput var1) throws IOException &#123;</span><br><span class="line">    WorkContextMapInterceptor var2 = WorkContextHelper.getWorkContextHelper().getInterceptor();</span><br><span class="line">    var2.receiveRequest(var1);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>继续跟进receiveRequest()</p>
+<h3 id="weblogic-workarea-WorkContextMapImpl"><a href="#weblogic-workarea-WorkContextMapImpl" class="headerlink" title="weblogic.workarea.WorkContextMapImpl"></a>weblogic.workarea.WorkContextMapImpl</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">public void receiveRequest(WorkContextInput var1) throws IOException &#123;</span><br><span class="line">    ((WorkContextMapInterceptor)this.getMap()).receiveRequest(var1);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>将var1传到了receiveRequest()方法中，继续跟进</p>
+<h3 id="weblogic-workarea-WorkContextLocalMap"><a href="#weblogic-workarea-WorkContextLocalMap" class="headerlink" title="weblogic.workarea.WorkContextLocalMap"></a>weblogic.workarea.WorkContextLocalMap</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">public void receiveRequest(WorkContextInput var1) throws IOException &#123;</span><br><span class="line">    while(true) &#123;</span><br><span class="line">        try &#123;</span><br><span class="line">            WorkContextEntry var2 = WorkContextEntryImpl.readEntry(var1);</span><br><span class="line">            if (var2 == WorkContextEntry.NULL_CONTEXT) &#123;</span><br><span class="line">                return;</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            String var3 = var2.getName();</span><br><span class="line">            this.map.put(var3, var2);</span><br><span class="line">            if (debugWorkContext.isDebugEnabled()) &#123;</span><br><span class="line">                debugWorkContext.debug(&quot;receiveRequest(&quot; + var2.toString() + &quot;)&quot;);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125; catch (ClassNotFoundException var4) &#123;</span><br><span class="line">            if (debugWorkContext.isDebugEnabled()) &#123;</span><br><span class="line">                debugWorkContext.debug(&quot;receiveRequest : &quot;, var4);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><code>WorkContextEntryImpl.readEntry(var1);</code>对传进来的数据进行处理，具体的代码好像看不太懂，但是跟进！readEntry()！</p>
+<h3 id="weblogic-workarea-spi-WorkContextEntryImpl"><a href="#weblogic-workarea-spi-WorkContextEntryImpl" class="headerlink" title="weblogic.workarea.spi.WorkContextEntryImpl"></a>weblogic.workarea.spi.WorkContextEntryImpl</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>在这里对var0执行了readUTF()方法，终于看到曙光了，最后一个方法，跟进</p>
+<h3 id="weblogic-wsee-workarea-WorkContextXmlInputAdapter"><a href="#weblogic-wsee-workarea-WorkContextXmlInputAdapter" class="headerlink" title="weblogic.wsee.workarea.WorkContextXmlInputAdapter"></a>weblogic.wsee.workarea.WorkContextXmlInputAdapter</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">public String readUTF() throws IOException &#123;</span><br><span class="line">	return (String)this.xmlDecoder.readObject();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>终于执行了readObject()方法，对XMLDecoder对象进行了反序列化，导致远程命令执行。</p>
+<p>不用再跟进了，至此远程动态调试完成。</p>
+<h2 id="漏洞总结"><a href="#漏洞总结" class="headerlink" title="漏洞总结"></a>漏洞总结</h2><p>WebLogic没有对XML的数据进行任何的过滤，导致可以构造XML数据，反序列化任意对象，从而RCE，这也就是CVE-2017-3506产生的原因。</p>
+<p>这是我第一次对一个漏洞进行完整的复现和调试，其间遇到了许多问题，磕磕绊绊的终于完成了这篇博客，感谢很多师傅的帮助和博客。经过这次尝试，我对java反序列化和漏洞调试有了初步的认识，希望继续努力，早日完成下一篇博客！</p>
+<h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2><p><a href="https://paper.seebug.org/487/" target="_blank" rel="noopener">Weblogic XMLDecoder RCE分析</a></p>
+<p><a href="http://blog.51cto.com/skytina/2055335" target="_blank" rel="noopener">WebLogic XMLDecoder反序列化漏洞（CVE-2017-10271)漏洞分析</a></p>
+<p><a href="http://whip1ash.cn/2018/10/21/weblogic-deserialization/?from=timeline&amp;isappinstalled=0#%E8%AF%B4%E7%82%B9%E5%BA%9F%E8%AF%9D" target="_blank" rel="noopener">从0开始学习WebLogic(Java)反序列化 (1)</a></p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/weblogic反序列化/" rel="tag"># weblogic反序列化</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/10/25/hexo从零搭建全过程/" rel="next" title="hexo 从零搭建全过程">
+                <i class="fa fa-chevron-left"></i> hexo 从零搭建全过程
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/head.jpg" alt="xiangfengw">
+            
+              <p class="site-author-name" itemprop="name">xiangfengw</p>
+              <p class="site-description motion-element" itemprop="description">陪你看千帆 陪你等风雨</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">2</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">2</span>
+                  <span class="site-state-item-name">tags</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#环境搭建"><span class="nav-number">2.</span> <span class="nav-text">环境搭建</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#IDEA远程调试"><span class="nav-number">3.</span> <span class="nav-text">IDEA远程调试</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#漏洞复现"><span class="nav-number">4.</span> <span class="nav-text">漏洞复现</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#动态调试"><span class="nav-number">5.</span> <span class="nav-text">动态调试</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#weblogic-wsee-jaxws-workcontext-WorkContextServerTube"><span class="nav-number">5.1.</span> <span class="nav-text">weblogic.wsee.jaxws.workcontext.WorkContextServerTube</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#weblogic-wsee-jaxws-workcontext-WorkContextTube"><span class="nav-number">5.2.</span> <span class="nav-text">weblogic.wsee.jaxws.workcontext.WorkContextTube</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#weblogic-wsee-jaxws-workcontext-WorkContextServerTube-1"><span class="nav-number">5.3.</span> <span class="nav-text">weblogic.wsee.jaxws.workcontext.WorkContextServerTube</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#weblogic-workarea-WorkContextMapImpl"><span class="nav-number">5.4.</span> <span class="nav-text">weblogic.workarea.WorkContextMapImpl</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#weblogic-workarea-WorkContextLocalMap"><span class="nav-number">5.5.</span> <span class="nav-text">weblogic.workarea.WorkContextLocalMap</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#weblogic-workarea-spi-WorkContextEntryImpl"><span class="nav-number">5.6.</span> <span class="nav-text">weblogic.workarea.spi.WorkContextEntryImpl</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#weblogic-wsee-workarea-WorkContextXmlInputAdapter"><span class="nav-number">5.7.</span> <span class="nav-text">weblogic.wsee.workarea.WorkContextXmlInputAdapter</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#漏洞总结"><span class="nav-number">6.</span> <span class="nav-text">漏洞总结</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Reference"><span class="nav-number">7.</span> <span class="nav-text">Reference</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">xiangfengw</span>
+
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
