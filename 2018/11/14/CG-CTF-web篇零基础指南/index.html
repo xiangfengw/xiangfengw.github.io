@@ -129,7 +129,8 @@
 <meta property="og:image" content="http://yoursite.com/2018/11/14/CG-CTF-web篇零基础指南/29.jpg">
 <meta property="og:image" content="http://yoursite.com/2018/11/14/CG-CTF-web篇零基础指南/30.jpg">
 <meta property="og:image" content="http://yoursite.com/2018/11/14/CG-CTF-web篇零基础指南/31.jpg">
-<meta property="og:updated_time" content="2018-11-15T14:50:46.235Z">
+<meta property="og:image" content="http://yoursite.com/2018/11/14/CG-CTF-web篇零基础指南/end.jpg">
+<meta property="og:updated_time" content="2018-11-15T15:08:54.100Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="CG-CTF web篇零基础指南">
 <meta name="twitter:description" content="前言用了三四天终于把南邮ctf平台的web题做了差不多，也算对ctf多了一些了解，之前发过一篇综合题(2)的writeup，这次准备从头整理一遍。因为我自己就是个萌新，这两天通过做题学到了很多，所以整理的会很详细！ 南邮CG CTF web传送门">
@@ -634,7 +635,8 @@
 <p>步骤如下：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">exp:</span><br><span class="line"># get a cookie</span><br><span class="line">$ curl &apos;http://host/&apos; --cookie-jar cookie</span><br><span class="line"></span><br><span class="line"># force apache to fork new process</span><br><span class="line">$ python fork.py</span><br><span class="line"></span><br><span class="line"># get flag</span><br><span class="line">$ curl -b cookie &quot;http://host:port/?func_name=%00lambda_1&quot;</span><br></pre></td></tr></table></figure>
 <h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>终于，经过三天做题两天整理，自己好像摸到了些ctf的门槛，虽然还很菜，关于ctf的下一步可能先去学学隐写术再来刷题。</p>
-<p>这些天来学到了很多以前没想过的姿势，也回顾了许多忘了差不多的常见漏洞绕过姿势。</p>
+<p>这些天来学到了很多以前没想过的姿势，也回顾了许多忘了差不多的常见漏洞绕过姿势，都做完之后真的成就感爆棚。</p>
+<img src="/2018/11/14/CG-CTF-web篇零基础指南/end.jpg">
 <p>希望能给看这篇文章的你带去一些帮助，要是师傅们发现疏漏了还请快指正我！</p>
 <p>教室有些嘈杂，那些嘈杂此时入耳，仿佛成了我心中的白月光。</p>
 <h1 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h1><p><a href="https://www.jianshu.com/p/19999fa5ca8b" target="_blank" rel="noopener">南邮CTF-WEB-writeup</a></p>
