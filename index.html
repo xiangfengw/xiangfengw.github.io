@@ -252,6 +252,174 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/11/21/一道MISC带你走入双图隐写/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="xiangfengw">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/head.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="像风">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/11/21/一道MISC带你走入双图隐写/" itemprop="url">一道MISC带你走入双图隐写</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-11-21T20:54:25+08:00">
+                2018-11-21
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>隐写术是什么？顾名思义是隐藏信息书写的技术，是信息隐藏技术的一种。</p>
+<p>隐写术中有一个很经典的模型，叫做Simmons模型，也是常说的囚犯问题。</p>
+<p>Alice 和 Bob 分属两个牢房，为了合谋越狱需要进行通信，而通信的信件必须经过中间看守人Wendy的审阅。Wendy可以阅读信件的内容，而且阅读后可以决定是否传送这封信件。这时，对信息进行加密不可取，因为看守人会阅读传送的信息的内容，加密后的信息大概率会引起看守人的怀疑，看守人不但可以选择不发送，还可以以此为依据对两名犯人进行调查。 因此需要一种对通信过程隐藏的手段 ，即隐写术。简单概括，隐写术试图隐藏的是通信事件本身。</p>
+<p>推荐一本我在某邮图书馆翻到的书 《数据隐藏技术解密》——[美]Michael Raggo</p>
+<h1 id="一道双图隐写的CTF题"><a href="#一道双图隐写的CTF题" class="headerlink" title="一道双图隐写的CTF题"></a>一道双图隐写的CTF题</h1><p>做题之前，我对一些常见文件格式分析和常用工具进行了一些了解，这篇文章不进行赘述了，有兴趣的可以自己了解一下，或者我以后闲下来可能会整理出来？？这里只推荐一篇 <a href="https://www.cnblogs.com/Yuuki-/p/7868858.html" target="_blank" rel="noopener">png文件结构的博客</a></p>
+<p>题目图片链接：<a href="https://pan.baidu.com/s/1Ztx0o_-V8XhzBzvSSothtg" target="_blank" rel="noopener">https://pan.baidu.com/s/1Ztx0o_-V8XhzBzvSSothtg</a> </p>
+<p>提取码：qdtf </p>
+<p>先用Binwalk分析文件</p>
+<img src="/2018/11/21/一道MISC带你走入双图隐写/1.png">
+<p>发现藏了两张图片，用foremost分离</p>
+<img src="/2018/11/21/一道MISC带你走入双图隐写/2.png">
+<p>在kali中使用compare比较两个图片并生成一张比较图会发现左下角有一条红线，红线处就是存在不同的地方，这种情况一般是双图像运算。</p>
+<p>compare生成比较文件命令 <code>compare 1.png 2.png output.png</code></p>
+<p>使用Stegsolve打开一个图片，然后用Analyse选项的Image Combiner功能再添加一个图片进行异或操作，这样会把两个图片相同的部分变为0，不同的部分保留。然后保存异或运算后生成的bmp图片，用WinHex打开这个图片会发现这个文件中大部分都为0，不为0的部分就是两张图片不相同的区间，也就是之前红线处图片的差异。</p>
+<img src="/2018/11/21/一道MISC带你走入双图隐写/3.png">
+<p>记录不为0部分的偏移量区间，把原来分离出来的两个图片文用画图板另存为bmp格式，因为XOR异或出来的图片格式为BMP需要使用相同格式的图片寻找差异处。</p>
+<p>用winhex打开两个图片，分别找到对应的偏移量区间如下</p>
+<img src="/2018/11/21/一道MISC带你走入双图隐写/4.png">
+<img src="/2018/11/21/一道MISC带你走入双图隐写/5.png">
+<p>发现其中的差异是第二张图片中一些字节被替换成了00或01，找一下规律发现是每隔两个字节替换一次（每三个Hex的第一个Hex都是00或01，其实每三个Hex代表一个RGB通道，也就是信息隐藏在R通道中），分析这些0和1连接到一起可能会产生二进制信息，但是又不能挨个打出来吧。先把这一段十六进制数据复制下来，找到规律利用python切片连接这些01。</p>
+<img src="/2018/11/21/一道MISC带你走入双图隐写/6.png">
+<p>这里是将一串binary写入R通道中的时候，0变成了00， 1变成了01。</p>
+<p>得到的01数据长度len()一下发现是8的倍数，这时可以直接使用JPK工具格式化二进制数据并转换成Ascii码</p>
+<img src="/2018/11/21/一道MISC带你走入双图隐写/7.png">
+<img src="/2018/11/21/一道MISC带你走入双图隐写/8.png">
+<p>得到flag</p>
+<p>也可以自己写一个脚本来处理这串01序列</p>
+<p>1.py</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">import sys</span><br><span class="line">str=&quot;0100100101010011010001110111101101000101001101000111001101011001010111110101001101110100010001010110011100110100011011100011000001100111010100100011010001110000010010000111100101111101&quot;</span><br><span class="line">i = 0</span><br><span class="line">while i&lt;len(str):</span><br><span class="line">    sys.stdout.write(chr(int(str[i:i+8],2)))</span><br><span class="line">    i+=8</span><br><span class="line"></span><br><span class="line">print</span><br></pre></td></tr></table></figure>
+<img src="/2018/11/21/一道MISC带你走入双图隐写/9.png">
+<h1 id="走进双图隐写"><a href="#走进双图隐写" class="headerlink" title="走进双图隐写"></a>走进双图隐写</h1><p>双图隐写泛指CTF竞赛中所有以两张图片为解题线索的题型，这里的两张图片可以指给出一张图片然后隐藏了另一张图片，也可以指直接给出了两张图片但是需要两张图片结合分析来提取出隐藏信息。</p>
+<p>双图隐写原理： </p>
+<ol>
+<li><p>图像格式拼接</p>
+<p>不同的图像格式存在不同的文件头和文件尾 </p>
+</li>
+<li><p>图层叠加 </p>
+<p>图像由图图叠加而成，图层由像素组成，每一张图层可以理解为一层透明的“玻璃”，它们各自包含独立的内容，可以理解为将各个图层从上到下依次重叠，然后俯视观测第一张图层，各个图层显示的叠加效果为图像最后的显示效果。</p>
+<img src="/2018/11/21/一道MISC带你走入双图隐写/10.png"> 
+</li>
+<li><p>图像运算</p>
+<p>实质上是像素的运算，两张图像相加，实质上是两张图像对应位置的像素相加 </p>
+<img src="/2018/11/21/一道MISC带你走入双图隐写/11.png">
+</li>
+</ol>
+<p>这道题的考点是双图像运算，这种题目的特征为binwalk发现的两张图片分离后看起来完全相同，处理时可能对两张图片进行异或运算，两张图片的差异数据中存在隐藏信息。</p>
+<h1 id="写在后面"><a href="#写在后面" class="headerlink" title="写在后面"></a>写在后面</h1><p>最近感觉自己也没学啥，看了看隐写术的常见套路，回头再把那本书看完就圆满了。</p>
+<p>等周末打打看NJUPTCTF就滚回去学python和java了。</p>
+<p>不想写了，这篇博客就草草收尾了。</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/11/14/CG-CTF-web篇零基础指南/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
@@ -1036,7 +1204,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">6</span>
+                  <span class="site-state-item-count">7</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
