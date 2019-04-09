@@ -74,7 +74,7 @@
 
 
 
-  <meta name="keywords" content="Hexo, NexT">
+  <meta name="keywords" content="python,">
 
 
 
@@ -94,16 +94,18 @@
 
 
 
-<meta name="description" content="红墙白雪，要你喜欢">
-<meta property="og:type" content="website">
-<meta property="og:title" content="南黎">
-<meta property="og:url" content="http://www.wxylyw.com/archives/2018/index.html">
+<meta name="description" content="一.前言好久没发博客了，经过一个假期的深思熟虑，我决定要考研了。虽然我还是大二，但是也要早早准备鸭。 近况是参加了数学建模和两个互联网+项目，并开始学习机器学习。 最近为了考研购置了ipad air，Notability记笔记真的好用，也想用ipad打打代码，就用Termius连接了阿里云学生服务器，把vim配置成了集python编辑器，标签导航、目录树导航、状态栏美化、代码提示和自动补全于一体的">
+<meta name="keywords" content="python">
+<meta property="og:type" content="article">
+<meta property="og:title" content="打造Linux下基于vim的python编辑器">
+<meta property="og:url" content="http://www.wxylyw.com/2019/04/08/打造Linux下基于vim的python编辑器/index.html">
 <meta property="og:site_name" content="南黎">
-<meta property="og:description" content="红墙白雪，要你喜欢">
+<meta property="og:description" content="一.前言好久没发博客了，经过一个假期的深思熟虑，我决定要考研了。虽然我还是大二，但是也要早早准备鸭。 近况是参加了数学建模和两个互联网+项目，并开始学习机器学习。 最近为了考研购置了ipad air，Notability记笔记真的好用，也想用ipad打打代码，就用Termius连接了阿里云学生服务器，把vim配置成了集python编辑器，标签导航、目录树导航、状态栏美化、代码提示和自动补全于一体的">
 <meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2019-04-09T01:55:15.821Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="南黎">
-<meta name="twitter:description" content="红墙白雪，要你喜欢">
+<meta name="twitter:title" content="打造Linux下基于vim的python编辑器">
+<meta name="twitter:description" content="一.前言好久没发博客了，经过一个假期的深思熟虑，我决定要考研了。虽然我还是大二，但是也要早早准备鸭。 近况是参加了数学建模和两个互联网+项目，并开始学习机器学习。 最近为了考研购置了ipad air，Notability记笔记真的好用，也想用ipad打打代码，就用Termius连接了阿里云学生服务器，把vim配置成了集python编辑器，标签导航、目录树导航、状态栏美化、代码提示和自动补全于一体的">
 
 
 
@@ -133,13 +135,13 @@
 
 
 
-  <link rel="canonical" href="http://www.wxylyw.com/archives/2018/">
+  <link rel="canonical" href="http://www.wxylyw.com/2019/04/08/打造Linux下基于vim的python编辑器/">
 
 
 
 
 
-  <title>Archive | 南黎</title>
+  <title>打造Linux下基于vim的python编辑器 | 南黎</title>
   
 
 
@@ -158,7 +160,7 @@
     
   
 
-  <div class="container sidebar-position-left page-archive">
+  <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 <a href="https://github.com/xiangfengw" class="github-corner" aria-label="View source on GitHub"><svg width="80" height="80" viewbox="0 0 250 250" style="fill:#151513; color:#fff; position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"/><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"/><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"/></svg></a><style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style>
     <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
@@ -284,352 +286,197 @@
           <div id="content" class="content">
             
 
-  
-  
-  
-  <div class="post-block archive">
-    <div id="posts" class="posts-collapse">
-      <span class="archive-move-on"></span>
+  <div id="posts" class="posts-expand">
+    
 
-      <span class="archive-page-counter">
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.wxylyw.com/2019/04/08/打造Linux下基于vim的python编辑器/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="像风">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/head.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="南黎">
+    </span>
+
+    
+      <header class="post-header">
+
         
         
+          <h1 class="post-title" itemprop="name headline">打造Linux下基于vim的python编辑器</h1>
         
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-04-08T22:00:40+08:00">
+                2019-04-08
+              </time>
+            
+
+            
+
+            
+          </span>
+
           
-        
-        Um..! 10 posts in total. Keep on posting.
-      </span>
 
-      
-
-        
-        
-        
-
-        
           
-          <div class="collection-title">
-            <h1 class="archive-year" id="archive-year-2018">2018</h1>
-          </div>
-        
-        
+            
+          
 
-        
+          
+          
+             <span id="/2019/04/08/打造Linux下基于vim的python编辑器/" class="leancloud_visitors" data-flag-title="打造Linux下基于vim的python编辑器">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">Visitors&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
 
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-    <header class="post-header">
+          
 
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2018/12/03/BCTF2018-web-1/" itemprop="url">
-              
-                <span itemprop="name">BCTF2018-web(1)</span>
-              
-            </a>
-        
-      </h2>
+          
 
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2018-12-03T16:25:11+08:00" content="2018-12-03">
-          12-03
-        </time>
-      </div>
+          
 
-    </header>
-  </article>
+        </div>
+      </header>
+    
 
-
-
-      
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2018/11/29/NCTF-2018/" itemprop="url">
-              
-                <span itemprop="name">NCTF 2018</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2018-11-29T17:40:07+08:00" content="2018-11-29">
-          11-29
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
 
       
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2018/11/21/一道MISC带你走入双图隐写/" itemprop="url">
-              
-                <span itemprop="name">一道MISC带你走入双图隐写</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2018-11-21T20:54:25+08:00" content="2018-11-21">
-          11-21
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
       
 
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2018/11/14/CG-CTF-web篇零基础指南/" itemprop="url">
-              
-                <span itemprop="name">CG-CTF web篇零基础指南</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2018-11-14T21:29:13+08:00" content="2018-11-14">
-          11-14
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
+      
+        <h1 id="一-前言"><a href="#一-前言" class="headerlink" title="一.前言"></a>一.前言</h1><p>好久没发博客了，经过一个假期的深思熟虑，我决定要考研了。虽然我还是大二，但是也要早早准备鸭。</p>
+<p>近况是参加了数学建模和两个互联网+项目，并开始学习机器学习。</p>
+<p>最近为了考研购置了ipad air，Notability记笔记真的好用，也想用ipad打打代码，就用Termius连接了阿里云学生服务器，把vim配置成了集python编辑器，标签导航、目录树导航、状态栏美化、代码提示和自动补全于一体的编辑器，功能可谓应有尽有。 </p>
+<h1 id="二-环境"><a href="#二-环境" class="headerlink" title="二.环境"></a>二.环境</h1><p>CentOS7 + vim7.4 + git1.8 + python2.7</p>
+<p>利用</p>
+<p><code>vim --version</code></p>
+<p><code>git --version</code></p>
+<p>命令查询</p>
+<p>如果缺少环境可以用<code>yum</code>命令安装</p>
+<h1 id="三-基础插件安装"><a href="#三-基础插件安装" class="headerlink" title="三.基础插件安装"></a>三.基础插件安装</h1><h2 id="1-安装插件管理工具vundle"><a href="#1-安装插件管理工具vundle" class="headerlink" title="1.安装插件管理工具vundle"></a>1.安装插件管理工具vundle</h2><p>安装插件之前我们用到了一个及其好用的插件管理工具vundle </p>
+<p><code>git clone https://github.com/gmarik/vundle.git ~/.vim/bundle/vundle</code></p>
+<h2 id="2-编辑-vimrc配置文件"><a href="#2-编辑-vimrc配置文件" class="headerlink" title="2.编辑.vimrc配置文件"></a>2.编辑.vimrc配置文件</h2><p>~/.vimrc是VIM的配置文件，如果这个配置文件不存在，我们可以自行创建（执行指令vi  ~/.vimrc然后按i键即可 ）。安装好了vundle，需要在~/.vimrc配置文件中添加vundle支持。所以，在~/.vimrc中添加代码如下 </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">filetype off</span><br><span class="line">set rtp+=~/.vim/bundle/vundle/</span><br><span class="line">call vundle#rc()</span><br><span class="line"> </span><br><span class="line">if filereadable(expand(&quot;~/.vimrc.bundles&quot;))</span><br><span class="line">  source ~/.vimrc.bundles</span><br><span class="line">endif</span><br></pre></td></tr></table></figure>
+<h2 id="3-编辑-vimrc-bundles配置文件"><a href="#3-编辑-vimrc-bundles配置文件" class="headerlink" title="3.编辑.vimrc.bundles配置文件"></a>3.编辑.vimrc.bundles配置文件</h2><p>为了方便管理插件，我们首先创建文件~/.vimrc.bundles，然后添加代码如下 ：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line">if &amp;compatible</span><br><span class="line">  set nocompatible</span><br><span class="line">end</span><br><span class="line"> </span><br><span class="line">filetype off</span><br><span class="line">set rtp+=~/.vim/bundle/vundle/</span><br><span class="line">call vundle#rc()</span><br><span class="line"> </span><br><span class="line">&quot; Let Vundle manage Vundle</span><br><span class="line">Bundle &apos;gmarik/vundle&apos;</span><br><span class="line">&quot; Define bundles via Github repos</span><br><span class="line">&quot; 标签导航</span><br><span class="line">Bundle &apos;majutsushi/tagbar&apos;</span><br><span class="line">Bundle &apos;vim-scripts/ctags.vim&apos;</span><br><span class="line">&quot; 静态代码分析</span><br><span class="line">Bundle &apos;scrooloose/syntastic&apos;</span><br><span class="line">&quot; 文件搜索</span><br><span class="line">Bundle &apos;kien/ctrlp.vim&apos;</span><br><span class="line">&quot; 目录树导航</span><br><span class="line">Bundle &quot;scrooloose/nerdtree&quot;</span><br><span class="line">&quot; 美化状态栏</span><br><span class="line">Bundle &quot;Lokaltog/vim-powerline&quot;</span><br><span class="line">&quot; 主题风格</span><br><span class="line">Bundle &quot;altercation/vim-colors-solarized&quot;</span><br><span class="line">&quot; python自动补全</span><br><span class="line">Bundle &apos;davidhalter/jedi-vim&apos;</span><br><span class="line">Bundle &quot;klen/python-mode&quot;</span><br><span class="line">&quot; 括号匹配高亮</span><br><span class="line">Bundle &apos;kien/rainbow_parentheses.vim&apos;</span><br><span class="line">&quot; 可视化缩进</span><br><span class="line">Bundle &apos;nathanaelkane/vim-indent-guides&apos;</span><br><span class="line">if filereadable(expand(&quot;~/.vimrc.bundles.local&quot;))</span><br><span class="line">  source ~/.vimrc.bundles.local</span><br><span class="line">endif</span><br><span class="line">filetype on</span><br></pre></td></tr></table></figure>
+<h2 id="4-安装插件"><a href="#4-安装插件" class="headerlink" title="4.安装插件"></a>4.安装插件</h2><p>在真正执行安装命令之前，需要先安装一个叫做ctags的插件，因为tagbar依赖于ctags。安装ctags的方法为： </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"># 下载源码</span><br><span class="line">wget http://prdownloads.sourceforge.net/ctags/ctags-5.6.tar.gz   </span><br><span class="line"></span><br><span class="line">#解压并安装</span><br><span class="line">tar -zxvf ctags-5.6.tar.gz</span><br><span class="line"> </span><br><span class="line">cd ctags-5.6</span><br><span class="line"> </span><br><span class="line">./configure &amp;&amp; make &amp;&amp; make install</span><br></pre></td></tr></table></figure>
+<p>我们已经指定好了各个插件的路径，接下里就是安装各个插件了。在shell中输入vim，进入命令行模式输入BundleInstall（也就是在VI的插入模式下，按键ESC，然后输入 :BundleInstall）。 </p>
+<p>运行这个命令就开始自行安装我们之前指定的各个插件了。这个过程需要连网，下载并安装好各个插件之后会提示Done！注意一定要等待每个插件全部安装好后最下方啊的提示行提示Done才退出vim。</p>
+<h1 id="四-插件配置"><a href="#四-插件配置" class="headerlink" title="四.插件配置"></a>四.插件配置</h1><p>已经安装好了各个插件，接下里就可以直接用了吗？答案是否定的，我们还需要继续对自己安装的插件进行配置。配置这里也很简单，下面是我的配置，更新~/.vimrc为：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br></pre></td><td class="code"><pre><span class="line">filetype off</span><br><span class="line">set rtp+=~/.vim/bundle/vundle/</span><br><span class="line">call vundle#rc()</span><br><span class="line"></span><br><span class="line">if filereadable(expand(&quot;~/.vimrc.bundles&quot;))</span><br><span class="line">  source ~/.vimrc.bundles</span><br><span class="line">endif</span><br><span class="line"></span><br><span class="line">&quot; tagbar标签导航</span><br><span class="line">nmap &lt;Leader&gt;tb :TagbarToggle&lt;CR&gt;</span><br><span class="line">let g:tagbar_ctags_bin=&apos;/usr/bin/ctags&apos;</span><br><span class="line">let g:tagbar_width=30</span><br><span class="line">autocmd BufReadPost *.cpp,*.c,*.h,*.hpp,*.cc,*.cxx call tagbar#autoopen()</span><br><span class="line">let g:jedi#auto_initialization = 1</span><br><span class="line">&quot; 主题 solarized</span><br><span class="line">let g:solarized_termtrans=1</span><br><span class="line">let g:solarized_contrast=&quot;normal&quot;</span><br><span class="line">let g:solarized_visibility=&quot;normal&quot;</span><br><span class="line">&quot; 配色方案</span><br><span class="line">set background=dark</span><br><span class="line">set t_Co=256</span><br><span class="line">colorscheme solarized</span><br><span class="line">&quot; 目录文件导航NERD-Tree</span><br><span class="line">&quot; \nt 打开nerdree窗口，在左侧栏显示</span><br><span class="line">nmap &lt;leader&gt;nt :NERDTree&lt;CR&gt;</span><br><span class="line">let NERDTreeHighlightCursorline=1</span><br><span class="line">let NERDTreeIgnore=[ &apos;\.pyc$&apos;, &apos;\.pyo$&apos;, &apos;\.obj$&apos;, &apos;\.o$&apos;, &apos;\.so$&apos;, &apos;\.egg$&apos;, &apos;^\.git$&apos;, &apos;^\.svn$&apos;, &apos;^\.hg$&apos; ]</span><br><span class="line">let g:netrw_home=&apos;~/bak&apos;</span><br><span class="line">&quot;close vim if the only window left open is a NERDTree</span><br><span class="line">autocmd bufenter * if (winnr(&quot;$&quot;) == 1 &amp;&amp; exists(&quot;b:NERDTreeType&quot;) &amp;&amp; b:NERDTreeType == &quot;primary&quot;) | q | end</span><br><span class="line"></span><br><span class="line">&quot; ctrlp文件搜索</span><br><span class="line">&quot; 打开ctrlp搜索</span><br><span class="line">let g:ctrlp_map = &apos;&lt;leader&gt;ff&apos;</span><br><span class="line">let g:ctrlp_cmd = &apos;CtrlP&apos;</span><br><span class="line">&quot; 相当于mru功能，show recently opened files</span><br><span class="line">map &lt;leader&gt;fp :CtrlPMRU&lt;CR&gt;</span><br><span class="line">&quot; set wildignore+=*/tmp/*,*.so,*.swp,*.zip     &quot; MacOSX/Linux&quot;</span><br><span class="line">let g:ctrlp_custom_ignore = &#123;</span><br><span class="line">    \ &apos;dir&apos;:  &apos;\v[\/]\.(git|hg|svn|rvm)$&apos;,</span><br><span class="line">    \ &apos;file&apos;: &apos;\v\.(exe|so|dll|zip|tar|tar.gz)$&apos;,</span><br><span class="line">    \ &#125;</span><br><span class="line">&quot;\ &apos;link&apos;: &apos;SOME_BAD_SYMBOLIC_LINKS&apos;,</span><br><span class="line">let g:ctrlp_working_path_mode=0</span><br><span class="line">let g:ctrlp_match_window_bottom=1</span><br><span class="line">let g:ctrlp_max_height=15</span><br><span class="line">let g:ctrlp_match_window_reversed=0</span><br><span class="line">let g:ctrlp_mruf_max=500</span><br><span class="line">let g:ctrlp_follow_symlinks=1</span><br><span class="line">&quot; vim-powerline美化状态</span><br><span class="line">&quot; let g:Powerline_symbols = &apos;fancy&apos;</span><br><span class="line">let g:Powerline_symbols = &apos;unicode&apos;</span><br><span class="line">&quot; 括号匹配高亮</span><br><span class="line">let g:rbpt_colorpairs = [</span><br><span class="line">    \ [&apos;brown&apos;,       &apos;RoyalBlue3&apos;],</span><br><span class="line">    \ [&apos;Darkblue&apos;,    &apos;SeaGreen3&apos;],</span><br><span class="line">    \ [&apos;darkgray&apos;,    &apos;DarkOrchid3&apos;],</span><br><span class="line">    \ [&apos;darkgreen&apos;,   &apos;firebrick3&apos;],</span><br><span class="line">    \ [&apos;darkcyan&apos;,    &apos;RoyalBlue3&apos;],</span><br><span class="line">    \ [&apos;darkred&apos;,     &apos;SeaGreen3&apos;],</span><br><span class="line">    \ [&apos;darkmagenta&apos;, &apos;DarkOrchid3&apos;],</span><br><span class="line">    \ [&apos;brown&apos;,       &apos;firebrick3&apos;],</span><br><span class="line">    \ [&apos;gray&apos;,        &apos;RoyalBlue3&apos;],</span><br><span class="line">    \ [&apos;black&apos;,       &apos;SeaGreen3&apos;],</span><br><span class="line">    \ [&apos;darkmagenta&apos;, &apos;DarkOrchid3&apos;],</span><br><span class="line">    \ [&apos;Darkblue&apos;,    &apos;firebrick3&apos;],</span><br><span class="line">    \ [&apos;darkgreen&apos;,   &apos;RoyalBlue3&apos;],</span><br><span class="line">    \ [&apos;darkcyan&apos;,    &apos;SeaGreen3&apos;],</span><br><span class="line">    \ [&apos;darkred&apos;,     &apos;DarkOrchid3&apos;],</span><br><span class="line">    \ [&apos;red&apos;,         &apos;firebrick3&apos;],</span><br><span class="line">    \ ]</span><br><span class="line">let g:rbpt_max = 40</span><br><span class="line">let g:rbpt_loadcmd_toggle = 0</span><br><span class="line"></span><br><span class="line">&quot; 可视化缩进</span><br><span class="line">let g:indent_guides_enable_on_vim_startup = 0  &quot; 默认关闭</span><br><span class="line">let g:indent_guides_guide_size            = 1  &quot; 指定对齐线的尺寸</span><br><span class="line">let g:indent_guides_start_level           = 2  &quot; 从第二层开始可视化显示缩进</span><br><span class="line">set ts=4</span><br><span class="line">set expandtab</span><br><span class="line">set autoindent</span><br><span class="line"></span><br><span class="line">&quot; 运行文件</span><br><span class="line">map &lt;F5&gt; :w&lt;cr&gt;:r!python %&lt;cr&gt;</span><br></pre></td></tr></table></figure>
+<p> 你可以根据自己的喜好设置快捷键，<leader>是按键\，根据我的配置。在VIM的正常模式下：</leader></p>
+<ul>
+<li><p>依次按键\tb，就会调出标签导航；</p>
+</li>
+<li><p>依次按键\ff，就会调出文件搜索；</p>
+</li>
+<li><p>依次按键\nt，就会调出目录导航。</p>
+</li>
+</ul>
+<p>  在VIM的正常模式下，按F5就会保存文件并使用python3运行当前文件，并将结果输出到当前界面。运行完之后，依然可以在VIM的正常模式下按u，撤回这个输出操作，这样输出结果就撤回了，我们就可以继续编写自己的代码了。  </p>
+<h1 id="五-遇到的问题与解决方案"><a href="#五-遇到的问题与解决方案" class="headerlink" title="五.遇到的问题与解决方案"></a>五.遇到的问题与解决方案</h1><p>以上教程中python自动补全插件我安装后运行没有成功，所以自己另外找了个自动补全python代码的插件，步骤如下：</p>
+<p>安装</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cd ~/.vim/bundle</span><br><span class="line">git clone https://github.com/rkulla/pydiction.git</span><br></pre></td></tr></table></figure>
+<p>官方的步骤说明：</p>
+<p>Put python_pydiction.vim in ~/.vim/after/ftplugin/<br>Create this directory if doesn’t yet exist. Vim looks there automatically</p>
+<p>意思是把下载的pydiction文件夹中的python_pydiction.vim文件（这个文件在/pydiction/after/ftplugin/目录下）移动到 ~/.vim/afer/ftplugin/目录下，这是vim实现该功能的默认目录，如果没有这个目录就手动创建一下。</p>
+<p>在 ~/.vimrc配置文件中追加如下代码</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">filetype plugin on</span><br><span class="line">let g:pydiction_location = &apos;~/.vim/bundle/pydiction/complete-dict&apos;</span><br><span class="line">let g:pydiction_menu_height = 3</span><br></pre></td></tr></table></figure>
+<h1 id="六-总结"><a href="#六-总结" class="headerlink" title="六.总结"></a>六.总结</h1><p>网上的教程有很多不适合我，磕磕绊绊终于配置好了vim的python编译器，经过这些步骤之后相信你对vim插件的管理已经有了清晰的认识，也可以寻找并添加新的插件来完善自己的编辑器了。</p>
 
       
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2018/11/13/CG-CTF-综合题-2-writeup/" itemprop="url">
-              
-                <span itemprop="name">CG-CTF 综合题(2) writeup</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2018-11-13T14:34:34+08:00" content="2018-11-13">
-          11-13
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2018/11/07/理解Java反序列化漏洞-1/" itemprop="url">
-              
-                <span itemprop="name">理解Java反序列化漏洞(1)</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2018-11-07T23:18:00+08:00" content="2018-11-07">
-          11-07
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2018/11/03/WebLogic-XMLDecoder反序列化漏洞/" itemprop="url">
-              
-                <span itemprop="name">WebLogic XMLDecoder反序列化漏洞</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2018-11-03T13:19:16+08:00" content="2018-11-03">
-          11-03
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2018/10/25/hexo从零搭建全过程/" itemprop="url">
-              
-                <span itemprop="name">hexo 从零搭建全过程</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2018-10-25T09:00:02+08:00" content="2018-10-25">
-          10-25
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2018/10/25/hello-world/" itemprop="url">
-              
-                <span itemprop="name">Hello World</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2018-10-25T08:37:15+08:00" content="2018-10-25">
-          10-25
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
     </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/python/" rel="tag"><i class="fa fa-tag"></i> python</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/12/03/BCTF2018-web-1/" rel="next" title="BCTF2018-web(1)">
+                <i class="fa fa-chevron-left"></i> BCTF2018-web(1)
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
   </div>
   
   
   
+  </article>
 
-  
 
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
 
 
           </div>
@@ -637,6 +484,13 @@
 
 
           
+
+  
+  <div id="gitalk-container">
+  </div>
+  
+
+
 
         </div>
         
@@ -657,8 +511,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
             
@@ -725,6 +588,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#一-前言"><span class="nav-number">1.</span> <span class="nav-text">一.前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#二-环境"><span class="nav-number">2.</span> <span class="nav-text">二.环境</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#三-基础插件安装"><span class="nav-number">3.</span> <span class="nav-text">三.基础插件安装</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-安装插件管理工具vundle"><span class="nav-number">3.1.</span> <span class="nav-text">1.安装插件管理工具vundle</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-编辑-vimrc配置文件"><span class="nav-number">3.2.</span> <span class="nav-text">2.编辑.vimrc配置文件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-编辑-vimrc-bundles配置文件"><span class="nav-number">3.3.</span> <span class="nav-text">3.编辑.vimrc.bundles配置文件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-安装插件"><span class="nav-number">3.4.</span> <span class="nav-text">4.安装插件</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#四-插件配置"><span class="nav-number">4.</span> <span class="nav-text">四.插件配置</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#五-遇到的问题与解决方案"><span class="nav-number">5.</span> <span class="nav-text">五.遇到的问题与解决方案</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#六-总结"><span class="nav-number">6.</span> <span class="nav-text">六.总结</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
@@ -872,6 +751,10 @@
   
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
 
   
 
@@ -912,6 +795,22 @@
 
 
 
+
+  <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+  <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+  <script src="https://cdn.bootcss.com/blueimp-md5/2.10.0/js/md5.min.js"></script>
+   <script type="text/javascript">
+        var gitalk = new Gitalk({
+          clientID: 'd259937a31344a1a46ae',
+          clientSecret: '3826457715dc3953fd3b9dbbf2b14fe5f439cb8f',
+          repo: 'xiangfengwGitalk.github.io',
+          owner: 'xiangfengw',
+          admin: ['xiangfengw'],
+          id: md5(window.location.pathname),
+          distractionFreeMode: 'true'
+        })
+        gitalk.render('gitalk-container')
+       </script>
 
   
 
