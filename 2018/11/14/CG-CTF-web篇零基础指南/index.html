@@ -145,7 +145,7 @@
 <meta property="og:image" content="http://www.wxylyw.com/2018/11/14/CG-CTF-web篇零基础指南/30.jpg">
 <meta property="og:image" content="http://www.wxylyw.com/2018/11/14/CG-CTF-web篇零基础指南/31.jpg">
 <meta property="og:image" content="http://www.wxylyw.com/2018/11/14/CG-CTF-web篇零基础指南/end.jpg">
-<meta property="og:updated_time" content="2019-10-10T12:00:20.053Z">
+<meta property="og:updated_time" content="2019-10-10T12:01:49.221Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="CG-CTF web篇零基础指南">
 <meta name="twitter:description" content="前言用了三四天终于把南邮ctf平台的web题做了差不多，也算对ctf多了一些了解，之前发过一篇综合题(2)的writeup，这次准备从头整理一遍。这两天通过做题学到了很多，整理的会很详细！ 南邮CG CTF web传送门">
@@ -428,7 +428,7 @@
 <h1 id="writeup"><a href="#writeup" class="headerlink" title="writeup"></a>writeup</h1><h2 id="1-签到题"><a href="#1-签到题" class="headerlink" title="1.签到题"></a>1.签到题</h2><p>直接看源代码就可以看到flag了</p>
 <h2 id="2-md5-collision"><a href="#2-md5-collision" class="headerlink" title="2.md5 collision"></a>2.md5 collision</h2><p>php源码</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">$md51 = md5(&apos;QNKCDZO&apos;);</span><br><span class="line">$a = @$_GET[&apos;a&apos;];</span><br><span class="line">$md52 = @md5($a);</span><br><span class="line">if(isset($a))&#123;</span><br><span class="line">if ($a != &apos;QNKCDZO&apos; &amp;&amp; $md51 == $md52) &#123;</span><br><span class="line">    echo &quot;nctf&#123;*****************&#125;&quot;;</span><br><span class="line">&#125; else &#123;</span><br><span class="line">    echo &quot;false!!!&quot;;</span><br><span class="line">&#125;&#125;</span><br><span class="line">else&#123;echo &quot;please input a&quot;;&#125;</span><br></pre></td></tr></table></figure>
-<p>php弱类型的利用，这道题满常见的，需要传入一个参数a不等于 ‘QNKCDZO’，但是经过md5加密后的值需要与 “QNKCDZO”的md5加密后的值进行松散比较相等。</p>
+<p>php弱类型的利用，这道题的思路蛮常见的，需要传入一个参数a不等于 ‘QNKCDZO’，但是经过md5加密后的值需要与 “QNKCDZO”的md5加密后的值进行松散比较相等。</p>
 <p>md5(‘QNKCDZO’)=’0e830400451993494058024219903391’，而PHP在处理哈希字符串时，会利用<code>!=</code>或<code>==</code>来对哈希值进行比较，它把每一个以<code>0E</code>开头的哈希值都解释为<code>0</code>，所以如果两个不同的密码经过哈希以后，其哈希值都是以<code>0E</code>开头的，那么PHP将会认为他们相同，都是<code>0</code>。</p>
 <p>所以给 a 传入一个 md5 加密后也为 0e 开头的字符串即可，这样的字符串一搜一大把了</p>
 <p>这里我传了 <code>?a=s878926199a</code> 拿到flag</p>
